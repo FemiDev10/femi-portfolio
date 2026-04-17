@@ -162,13 +162,40 @@ export default function PhysicsCanvas() {
 
       /* ── mobile: device orientation tilt ── */
       const onOrientation = (e: DeviceOrientationEvent) => {
-        const gamma = e.gamma ?? 0; // -90 to 90 (left/right tilt)
-        const beta  = e.beta  ?? 0; // -180 to 180 (front/back tilt)
-        engine.gravity.x = Math.max(-0.8, Math.min(0.8, gamma / 45 * 0.8));
-        engine.gravity.y = Math.max(0.2,  Math.min(1.4, 0.8 + beta / 90 * 0.6));
+        const gamma = e.gamma ?? 0; // -90 to 90  — left/right tilt
+        const beta  = e.beta  ?? 0; // -180 to 180 — forward/back tilt
+        // clamp beta to a usable portrait range (-90 to 90)
+        const clampedBeta = Math.max(-90, Math.min(90, beta));
+        engine.gravity.x = (gamma / 45) * 0.9;                      // -0.9 to 0.9
+        engine.gravity.y = Math.max(0, (clampedBeta / 45));         // 0 when flat, ~2 when face-down
       };
-      if (isTouch) {
+
+      const startOrientation = () => {
         window.addEventListener("deviceorientation", onOrientation, { passive: true });
+      };
+
+      if (isTouch) {
+        // iOS 13+ requires explicit permission
+        if (
+          typeof (DeviceOrientationEvent as any).requestPermission === "function"
+        ) {
+          // We'll request on first touch of the canvas
+          render.canvas.addEventListener(
+            "touchstart",
+            () => {
+              (DeviceOrientationEvent as any)
+                .requestPermission()
+                .then((state: string) => {
+                  if (state === "granted") startOrientation();
+                })
+                .catch(() => {});
+            },
+            { once: true }
+          );
+        } else {
+          // Android and older iOS — no permission needed
+          startOrientation();
+        }
       }
 
       /* ── mobile: shake detection ── */
@@ -218,8 +245,8 @@ export default function PhysicsCanvas() {
       return () => {
         timeouts.forEach(clearTimeout);
         window.removeEventListener("mousemove", onMouseMove);
-        window.removeEventListener("deviceorientation", onOrientation);
-        window.removeEventListener("devicemotion", onMotion);
+        window.removeEventListener("deviceorientation", onOrientation as EventListener);
+        window.removeEventListener("devicemotion", onMotion as EventListener);
         ro.disconnect();
         Runner.stop(runner);
         Render.stop(render);
