@@ -8,6 +8,9 @@ export default function MagneticCursor() {
   const labelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Skip on touch / no-hover devices (phones, tablets)
+    if (window.matchMedia("(hover: none)").matches) return;
+
     const dot = dotRef.current;
     const ring = ringRef.current;
     const label = labelRef.current;
@@ -124,9 +127,10 @@ export default function MagneticCursor() {
 
   return (
     <>
-      {/* Lagging ring */}
+      {/* Lagging ring — hidden on touch devices via CSS */}
       <div
         ref={ringRef}
+        className="magnetic-cursor-el"
         style={{
           position: "fixed",
           left: "-100px",
@@ -146,6 +150,7 @@ export default function MagneticCursor() {
       {/* Instant dot */}
       <div
         ref={dotRef}
+        className="magnetic-cursor-el"
         style={{
           position: "fixed",
           left: "-100px",
@@ -164,6 +169,7 @@ export default function MagneticCursor() {
       {/* "View →" label that appears on card hover */}
       <div
         ref={labelRef}
+        className="magnetic-cursor-el"
         style={{
           position: "fixed",
           left: "-100px",
@@ -181,6 +187,12 @@ export default function MagneticCursor() {
       >
         View →
       </div>
+
+      <style>{`
+        @media (hover: none) {
+          .magnetic-cursor-el { display: none !important; }
+        }
+      `}</style>
     </>
   );
 }

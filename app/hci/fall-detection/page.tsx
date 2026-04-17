@@ -234,7 +234,7 @@ export default function FallDetectionPage() {
     <div style={{ background: "#fff", color: "#111" }}>
 
       {/* ══ 01 HERO ════════════════════════════════════════════════ */}
-      <section style={{ background: "#0d1117", padding: "80px 24px 72px" }}>
+      <section className="hci-hero" style={{ background: "#0d1117", padding: "clamp(40px,6vw,80px) 24px clamp(48px,6vw,72px)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
           {/* breadcrumb */}
@@ -321,7 +321,7 @@ export default function FallDetectionPage() {
       <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <SectionLabel n="02" text="The Problem" />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="hci-two-col">
           <div>
             <h2 style={{ fontSize: "clamp(22px,3vw,32px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.2, margin: "0 0 20px" }}>
               Nobody was solving this<br />
@@ -366,7 +366,7 @@ export default function FallDetectionPage() {
         </div>
 
         {/* 3 approaches */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: BORDER, border: BORDER, borderRadius: 10, overflow: "hidden", marginTop: 64 }}>
+        <div className="hci-three-approach">
           {[
             { type: "Wearable Sensors", note: "Accurate but expensive and uncomfortable for extended wear" },
             { type: "Vision-Based Systems", note: "Privacy-invasive, fixed cameras, useless outside" },
@@ -395,7 +395,7 @@ export default function FallDetectionPage() {
       <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <SectionLabel n="03" text="User Research" />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start", marginBottom: 48 }}>
+        <div className="hci-two-col" style={{ marginBottom: 48 }}>
           <div>
             <h2 style={{ fontSize: "clamp(22px,3vw,32px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.2, margin: "0 0 20px" }}>
               Talk to elderly people{" "}
@@ -412,7 +412,7 @@ export default function FallDetectionPage() {
         </div>
 
         {/* three finding cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+        <div className="hci-three-col-cards">
           <FindingCard
             n="FINDING 01"
             headline="Not all falls are sudden"
@@ -431,7 +431,7 @@ export default function FallDetectionPage() {
         </div>
 
         {/* photo row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginTop: 32 }}>
+        <div className="hci-photo-four">
           <PhotoPlaceholder label="Participant session" aspect="1/1" />
           <PhotoPlaceholder label="Movement observation" aspect="1/1" />
           <PhotoPlaceholder label="Notes + patterns" aspect="1/1" />
@@ -445,7 +445,7 @@ export default function FallDetectionPage() {
       <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <SectionLabel n="04" text="Design Logic" />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="hci-two-col-wide">
           <div>
             <h2 style={{ fontSize: "clamp(22px,3vw,32px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.2, margin: "0 0 20px" }}>
               Fall detection is a{" "}
@@ -493,7 +493,7 @@ export default function FallDetectionPage() {
       <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <SectionLabel n="05" text="Hardware Construction" />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start", marginBottom: 48 }}>
+        <div className="hci-two-col" style={{ marginBottom: 48 }}>
           <div>
             <h2 style={{ fontSize: "clamp(22px,3vw,32px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.2, margin: "0 0 20px" }}>
               From breadboard{" "}
@@ -536,7 +536,7 @@ export default function FallDetectionPage() {
         </div>
 
         {/* component grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
+        <div className="hci-four-col">
           <ComponentCard icon="🧠" name="ATmega328P" detail="Microcontroller running real-time 7-step validation logic" />
           <ComponentCard icon="📡" name="MPU6050" detail="6-axis IMU — gyroscope + accelerometer for orientation and motion" />
           <ComponentCard icon="〰️" name="SW-420" detail="Vibration sensor triggering initial impact detection" />
@@ -555,14 +555,14 @@ export default function FallDetectionPage() {
         <SectionLabel n="06" text="Testing & Results" />
 
         {/* big stats */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 40, marginBottom: 64, paddingBottom: 64, borderBottom: BORDER }}>
+        <div className="hci-four-col-stats">
           <BigStat target={93} suffix="%" label="Detection accuracy" />
           <BigStat target={200} label="Test scenarios" />
           <BigStat target={3.5} suffix="s" label="Min. response time" decimals={1} />
           <BigStat target={4} label="Movement categories" />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="hci-two-col">
           <div>
             <h2 style={{ fontSize: "clamp(20px,2.5vw,28px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.2, margin: "0 0 20px" }}>
               200 scenarios,{" "}
@@ -605,7 +605,7 @@ export default function FallDetectionPage() {
           <p style={{ margin: "0 0 20px", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(17,17,17,0.35)" }}>
             Alert system — four channels fire simultaneously
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: BORDER, border: BORDER, borderRadius: 10, overflow: "hidden" }}>
+          <div className="hci-four-col-alert">
             {[
               { icon: "🔔", title: "Buzzer", detail: "Immediate local alert, audible to anyone nearby" },
               { icon: "💡", title: "LED Indicator", detail: "Visual confirmation the system has detected an event" },
@@ -640,7 +640,7 @@ export default function FallDetectionPage() {
           Safety-critical systems for vulnerable users push every design principle to its logical extreme.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="hci-implications-grid">
           <ImplicationCard
             n="IMPLICATION 01"
             headline="The best interface for this user is no interface at all"
@@ -678,7 +678,7 @@ export default function FallDetectionPage() {
           Five directions to take this from research prototype to deployed product.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+        <div className="hci-three-col-steps">
           <NextStepCard
             title="Machine Learning Layer"
             body="Replace static thresholds with a model trained on individual movement patterns. The system learns what this person's normal looks like. False positive rate drops dramatically."
@@ -708,9 +708,8 @@ export default function FallDetectionPage() {
       <section style={{ padding: "80px 24px 64px", maxWidth: 1100, margin: "0 auto" }}>
         <SectionLabel n="09" text="Closing Thought" />
 
-        <blockquote style={{
+        <blockquote className="hci-closing-quote" style={{
           margin: 0,
-          padding: "48px 56px",
           background: "#0d1117",
           borderRadius: 12,
         }}>
@@ -797,6 +796,41 @@ export default function FallDetectionPage() {
           ))}
         </div>
       </section>
+
+      <style>{`
+        .hci-two-col { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+        .hci-two-col-wide { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+        .hci-three-col-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+        .hci-three-col-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+        .hci-four-col { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+        .hci-four-col-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:64px; padding-bottom:64px; border-bottom:1px solid rgba(17,17,17,0.08); }
+        .hci-four-col-alert { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(17,17,17,0.08); border:1px solid rgba(17,17,17,0.08); border-radius:10px; overflow:hidden; margin-top:64px; }
+        .hci-implications-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .hci-three-approach { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(17,17,17,0.08); border:1px solid rgba(17,17,17,0.08); border-radius:10px; overflow:hidden; margin-top:64px; }
+        .hci-photo-four { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:32px; }
+        .hci-closing-quote { padding:48px 56px; }
+
+        @media (max-width:640px) {
+          .hci-two-col, .hci-two-col-wide { grid-template-columns:1fr; gap:28px; }
+          .hci-three-col-cards { grid-template-columns:1fr; }
+          .hci-three-approach { grid-template-columns:1fr; }
+          .hci-three-approach > * { border-right:none !important; }
+          .hci-three-col-steps { grid-template-columns:1fr; }
+          .hci-four-col { grid-template-columns:1fr 1fr; }
+          .hci-four-col-stats { grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px; padding-bottom:40px; }
+          .hci-four-col-alert { grid-template-columns:1fr 1fr; }
+          .hci-implications-grid { grid-template-columns:1fr; }
+          .hci-photo-four { grid-template-columns:1fr 1fr; }
+          .hci-closing-quote { padding:28px 20px; }
+        }
+        @media (min-width:641px) and (max-width:1024px) {
+          .hci-two-col, .hci-two-col-wide { gap:40px; }
+          .hci-four-col { grid-template-columns:1fr 1fr; }
+          .hci-four-col-stats { grid-template-columns:1fr 1fr; gap:28px; }
+          .hci-four-col-alert { grid-template-columns:1fr 1fr; }
+          .hci-photo-four { grid-template-columns:1fr 1fr; }
+        }
+      `}</style>
 
     </div>
   );

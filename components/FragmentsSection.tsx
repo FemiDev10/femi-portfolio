@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 /* ─── draggable wrapper ──────────────────────────────────────── */
@@ -103,8 +103,135 @@ function Bar({ pct, color }: { pct: number; color: string }) {
   );
 }
 
+/* ─── mobile horizontal strip ───────────────────────────────── */
+function MobileFragments() {
+  const cards = [
+    <Sticker key="s1" bg="#FFE24B" color="#111" rotate={0}>pixel perfect →</Sticker>,
+    <Sticker key="s2" bg="#0f172a" color="rgba(255,255,255,0.85)" rotate={0}>design engineer ⚡</Sticker>,
+    <div key="c1" style={D(260)}>
+      <p style={lbl}>NOW PLAYING</p>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+        <div style={{ width: 36, height: 36, borderRadius: 6, background: "linear-gradient(135deg,#1DB954,#0a6b2d)", flexShrink: 0 }} />
+        <div><p style={{ fontSize: 12, fontWeight: 500 }}>Komọlẹ́</p><p style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>Tems</p></div>
+      </div>
+      <Bar pct={44} color="#1DB954" />
+    </div>,
+    <Sticker key="s3" bg="#027DFD" rotate={0}>Flutter dev 🦋</Sticker>,
+    <div key="c2" style={W(260)}>
+      <p style={{ fontSize: 52, fontWeight: 700, lineHeight: 1, color: "#111", letterSpacing: "-0.04em" }}>5</p>
+      <p style={{ fontSize: 9, color: "rgba(17,17,17,0.4)", marginTop: 4, letterSpacing: "0.04em", textTransform: "uppercase" as const }}>years of craft</p>
+    </div>,
+    <div key="c3" style={D(260)}>
+      <p style={lbl}>PALETTE</p>
+      <div style={{ display: "flex", gap: 6 }}>
+        {["#111", "#3b5bdb", "#f97316", "#FFE24B", "#f5f0e8"].map((c) => (
+          <div key={c} style={{ width: 32, height: 32, borderRadius: 6, background: c }} />
+        ))}
+      </div>
+    </div>,
+    <Sticker key="s4" bg="#4F46E5" rotate={0}>ships code ↗</Sticker>,
+    <Sticker key="s5" bg="#7c3aed" rotate={0}>HCI researcher 🔬</Sticker>,
+    <div key="c4" style={W(260)}>
+      <p style={lblW}>DAILY TOOLS</p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 10px" }}>
+        {["Figma", "Next.js", "Framer", "Flutter", "Tailwind", "VS Code", "Linear", "Notion"].map((t) => (
+          <span key={t} style={{ fontSize: 11, color: "#111", fontWeight: 500 }}>{t}</span>
+        ))}
+      </div>
+    </div>,
+    <div key="c5" style={D(260)}>
+      <p style={{ fontSize: 13, fontStyle: "italic", color: "rgba(255,255,255,0.7)", lineHeight: 1.55, letterSpacing: "-0.01em" }}>
+        &ldquo;Design without engineering is just art.&rdquo;
+      </p>
+      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", marginTop: 12 }}>— Femi Jimoh, probably</p>
+    </div>,
+    <Sticker key="s6" bg="#0f766e" rotate={0}>zero figma handoffs 🚫</Sticker>,
+    <div key="c6" style={W(260)}>
+      <p style={lblW}>DEPTH</p>
+      {[{ skill: "UI Design", pct: 95, color: "#3b5bdb" }, { skill: "Frontend", pct: 82, color: "#f97316" }, { skill: "Research", pct: 74, color: "#22c55e" }, { skill: "Motion", pct: 68, color: "#a855f7" }].map(({ skill, pct, color }) => (
+        <div key={skill} style={{ marginBottom: 7 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+            <span style={{ fontSize: 9, color: "#111" }}>{skill}</span>
+            <span style={{ fontSize: 9, color: "rgba(17,17,17,0.3)" }}>{pct}%</span>
+          </div>
+          <div style={{ height: 3, background: "#f0f0f0", borderRadius: 99 }}>
+            <div style={{ height: 3, width: `${pct}%`, background: color, borderRadius: 99 }} />
+          </div>
+        </div>
+      ))}
+    </div>,
+    <Sticker key="s7" bg="#ea580c" rotate={0}>research first →</Sticker>,
+    <div key="c7" style={D(260)}>
+      <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 8 }}>
+        <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
+        <span style={{ fontSize: 11, fontWeight: 600 }}>Open to work</span>
+      </div>
+      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", lineHeight: 1.6 }}>Senior roles · Full-time<br />Remote or Lagos</p>
+    </div>,
+    <Sticker key="s8" bg="#FF4F4F" rotate={0}>Lagos, NG →</Sticker>,
+    <div key="c8" style={D(260)}>
+      <p style={{ fontSize: 34, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1 }}>100%</p>
+      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 4 }}>shipped</p>
+    </div>,
+    <Sticker key="s9" bg="#22c55e" rotate={0}>PM brain 🧠</Sticker>,
+    <div key="c9" style={D(260)}>
+      <p style={{ fontSize: 36, fontWeight: 700, color: "#f97316", letterSpacing: "-0.04em", lineHeight: 1 }}>847</p>
+      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 4 }}>components shipped</p>
+    </div>,
+    <Sticker key="s10" bg="#f43f5e" rotate={0}>2025 → shipping</Sticker>,
+    <div key="c10" style={D(260)}>
+      <p style={{ fontSize: 28, fontWeight: 700, color: "#3b5bdb", letterSpacing: "-0.04em", lineHeight: 1 }}>12+</p>
+      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 4 }}>products shipped</p>
+    </div>,
+  ];
+
+  return (
+    <section style={{ background: "#0c0c0c" }}>
+      <div style={{
+        padding: "16px 20px 12px",
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+        borderTop: "1px solid rgba(17,17,17,0.08)",
+        background: "#0c0c0c",
+      }}>
+        <p style={{ fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Fragments</p>
+        <p style={{ fontSize: 9, color: "rgba(255,255,255,0.2)" }}>scroll to explore</p>
+      </div>
+      <div
+        className="no-scrollbar"
+        style={{
+          display:               "flex",
+          gap:                   12,
+          overflowX:             "auto",
+          padding:               "20px 20px 32px",
+          WebkitOverflowScrolling: "touch",
+          backgroundImage:       "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize:        "24px 24px",
+          alignItems:            "center",
+        }}
+      >
+        {cards.map((card, i) => (
+          <div key={i} style={{ flexShrink: 0 }}>
+            {card}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 /* ─── section ────────────────────────────────────────────────── */
 export default function FragmentsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  if (isMobile) return <MobileFragments />;
+
   return (
     <section>
       <div className="px-8 py-5 flex items-baseline justify-between border-t border-[#111]/8">

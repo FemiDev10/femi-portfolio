@@ -67,11 +67,11 @@ const PHOTOS: PhotoItem[] = [
 /* ─── single item ────────────────────────────────────────────── */
 function Item({ photo }: { photo: PhotoItem }) {
   return (
-    <div style={{ flexShrink: 0, width: photo.w }}>
-      {/* photo block */}
+    <div className="photo-strip-item" style={{ flexShrink: 0, width: photo.w }}>
+      {/* photo block — clamp height for mobile */}
       <div style={{
         width: photo.w,
-        height: photo.h,
+        height: `clamp(160px, ${photo.h}px, ${photo.h}px)`,
         borderRadius: 6,
         overflow: "hidden",
         background: photo.bg,
@@ -108,7 +108,7 @@ export default function PhotoCarousel() {
     <section className="py-20 border-t border-[#111]/8">
 
       {/* ── two-col header ── */}
-      <div className="max-w-275 mx-auto px-6 mb-12 flex items-start justify-between gap-16">
+      <div className="max-w-275 mx-auto px-6 mb-8 md:mb-12 flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-16">
         <h2
           className="font-medium text-[#111] leading-[1.1] tracking-[-0.03em] shrink-0"
           style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.4rem)", maxWidth: "20ch" }}
@@ -155,7 +155,7 @@ export default function PhotoCarousel() {
       </div>
 
       {/* ── bottom separator row ── */}
-      <div className="max-w-275 mx-auto px-6 mt-12 pt-6 border-t border-[#111]/8 flex items-center justify-between">
+      <div className="max-w-275 mx-auto px-6 mt-8 md:mt-12 pt-6 border-t border-[#111]/8 flex items-center justify-between gap-4">
         {/* availability */}
         <div className="flex items-center gap-2.5">
           <span style={{ position: "relative", display: "inline-flex", width: 7, height: 7 }}>
@@ -186,6 +186,11 @@ export default function PhotoCarousel() {
         }
         @keyframes ping {
           75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        @media (max-width: 640px) {
+          .photo-strip-item div:first-child {
+            height: 200px !important;
+          }
         }
       `}</style>
     </section>

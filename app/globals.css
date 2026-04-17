@@ -19,13 +19,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none;
+  overflow-x: hidden;
 }
 
 /* suppress all cursor variants site-wide so nothing breaks the custom cursor */
 *, *::before, *::after {
   cursor: none !important;
+  box-sizing: border-box;
 }
 
-* {
-  box-sizing: border-box;
+/* restore system cursor on touch / hover-none devices */
+@media (hover: none) {
+  body { cursor: auto; }
+  *, *::before, *::after { cursor: auto !important; }
+}
+
+/* hide scrollbars utility — used for filter row, fragments strip, etc. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

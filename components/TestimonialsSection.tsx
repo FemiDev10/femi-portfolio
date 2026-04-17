@@ -2,6 +2,17 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 
+function useIsMobile() {
+  const [v, setV] = useState(false);
+  useEffect(() => {
+    const check = () => setV(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return v;
+}
+
 /* ─── data ───────────────────────────────────────────────────── */
 
 const BORDER = "1px solid rgba(17,17,17,0.08)";
@@ -35,7 +46,6 @@ const QUOTES = [
 const cellBase: React.CSSProperties = {
   borderRight:  BORDER,
   borderBottom: BORDER,
-  minHeight:    240,
   position:     "relative",
 };
 
@@ -87,11 +97,11 @@ function StatCell({ stat, count, hovered, onEnter, onLeave }: {
     <div style={cellBase} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <div style={{
         height:         "100%",
-        minHeight:      240,
+        minHeight:      180,
         display:        "flex",
         alignItems:     "center",
         justifyContent: "center",
-        padding:        "40px 36px",
+        padding:        "32px 24px",
       }}>
 
         {/* number + label — fades out on hover */}
@@ -148,6 +158,7 @@ function StatCell({ stat, count, hovered, onEnter, onLeave }: {
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const hasRun     = useRef(false);
+  const isMobile   = useIsMobile();
 
   const [counts,       setCounts]       = useState([0, 0, 0]);
   const [hoveredStat,  setHoveredStat]  = useState<number | null>(null);
@@ -197,11 +208,11 @@ export default function TestimonialsSection() {
 
   /* grid cell order: Q L Q / L Q L ───────────────────────────── */
   const cells = [
-    <QuoteCell key="q0" quote={QUOTES[0]} revealed={revealed[0]} onReveal={() => reveal(0)} />,
+    <QuoteCell key="q0" quote={QUOTES[0]} revealed={isMobile || revealed[0]} onReveal={() => reveal(0)} />,
     <StatCell  key="l0" stat={STATS[0]}   count={counts[0]}      hovered={hoveredStat === 0} onEnter={() => setHoveredStat(0)} onLeave={() => setHoveredStat(null)} />,
-    <QuoteCell key="q1" quote={QUOTES[1]} revealed={revealed[1]} onReveal={() => reveal(1)} />,
+    <QuoteCell key="q1" quote={QUOTES[1]} revealed={isMobile || revealed[1]} onReveal={() => reveal(1)} />,
     <StatCell  key="l1" stat={STATS[1]}   count={counts[1]}      hovered={hoveredStat === 1} onEnter={() => setHoveredStat(1)} onLeave={() => setHoveredStat(null)} />,
-    <QuoteCell key="q2" quote={QUOTES[2]} revealed={revealed[2]} onReveal={() => reveal(2)} />,
+    <QuoteCell key="q2" quote={QUOTES[2]} revealed={isMobile || revealed[2]} onReveal={() => reveal(2)} />,
     <StatCell  key="l2" stat={STATS[2]}   count={counts[2]}      hovered={hoveredStat === 2} onEnter={() => setHoveredStat(2)} onLeave={() => setHoveredStat(null)} />,
   ];
 
@@ -209,7 +220,7 @@ export default function TestimonialsSection() {
     <section ref={sectionRef}>
 
       {/* heading */}
-      <div className="max-w-275 mx-auto px-6 pt-20 pb-12">
+      <div className="max-w-275 mx-auto px-6 pt-12 pb-8 md:pt-20 md:pb-12">
         <h2
           className="font-medium text-[#111] tracking-tight leading-snug"
           style={{ fontSize: "clamp(1.4rem, 2.4vw, 2rem)", maxWidth: "34ch" }}
@@ -218,12 +229,12 @@ export default function TestimonialsSection() {
         </h2>
       </div>
 
-      {/* 3 × 2 grid — same max-width as the rest of the page */}
+      {/* grid — 1 col on mobile, 3 cols on desktop */}
       <div className="max-w-275 mx-auto px-6">
         <div
           style={{
             display:             "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
             borderTop:           BORDER,
             borderLeft:          BORDER,
           }}

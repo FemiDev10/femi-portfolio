@@ -473,11 +473,11 @@ export default function Home() {
       <main className="max-w-275 mx-auto px-6">
 
         {/* ── Hero ── */}
-        <section className="pt-20 pb-14">
+        <section className="pt-10 pb-8 md:pt-20 md:pb-14">
           <h1
             ref={heroRef}
             className="font-medium leading-[1.05] tracking-[-0.03em] max-w-[18ch]"
-            style={{ fontSize: "clamp(2.2rem, 4.5vw, 4.5rem)" }}
+            style={{ fontSize: "clamp(1.75rem, 8vw, 4.5rem)" }}
           >
             {HERO_WORDS.map((word, i) => (
               <Fragment key={i}>
@@ -502,7 +502,7 @@ export default function Home() {
           </h1>
 
           {/* Meta row */}
-          <div className="mt-10 flex items-start gap-16">
+          <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-start gap-4 sm:gap-16">
             <div>
               <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-2">Built For</p>
               <p className="text-xs text-[#111]/50 leading-relaxed">
@@ -521,12 +521,13 @@ export default function Home() {
         {/* ── Filters ── */}
         <section className="pb-8">
           {/* border-b on container; each tab uses border-b-2 -mb-px to sit flush against it */}
-          <div className="flex items-end gap-7 border-b border-[#111]/8">
+          {/* overflow-x-auto for mobile horizontal scroll; no-scrollbar hides the scrollbar */}
+          <div className="flex items-end gap-7 border-b border-[#111]/8 overflow-x-auto no-scrollbar" style={{ WebkitOverflowScrolling: "touch" }}>
             {filters.map(({ label, count }) => (
               <button
                 key={label}
                 onClick={() => setActiveFilter(label)}
-                className={`text-xs cursor-pointer flex items-baseline gap-1 pb-3 border-b-2 -mb-px transition-colors ${
+                className={`text-xs cursor-pointer flex items-baseline gap-1 pb-3 border-b-2 -mb-px transition-colors shrink-0 ${
                   activeFilter === label
                     ? "text-[#111] border-[#111]"
                     : "text-[#111]/35 hover:text-[#111]/70 border-transparent"
@@ -540,8 +541,8 @@ export default function Home() {
         </section>
 
         {/* ── Work Grid ── */}
-        <section className="pb-32">
-          <div className="grid grid-cols-3 gap-6">
+        <section className="pb-20 md:pb-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project) => (
               project.href ? (
                 <Link

@@ -132,11 +132,11 @@ export default function ScrollFingerprint() {
   };
 
   return (
-    <section ref={sectionRef} className="border-t border-[#111]/8 py-20">
+    <section ref={sectionRef} className="border-t border-[#111]/8 py-12 md:py-20">
       <div className="max-w-275 mx-auto px-6">
 
         {/* heading row */}
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12">
           <div>
             <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-3">
               Scroll Fingerprint
@@ -148,7 +148,7 @@ export default function ScrollFingerprint() {
               Your scroll tells me<br />how you think.
             </h2>
           </div>
-          <p className="text-xs text-[#111]/35 max-w-[28ch] leading-relaxed text-right mb-1">
+          <p className="text-xs text-[#111]/35 max-w-[28ch] leading-relaxed sm:text-right">
             Scroll this page to draw your waveform.
             No two are the same.
           </p>
@@ -203,7 +203,7 @@ export default function ScrollFingerprint() {
           </svg>
 
           {/* add mine CTA */}
-          <div style={{ marginTop: 16, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
             <button
               onClick={handleAdd}
               style={{
