@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import PhysicsCanvas from "./PhysicsCanvas";
 
 const NAV_LINKS = [
   { href: "/",          label: "Home"      },
@@ -116,6 +117,9 @@ export default function Footer() {
           )}
         </div>
       </div>
+
+      {/* ══ PHYSICS CANVAS ════════════════════════════════════════ */}
+      <PhysicsCanvas />
 
       {/* ══ PART 2 — Footer bar ═══════════════════════════════════ */}
       <div className="footer-bar">
