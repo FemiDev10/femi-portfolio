@@ -193,6 +193,7 @@ export default function Footer() {
 
         /* ── FOOTER BAR ── */
         .footer-bar {
+          background:      #fff;
           border-top:      1px solid #f0f0f0;
           padding:         20px 48px;
           display:         flex;
@@ -241,6 +242,7 @@ export default function Footer() {
           }
 
           .footer-bar {
+            background:  #fff;
             flex-wrap:   wrap;
             padding:     20px 24px;
             gap:         12px;
@@ -267,6 +269,7 @@ export default function Footer() {
             padding: 64px 32px;
           }
           .footer-bar {
+            background: #fff;
             padding: 20px 32px;
           }
         }
