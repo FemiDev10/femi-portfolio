@@ -121,6 +121,23 @@ export default function Footer() {
       {/* ══ PHYSICS CANVAS ════════════════════════════════════════ */}
       <PhysicsCanvas />
 
+      {/* ══ HINT STRIP ════════════════════════════════════════════ */}
+      <div style={{
+        background:      "#111",
+        padding:         "14px 24px",
+        textAlign:       "center",
+        borderTop:       "1px solid rgba(255,255,255,0.05)",
+      }}>
+        <p style={{
+          margin:        0,
+          fontSize:      11,
+          color:         "rgba(255,255,255,0.25)",
+          letterSpacing: "0.04em",
+        }}>
+          Tilt your device · Click to throw boxes · Shake to scatter
+        </p>
+      </div>
+
       {/* ══ PART 2 — Footer bar ═══════════════════════════════════ */}
       <div className="footer-bar">
 
