@@ -260,11 +260,16 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "/projects/payzeep-api-docs" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full bg-[#fafbff] flex items-center justify-center px-5 relative overflow-hidden">
+      <div className="w-full h-full bg-[#0b0f1e] flex items-center justify-center px-5 relative overflow-hidden">
+        {/* subtle grid */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: "linear-gradient(rgba(44,58,223,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(44,58,223,0.06) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }} />
         {/* Docs layout mock */}
-        <div style={{ display: "flex", gap: 10, width: "100%", maxWidth: 220, height: 160, padding: "12px 0" }}>
+        <div style={{ display: "flex", gap: 10, width: "100%", maxWidth: 220, height: 160, padding: "12px 0", position: "relative" }}>
           {/* Sidebar */}
-          <div style={{ width: 52, flexShrink: 0, display: "flex", flexDirection: "column", gap: 5, paddingTop: 4 }}>
+          <div style={{ width: 52, flexShrink: 0, display: "flex", flexDirection: "column", gap: 6, paddingTop: 4 }}>
             {[
               { w: 40, active: true },
               { w: 36, active: false },
@@ -274,37 +279,36 @@ const projects: Project[] = [
               { w: 38, active: false },
             ].map((item, i) => (
               <div key={i} style={{
-                height: 6, width: item.w, borderRadius: 3,
-                background: item.active ? "#2C3ADF" : "rgba(0,0,0,0.08)",
+                height: 5, width: item.w, borderRadius: 3,
+                background: item.active ? "#2C3ADF" : "rgba(255,255,255,0.08)",
               }} />
             ))}
           </div>
           {/* Content area */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 7, paddingTop: 4 }}>
-            <div style={{ height: 5, width: "55%", background: "rgba(44,58,223,0.5)", borderRadius: 3 }} />
-            <div style={{ height: 4, width: "90%", background: "rgba(0,0,0,0.08)", borderRadius: 3 }} />
-            <div style={{ height: 4, width: "75%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6, paddingTop: 4 }}>
+            <div style={{ height: 5, width: "55%", background: "rgba(44,58,223,0.8)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "90%", background: "rgba(255,255,255,0.08)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "75%", background: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
             {/* Code block */}
-            <div style={{ background: "#0d1117", borderRadius: 6, padding: "8px 10px", marginTop: 4 }}>
-              <div style={{ height: 3.5, width: "80%", background: "#79c0ff", borderRadius: 2, marginBottom: 4, opacity: 0.7 }} />
-              <div style={{ height: 3.5, width: "60%", background: "#ffa657", borderRadius: 2, marginBottom: 4, opacity: 0.7 }} />
-              <div style={{ height: 3.5, width: "70%", background: "#d2a8ff", borderRadius: 2, opacity: 0.7 }} />
+            <div style={{ background: "#141927", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 6, padding: "8px 10px", marginTop: 4 }}>
+              <div style={{ height: 3.5, width: "80%", background: "#79c0ff", borderRadius: 2, marginBottom: 4, opacity: 0.8 }} />
+              <div style={{ height: 3.5, width: "60%", background: "#ffa657", borderRadius: 2, marginBottom: 4, opacity: 0.8 }} />
+              <div style={{ height: 3.5, width: "70%", background: "#d2a8ff", borderRadius: 2, opacity: 0.8 }} />
             </div>
-            <div style={{ height: 4, width: "85%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
-            <div style={{ height: 4, width: "50%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "85%", background: "rgba(255,255,255,0.06)", borderRadius: 3 }} />
           </div>
         </div>
         {/* Badge */}
         <div style={{ position: "absolute", top: 14, right: 14 }}>
           <span style={{
-            fontSize: 8, fontWeight: 600, color: "#2C3ADF",
-            background: "rgba(44,58,223,0.08)", border: "1px solid rgba(44,58,223,0.2)",
+            fontSize: 8, fontWeight: 600, color: "#7b8ef7",
+            background: "rgba(44,58,223,0.15)", border: "1px solid rgba(44,58,223,0.3)",
             padding: "2px 7px", borderRadius: 20, letterSpacing: "0.02em",
           }}>Redocly</span>
         </div>
         {/* Label */}
         <div style={{ position: "absolute", bottom: 14, left: 14 }}>
-          <span style={{ fontSize: 8, color: "rgba(0,0,0,0.25)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "monospace" }}>
             DevX · API Docs
           </span>
         </div>
