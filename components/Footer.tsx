@@ -143,8 +143,8 @@ export default function Footer() {
 
         {/* logo */}
         <Link href="/" className="footer-logo">
-          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#111", display: "inline-block", flexShrink: 0 }} />
-          <span style={{ fontSize: 14, fontWeight: 500, color: "#111" }}>Femi Jimoh</span>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff", display: "inline-block", flexShrink: 0 }} />
+          <span style={{ fontSize: 14, fontWeight: 500, color: "#fff" }}>Femi Jimoh</span>
         </Link>
 
         {/* nav links — hidden on mobile */}
@@ -153,7 +153,7 @@ export default function Footer() {
             <Link
               key={href}
               href={href}
-              style={{ fontSize: 13, color: isActive(href) ? "#111" : "#bbb", textDecoration: "none", transition: "color 0.2s ease" }}
+              style={{ fontSize: 13, color: isActive(href) ? "#fff" : "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color 0.2s ease" }}
             >
               {label}
             </Link>
@@ -164,9 +164,9 @@ export default function Footer() {
         <div className="footer-right">
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#7ab87a", display: "inline-block", animation: "footer-pulse 2.5s infinite" }} />
-            <span style={{ fontSize: 12, color: "#aaa" }}>Open to new roles</span>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Open to new roles</span>
           </div>
-          <span className="footer-copyright" style={{ fontSize: 11, color: "#ccc" }}>
+          <span className="footer-copyright" style={{ fontSize: 11, color: "rgba(255,255,255,0.25)" }}>
             © 2025 Femi Jimoh. Built by hand.
           </span>
         </div>
@@ -210,8 +210,8 @@ export default function Footer() {
 
         /* ── FOOTER BAR ── */
         .footer-bar {
-          background:      #fff;
-          border-top:      1px solid #f0f0f0;
+          background:      #111;
+          border-top:      1px solid rgba(255,255,255,0.07);
           padding:         20px 48px;
           display:         flex;
           align-items:     center;
