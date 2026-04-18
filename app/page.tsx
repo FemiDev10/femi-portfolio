@@ -33,8 +33,8 @@ const HERO_WORDS = [
 /* ─── filter + project data ──────────────────────────────────── */
 
 const filters = [
-  { label: "All",          count: 15 },
-  { label: "Mobile Apps",  count: 4  },
+  { label: "All",          count: 16 },
+  { label: "Mobile Apps",  count: 5  },
   { label: "Web App",      count: 5  },
   { label: "Experimental", count: 4  },
   { label: "HCI",          count: 3  },
@@ -290,6 +290,85 @@ const projects: Project[] = [
         <div className="absolute inset-0 rounded-full border border-white/5" style={{ margin: "64px" }} />
         <div className="w-14 h-14 rounded-full bg-[#3b5bdb] flex items-center justify-center z-10">
           <span className="text-white text-lg font-medium">₦</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Paymi Agent",
+    year: 2024,
+    description:
+      "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",
+    href: "/projects/paymi-agent",
+    links: [{ label: "Case Study →", href: "/projects/paymi-agent" }],
+    category: "Mobile Apps",
+    thumbnail: (
+      <div className="w-full h-full bg-[#0b1120] flex items-center justify-center relative overflow-hidden">
+        {/* subtle grid */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+          backgroundSize: "18px 18px",
+        }} />
+        {/* phone shell */}
+        <div style={{
+          width: 72, height: 130,
+          background: "#131c30",
+          borderRadius: 16,
+          border: "1.5px solid rgba(255,255,255,0.1)",
+          display: "flex", flexDirection: "column",
+          overflow: "hidden",
+          boxShadow: "0 16px 40px rgba(0,0,0,0.6)",
+          position: "relative",
+        }}>
+          {/* status bar */}
+          <div style={{ height: 10, background: "#0f172a", display: "flex", alignItems: "center", paddingLeft: 8, gap: 3 }}>
+            <div style={{ width: 14, height: 3, borderRadius: 2, background: "rgba(255,255,255,0.1)" }} />
+          </div>
+          {/* balance area */}
+          <div style={{ padding: "6px 8px 4px" }}>
+            <div style={{ fontSize: 5.5, color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 2 }}>Balance</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "#fff", letterSpacing: "-0.02em" }}>₦128,400</div>
+          </div>
+          {/* network monitor strip */}
+          <div style={{ margin: "2px 6px", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 5, padding: "4px 5px" }}>
+            <div style={{ fontSize: 4.5, color: "rgba(74,222,128,0.8)", letterSpacing: "0.08em", marginBottom: 3 }}>NETWORK MONITOR</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {[["GTBank", "97%"], ["First Bank", "61%"], ["OPay", "22%"]].map(([bank, pct]) => (
+                <div key={bank} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ fontSize: 5, color: "rgba(255,255,255,0.4)" }}>{bank}</div>
+                  <div style={{
+                    fontSize: 5, fontWeight: 600,
+                    color: Number(pct) > 80 ? "#4ade80" : Number(pct) > 50 ? "#fbbf24" : "#f87171",
+                  }}>{pct}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* quick action pills */}
+          <div style={{ display: "flex", gap: 3, padding: "4px 6px" }}>
+            {["Airtime", "Transfer", "Bills"].map(label => (
+              <div key={label} style={{ flex: 1, background: "rgba(255,255,255,0.06)", borderRadius: 4, padding: "3px 0", textAlign: "center", fontSize: 4.5, color: "rgba(255,255,255,0.4)" }}>{label}</div>
+            ))}
+          </div>
+          {/* commission bar */}
+          <div style={{ margin: "2px 6px 0", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 4, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: 5, color: "rgba(255,255,255,0.3)" }}>Commission</div>
+            <div style={{ fontSize: 5.5, fontWeight: 600, color: "#a78bfa" }}>₦3,200</div>
+          </div>
+        </div>
+        {/* label */}
+        <div style={{ position: "absolute", bottom: 14, left: 14 }}>
+          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
+            AGENCY BANKING · iOS & Android
+          </span>
+        </div>
+        {/* CBN badge */}
+        <div style={{ position: "absolute", top: 14, right: 14 }}>
+          <span style={{
+            fontSize: 8, fontWeight: 500, color: "#a78bfa",
+            background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)",
+            padding: "2px 7px", borderRadius: 20, letterSpacing: "0.02em",
+          }}>CBN-licensed</span>
         </div>
       </div>
     ),

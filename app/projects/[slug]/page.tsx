@@ -820,6 +820,306 @@ const projects: Record<string, Project> = {
       },
     ],
   },
+  "paymi-agent": {
+    title: "Paymi Agent",
+    hero:
+      "Building the mobile command centre for Nigeria's most important financial infrastructure — an agency banking app designed for the people who are the bank.",
+    meta: {
+      role: "Product Designer",
+      company: "PayZeep (Paymi Solutions Limited)",
+      timeline: "2024 — Ongoing",
+      platform: "Mobile (iOS & Android)",
+      deliverables:
+        "End-to-end UX/UI — Onboarding, Core Banking, Bill Payments, Network Intelligence, Device Management",
+    },
+    closing: {
+      closer: [
+        "The most lasting lesson from Paymi Agent is that designing for the infrastructure layer of financial inclusion means designing for failure as much as success. Every screen is someone's livelihood. Every failed transaction is real money gone. That's not a product constraint — it's a design brief.",
+        "The Network Monitor was the hardest feature to get approved and the most-requested feature by agents once they had it. That gap — between what businesses think agents need and what agents actually need — is exactly the gap good design is supposed to close. I want to keep closing that gap.",
+      ],
+      reflection: [
+        "Speed is a feature, not a luxury — for an agent processing 40+ transactions a day, every extra tap is a design failure",
+        "Failure is information, not shame — when a transaction fails, the app should tell the agent why, and if possible, tell them before they try",
+        "Commission is motivation, not an afterthought — if it matters to agents, it should be first-class in the product",
+        "Operational intelligence that lives in WhatsApp groups belongs in the app",
+      ],
+      ps: [
+        "PS: 'Yippee!' is the right word for a successful airtime purchase. Anyone who disagrees hasn't spent enough time in a market.",
+        "Also: the Network Monitor was the hardest sell and the best outcome. Push for the features that feel hardest to explain.",
+      ],
+      credits: [
+        {
+          name: "Femi Jimoh",
+          role: "Product Designer",
+        },
+        {
+          name: "Design Colleague",
+          role: "Product Designer",
+        },
+      ],
+    },
+    sections: [
+      {
+        title: "The Brief",
+        content: [
+          {
+            type: "paragraph",
+            text: "It's 8:47am on a Tuesday in Ojuelegba. A woman named Chidinma unlocks a small shop the size of a parking space. On the counter: a POS terminal, a phone, and a notebook she uses when the network dies.",
+          },
+          {
+            type: "paragraph",
+            text: "In the next six hours, she will process forty-three transactions. Airtime for a student who's late to class. A ₦5,000 withdrawal for a man who doesn't own a bank account. A data bundle for a mechanic who needs Google Maps to find a client. Cable TV renewal for her neighbour who always forgets.",
+          },
+          {
+            type: "paragraph",
+            text: "She is not a branch. She is not a teller. She is Chidinma, and she is the bank for everyone on her street.",
+          },
+          {
+            type: "paragraph",
+            text: "There are over 1.5 million agents like her in Nigeria. And almost every app built for them was designed like a back-office tool — dense, clinical, transactional in the worst sense of the word. Built for what the business needed agents to do, not for what agents actually needed to survive their day. That was the design problem we inherited.",
+          },
+        ],
+      },
+      {
+        title: "The Context",
+        content: [
+          {
+            type: "paragraph",
+            text: "Agency banking in Nigeria exists because formal banking failed to scale fast enough. The CBN's financial inclusion mandate pushed a policy reality: licensed fintechs could appoint human agents to offer basic banking services — deposits, withdrawals, bill payments, transfers — no branch required.",
+          },
+          {
+            type: "paragraph",
+            text: "The business model is simple and elegant: agents earn a commission on every successful transaction. The more they process, the more they earn. The faster they process, the more customers they serve. And the more reliably they serve customers, the better their reputation — which in a market environment is everything.",
+          },
+          {
+            type: "paragraph",
+            text: "The design implication of this model is enormous and almost always missed: for an agent, every failed transaction is a financial loss. Not just an inconvenience. Real money gone. In an industry where network downtime, card scheme failures, and interbank transfer delays are facts of life — not edge cases — designing for failure wasn't optional. It was the whole job.",
+          },
+        ],
+      },
+      {
+        title: "The Problem",
+        content: [
+          {
+            type: "paragraph",
+            text: "We spent time inside existing agency banking apps — competitor products and the earlier version of Paymi. The pattern was consistent and frustrating: every app looked like a form. Input. Submit. Wait. Success or failure. No context. No intelligence.",
+          },
+          {
+            type: "paragraph",
+            text: "Agents were working around their tools constantly — WhatsApp groups where they'd share which banks were processing today, notebook tallies of card scheme failures, mental heuristics built from months of hard-won experience. That knowledge existed. It just lived in their heads and in group chats, not in the app they opened fifty times a day.",
+          },
+          {
+            type: "list",
+            items: [
+              "1. Blind processing. Agents initiated withdrawals and transfers with zero visibility into whether the receiving bank or card network was even functioning. A declined transaction meant a frustrated customer, a refund dispute, and lost commission — often for a reason the agent had no way to know about in advance.",
+              "2. Onboarding as a wall. The KYC and account setup process was compliance-first — it dumped every documentation requirement on new agents at once. No progression. No guidance. No sense of how close they were to being operational.",
+              "3. Commission opacity. Agents earned commissions on transactions but had no clean way to track, understand, or redeem them inside the app. Commission was the whole point of the job — it should have been a first-class feature.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Principles",
+        content: [
+          {
+            type: "paragraph",
+            text: "Before touching a single screen, we aligned on what this app actually needed to be.",
+          },
+          {
+            type: "list",
+            items: [
+              "Speed is a feature. An agent processing 40+ transactions a day cannot afford a 6-tap flow to buy airtime. Every screen should reduce to its essential action as fast as possible.",
+              "Failure is information, not shame. When a transaction fails, the app should tell the agent exactly why — and if possible, tell them before they try.",
+              "Compliance is a journey, not a gate. KYC requirements are real and non-negotiable, but onboarding should feel like forward motion, not a bureaucratic wall.",
+              "Commission is motivation, not an afterthought. If we want agents to be invested in the platform, they need to see what they're earning and control when they get it.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Approach",
+        content: [
+          {
+            type: "paragraph",
+            text: "Onboarding: the gauntlet that shouldn't feel like one",
+          },
+          {
+            type: "paragraph",
+            text: "Agency banking KYC in Nigeria is no joke. A new Paymi agent needs to provide: phone number, BVN, NIN, proof of ID, proof of address, and for business accounts, SCUML clearance above certain transaction thresholds. Dumping that on a new agent in one screen — which most agency banking apps do — creates immediate drop-off. People don't quit because the requirements are too hard. They quit because the requirements feel endless.",
+          },
+          {
+            type: "paragraph",
+            text: "Our onboarding is structured in six numbered steps. Not because we needed six steps, but because an agent needs to know they're at Step 5 of 6, not standing in front of an unmarked door. The SCUML decision tree is conditional — after account type selection, only business accounts are routed through it. Individual agents never see it. The 'Skip for later' option on KYC documents was deliberate: an agent who's seen the dashboard and knows what they're working toward is more likely to complete KYC than one who's been blocked at Step 2 on day one.",
+          },
+          {
+            type: "paragraph",
+            text: "Authentication: layers that make sense",
+          },
+          {
+            type: "paragraph",
+            text: "The app has three distinct security layers. Login is personalised — 'Welcome Back! Hello Joshua' — because the agent's name on the login screen signals this app belongs to them. Every money movement is PIN-gated, with the transaction amount shown before the PIN is requested so there's no ambiguity about what's being authorised. For POS card transactions, a processing countdown runs during the physical swipe — not a spinner. A clock. Because silence during a POS transaction feels like failure; a countdown feels like progress.",
+          },
+          {
+            type: "paragraph",
+            text: "The home: calm command",
+          },
+          {
+            type: "paragraph",
+            text: "A home screen for an agent is different from a home screen for a consumer. A consumer wants to see their balance. An agent wants to see everything they need to act. Account details — bank name, account number, account name — are surfaced immediately because the agent hands these out dozens of times a day. A 'Copy Account Number' button is present without needing to navigate anywhere. Account tier limits are visible and contextual, with a clear path to the next tier for agents who hit their ceiling.",
+          },
+          {
+            type: "paragraph",
+            text: "Bill payments: volume UX",
+          },
+          {
+            type: "paragraph",
+            text: "Bill payment is where agents make a significant portion of their daily commission. Airtime and data alone can account for 20–30 transactions in a busy day. The flow has to be fast and right the first time. A summary screen before every bill payment is non-negotiable — not for compliance, for the agent. Someone handling 50 transactions in a noisy market, where customers are giving them numbers verbally, needs one final moment to confirm what they're about to commit. Then the receipt: 'yippee! Airtime Top-up was successful.' That word was deliberate. In an app agents look at dozens of times a day, a moment of personality is worth more than a moment of professionalism.",
+          },
+          {
+            type: "paragraph",
+            text: "Transfers: where the stakes are highest",
+          },
+          {
+            type: "paragraph",
+            text: "The transfer form is where we put the most thought. Account number to name resolution populates the account holder's name as soon as a number is entered — the agent confirms they're sending to the right person before going further. This single feature eliminates an entire category of transfer errors. The post-transfer receipt is a document, not a screen: a full timeline showing when the transfer was submitted, when it was received, the session ID for dispute resolution, and a Query Transaction option for contested transfers.",
+          },
+        ],
+      },
+      {
+        title: "The Network Monitor",
+        content: [
+          {
+            type: "paragraph",
+            text: "This is where Paymi Agent does something we hadn't seen in any Nigerian agency banking product. Nigerian interbank transfers and POS card processing are not uniformly reliable. Success rates vary by bank, by card scheme, and by time of day. An agent who tries to process a withdrawal from a First Bank card on Mastercard might see a 60% success rate. The same card scheme through Stanbic IBTC might see 23%. But the same customer's Visa card at Stanbic would be 99.45%.",
+          },
+          {
+            type: "paragraph",
+            text: "Agents already know this intuitively. They talk about it in WhatsApp groups. They learn from experience which banks to be cautious about. But that intelligence was social and tribal — it lived in group chats, not in the app they opened fifty times a day. We put it in the app.",
+          },
+          {
+            type: "paragraph",
+            text: "The Bank Network Monitor shows real-time success rates for interbank transfers — banks experiencing delays flagged clearly, stable banks listed with their current percentages. The Withdrawal Network Monitor goes further: a table breaking success rates by bank and card scheme.",
+          },
+          {
+            type: "table",
+            headers: ["Bank", "Mastercard", "Visa", "Verve"],
+            rows: [
+              ["Wema Bank", "81.45%", "81.45%", "81.45%"],
+              ["Stanbic IBTC", "23.01%", "99.45%", "97.09%"],
+              ["Palmpay Finance", "70.00%", "12.34%", "12.34%"],
+              ["First Bank", "60.12%", "12.34%", "12.34%"],
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "This table tells an agent something invaluable: a Stanbic card on Mastercard is unreliable today, but the same customer's Visa card will almost certainly work. If the customer has both, try Visa. If they only have Mastercard, manage the expectation before you swipe. The design is deliberately simple — no charts, no graphs. Agents are checking this quickly, between customers, often in bad lighting. A clean table with percentage figures and a refresh button is the right tool.",
+          },
+          {
+            type: "paragraph",
+            text: "The Network Monitor was the hardest feature to get approved internally and the most-requested feature by agents once they had it. That gap — between what businesses think agents need and what agents actually need — is exactly the gap good design is supposed to close.",
+          },
+        ],
+      },
+      {
+        title: "The Rest of the Flows",
+        content: [
+          {
+            type: "paragraph",
+            text: "Withdrawals",
+          },
+          {
+            type: "paragraph",
+            text: "POS withdrawals involve a card, a terminal, and a person — not just an app. The Withdrawal Network Monitor is accessible directly from the withdrawal screen — not buried in settings, but contextually available exactly when you need it. The processing countdown during the physical swipe is explicit: 'Processing transaction in 56 secs.' Not a spinner. A clock.",
+          },
+          {
+            type: "paragraph",
+            text: "Commission: making the reward visible",
+          },
+          {
+            type: "paragraph",
+            text: "Commissions are why agents are agents. In most agency banking apps, commission is buried in a reporting tab no one opens. In Paymi, it's a named feature: Redeem Commission. The balance is prominent. Redemption errors are specific — 'You have insufficient balance. Total commission balance is ₦3,000.' Making commission redeemable on demand, rather than batched weekly, was a product-level decision — but the design had to make it feel easy and safe. An agent shouldn't have to think hard about accessing their own earnings.",
+          },
+          {
+            type: "paragraph",
+            text: "Device management: the physical layer",
+          },
+          {
+            type: "paragraph",
+            text: "Most banking apps pretend the physical world doesn't exist. Paymi doesn't. The Devices section shows every PayZeep terminal linked to an agent's account — device name, status, terminal ID, connection action. Request New Device lets agents choose their hardware self-serve: Card Reader or T3 Android Smart Mobile POS. For an agent in Aba who can't get to a PayZeep office, this isn't a nice-to-have. It's a necessity.",
+          },
+        ],
+      },
+      {
+        title: "Key Screens",
+        content: [
+          {
+            type: "list",
+            items: [
+              "Six-step progressive KYC with conditional SCUML routing for business accounts and a skip-for-later option on document uploads.",
+              "Three-layer authentication — login, transaction PIN, card PIN — each in its own clear context with no PIN collision.",
+              "Home dashboard with account details, Copy Account Number, tier limits, and Tier 3 upgrade path.",
+              "Bill payments across Airtime, Data, and Cable TV with summary confirmation and humanised success receipts ('yippee!').",
+              "Transfer flow with live account name resolution, full transaction timeline, session ID callout, and Query Transaction for disputes.",
+              "Withdrawal flow with Withdrawal Network Monitor accessible from within the flow, custom keypad, and processing countdown.",
+              "Bank Network Monitor — real-time deposit success rates by bank, split into stable and at-risk categories.",
+              "Withdrawal Network Monitor — POS success rates by bank × card scheme (Mastercard, Visa, Verve) in a clean refresh-able table.",
+              "Redeem Commission — on-demand, PIN-secured, with balance visibility and specific insufficient-balance error states.",
+              "Device Management — active/inactive terminal view, multi-device support, and new device request by hardware type.",
+              "Add Money — bank transfer and debit card funding, both designed to complete in under 60 seconds.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        content: [
+          {
+            type: "paragraph",
+            text: "Paymi Agent shipped as an end-to-end agency banking platform that treats agents as operational professionals, not just form-fillers. The Network Monitor transformed intelligence that previously lived in WhatsApp groups into a real-time, in-app tool — giving agents the ability to make decisions before a transaction fails, not after.",
+          },
+          {
+            type: "paragraph",
+            text: "The six-step KYC system moved onboarding from a compliance wall into a navigable journey. Commission became a first-class feature rather than an afterthought. And Device Management took something that previously required a customer service call and made it self-serve.",
+          },
+          {
+            type: "paragraph",
+            text: "The product is live and still evolving at PayZeep as the agent network grows.",
+          },
+        ],
+      },
+      {
+        title: "What's Next",
+        content: [
+          {
+            type: "list",
+            items: [
+              "Commission analytics. Agents currently see their balance and can redeem. They can't see which transaction types earn most, which hours are most profitable, or how their commission trends week-over-week. A lightweight earnings dashboard would turn Paymi from a tool into a business partner.",
+              "Network Monitor push notifications. The monitor is reactive — you check it when you remember. A proactive alert when a major bank drops below 30% ('UBA transfers are currently unreliable') would make it genuinely predictive.",
+              "Customer profiles. The 'Save Customer's Details' button hints at a CRM layer that doesn't fully exist. An agent who serves the same 200 people regularly should pull up a customer's usual data bundle in two taps.",
+              "Offline mode. An agent who can draft a transaction offline and submit when connectivity returns is an agent who never loses a customer. Technically complex but operationally transformative.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Reflection",
+        content: [
+          {
+            type: "paragraph",
+            text: "Agency banking in Nigeria is not a niche. It is the financial system that serves the majority. Designing tools that actually serve the people who run it — with intelligence, with clarity, with a little warmth — is the work that matters.",
+          },
+          {
+            type: "paragraph",
+            text: "Chidinma doesn't open Paymi Agent thinking about compliance. She opens it thinking: is this going to work today? Is the network up? Will the Zenith card process? Does she have enough float? Every screen we designed was an answer to one of those questions.",
+          },
+          {
+            type: "paragraph",
+            text: "If I were pushing the work further, I'd invest more in the proactive layer — notifications, predictive routing, usage analytics — so Paymi moves from a tool agents use to a tool that works with them. The foundation is there. The next version gets smarter.",
+          },
+        ],
+      },
+    ],
+  },
   safepulse: {
     title: "SafePulse",
     hero:
