@@ -33,9 +33,9 @@ const HERO_WORDS = [
 /* ─── filter + project data ──────────────────────────────────── */
 
 const filters = [
-  { label: "All",          count: 16 },
+  { label: "All",          count: 17 },
   { label: "Mobile Apps",  count: 5  },
-  { label: "Web App",      count: 5  },
+  { label: "Web App",      count: 6  },
   { label: "Experimental", count: 4  },
   { label: "HCI",          count: 3  },
 ];
@@ -247,6 +247,66 @@ const projects: Project[] = [
             <div className="h-9 rounded-xl bg-[#111]/5" />
             <div className="h-8 rounded-full bg-[#111] opacity-90" />
           </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "PayZeep API Docs",
+    year: 2024,
+    description:
+      "Developer documentation portal for PayZeep's payment API — designed around the developer's first 60 seconds, not the spec.",
+    href: "/projects/payzeep-api-docs",
+    links: [{ label: "Case Study →", href: "/projects/payzeep-api-docs" }],
+    category: "Web App",
+    thumbnail: (
+      <div className="w-full h-full bg-[#fafbff] flex items-center justify-center px-5 relative overflow-hidden">
+        {/* Docs layout mock */}
+        <div style={{ display: "flex", gap: 10, width: "100%", maxWidth: 220, height: 160, padding: "12px 0" }}>
+          {/* Sidebar */}
+          <div style={{ width: 52, flexShrink: 0, display: "flex", flexDirection: "column", gap: 5, paddingTop: 4 }}>
+            {[
+              { w: 40, active: true },
+              { w: 36, active: false },
+              { w: 44, active: false },
+              { w: 32, active: false },
+              { w: 42, active: false },
+              { w: 38, active: false },
+            ].map((item, i) => (
+              <div key={i} style={{
+                height: 6, width: item.w, borderRadius: 3,
+                background: item.active ? "#2C3ADF" : "rgba(0,0,0,0.08)",
+              }} />
+            ))}
+          </div>
+          {/* Content area */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 7, paddingTop: 4 }}>
+            <div style={{ height: 5, width: "55%", background: "rgba(44,58,223,0.5)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "90%", background: "rgba(0,0,0,0.08)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "75%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
+            {/* Code block */}
+            <div style={{ background: "#0d1117", borderRadius: 6, padding: "8px 10px", marginTop: 4 }}>
+              <div style={{ height: 3.5, width: "80%", background: "#79c0ff", borderRadius: 2, marginBottom: 4, opacity: 0.7 }} />
+              <div style={{ height: 3.5, width: "60%", background: "#ffa657", borderRadius: 2, marginBottom: 4, opacity: 0.7 }} />
+              <div style={{ height: 3.5, width: "70%", background: "#d2a8ff", borderRadius: 2, opacity: 0.7 }} />
+            </div>
+            <div style={{ height: 4, width: "85%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
+            <div style={{ height: 4, width: "50%", background: "rgba(0,0,0,0.06)", borderRadius: 3 }} />
+          </div>
+        </div>
+        {/* Badge */}
+        <div style={{ position: "absolute", top: 14, right: 14 }}>
+          <span style={{
+            fontSize: 8, fontWeight: 600, color: "#2C3ADF",
+            background: "rgba(44,58,223,0.08)", border: "1px solid rgba(44,58,223,0.2)",
+            padding: "2px 7px", borderRadius: 20, letterSpacing: "0.02em",
+          }}>Redocly</span>
+        </div>
+        {/* Label */}
+        <div style={{ position: "absolute", bottom: 14, left: 14 }}>
+          <span style={{ fontSize: 8, color: "rgba(0,0,0,0.25)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            DevX · API Docs
+          </span>
         </div>
       </div>
     ),

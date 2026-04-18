@@ -853,7 +853,7 @@ const projects: Record<string, Project> = {
           role: "Product Designer",
         },
         {
-          name: "Design Colleague",
+          name: "Treasure Oladunni",
           role: "Product Designer",
         },
       ],
