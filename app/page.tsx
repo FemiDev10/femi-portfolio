@@ -52,12 +52,12 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "F1 Money Race",
+    title: "MoneyRace",
     year: 2025,
     description:
-      "Flutter app where your portfolio races like an F1 car. Finance as pit stops, lap times, positions.",
-    href: "/projects/f1-money-race",
-    links: [{ label: "View Project →", href: "#" }],
+      "Flutter app where your bank accounts race like F1 cars. Finance as pit stops, lap times, positions.",
+    href: "/projects/moneyrace",
+    links: [{ label: "Case Study →", href: "/projects/moneyrace" }],
     category: "Mobile Apps",
     thumbnail: (
       <div className="w-full h-full bg-[#0d0d0d] flex flex-col justify-end p-5 relative overflow-hidden">
@@ -796,7 +796,7 @@ export default function Home() {
         </section>
 
         {/* ── Filters ── */}
-        <section className="pb-8">
+        <section id="work" className="pb-8">
           {/* border-b on container; each tab uses border-b-2 -mb-px to sit flush against it */}
           {/* overflow-x-auto for mobile horizontal scroll; no-scrollbar hides the scrollbar */}
           <div className="flex items-end gap-7 border-b border-[#111]/8 overflow-x-auto no-scrollbar" style={{ WebkitOverflowScrolling: "touch" }}>

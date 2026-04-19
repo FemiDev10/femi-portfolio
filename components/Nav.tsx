@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const navLinks = [
   { href: "/",          label: "Home"      },
-  { href: "/work",      label: "Work"      },
+  { href: "/#work",     label: "Work"      },
   { href: "/me",        label: "Me"        },
   { href: "/hci",       label: "HCI"       },
   { href: "/fragments", label: "Fragments" },
@@ -32,8 +32,10 @@ export default function Nav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+  const isActive = (href: string) => {
+    if (href.includes("#")) return false;
+    return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+  };
 
   return (
     <>
