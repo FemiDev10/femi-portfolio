@@ -123,21 +123,38 @@ export default function PayZeepApiDocsPage() {
             PayZeep's API documentation portal — built on Redocly, designed for developers
             who need to move fast and integrate confidently.
           </p>
-          <a
-            href="https://payzeep-apidoc.redocly.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "#2C3ADF", color: "#fff", fontSize: 13, fontWeight: 500,
-              padding: "11px 22px", borderRadius: 100, textDecoration: "none",
-              transition: "opacity 0.2s",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = "0.82")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-          >
-            View Live Documentation ↗
-          </a>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <a
+              href="https://payzeep-apidoc.redocly.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: "#2C3ADF", color: "#fff", fontSize: 13, fontWeight: 500,
+                padding: "11px 22px", borderRadius: 100, textDecoration: "none",
+                transition: "opacity 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "0.82")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            >
+              View Live Documentation ↗
+            </a>
+            <a
+              href="https://zeepway.com/checkout-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: "transparent", color: "#2C3ADF", fontSize: 13, fontWeight: 500,
+                padding: "11px 22px", borderRadius: 100, textDecoration: "none",
+                border: "1.5px solid #2C3ADF", transition: "opacity 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "0.72")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            >
+              Checkout Demo ↗
+            </a>
+          </div>
 
           {/* Stat row */}
           <div style={{
@@ -586,7 +603,6 @@ export default function PayZeepApiDocsPage() {
           font-size: 14px;
           color: #666;
           line-height: 1.8;
-          max-width: 60ch;
           margin-bottom: 18px;
         }
         .step-flow {

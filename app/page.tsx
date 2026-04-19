@@ -359,7 +359,7 @@ const projects: Project[] = [
     ),
   },
   {
-    title: "Paymi Agent",
+    title: "Payzeep Mobile App (Android & iOS)",
     year: 2024,
     description:
       "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",

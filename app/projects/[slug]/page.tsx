@@ -27,6 +27,7 @@ type Project = {
     platform: string;
     deliverables: string;
   };
+  links?: { label: string; href: string }[];
   closing: ClosingContent;
   sections: {
     title: string;
@@ -821,7 +822,7 @@ const projects: Record<string, Project> = {
     ],
   },
   "paymi-agent": {
-    title: "Paymi Agent",
+    title: "Payzeep Mobile App (Android & iOS)",
     hero:
       "Building the mobile command centre for Nigeria's most important financial infrastructure — an agency banking app designed for the people who are the bank.",
     meta: {
@@ -832,9 +833,13 @@ const projects: Record<string, Project> = {
       deliverables:
         "End-to-end UX/UI — Onboarding, Core Banking, Bill Payments, Network Intelligence, Device Management",
     },
+    links: [
+      { label: "App Store ↗", href: "https://apps.apple.com/us/app/payzeep/id6743746129" },
+      { label: "Play Store ↗", href: "https://play.google.com/store/apps/details?id=ng.com.paymi.mpos&pcampaignid=web_share" },
+    ],
     closing: {
       closer: [
-        "The most lasting lesson from Paymi Agent is that designing for the infrastructure layer of financial inclusion means designing for failure as much as success. Every screen is someone's livelihood. Every failed transaction is real money gone. That's not a product constraint — it's a design brief.",
+        "The most lasting lesson from Payzeep is that designing for the infrastructure layer of financial inclusion means designing for failure as much as success. Every screen is someone's livelihood. Every failed transaction is real money gone. That's not a product constraint — it's a design brief.",
         "The Network Monitor was the hardest feature to get approved and the most-requested feature by agents once they had it. That gap — between what businesses think agents need and what agents actually need — is exactly the gap good design is supposed to close. I want to keep closing that gap.",
       ],
       reflection: [
@@ -902,7 +907,7 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "We spent time inside existing agency banking apps — competitor products and the earlier version of Paymi. The pattern was consistent and frustrating: every app looked like a form. Input. Submit. Wait. Success or failure. No context. No intelligence.",
+            text: "We spent time inside existing agency banking apps — competitor products and the earlier version of Payzeep. The pattern was consistent and frustrating: every app looked like a form. Input. Submit. Wait. Success or failure. No context. No intelligence.",
           },
           {
             type: "paragraph",
@@ -945,7 +950,7 @@ const projects: Record<string, Project> = {
           },
           {
             type: "paragraph",
-            text: "Agency banking KYC in Nigeria is no joke. A new Paymi agent needs to provide: phone number, BVN, NIN, proof of ID, proof of address, and for business accounts, SCUML clearance above certain transaction thresholds. Dumping that on a new agent in one screen — which most agency banking apps do — creates immediate drop-off. People don't quit because the requirements are too hard. They quit because the requirements feel endless.",
+            text: "Agency banking KYC in Nigeria is no joke. A new Payzeep agent needs to provide: phone number, BVN, NIN, proof of ID, proof of address, and for business accounts, SCUML clearance above certain transaction thresholds. Dumping that on a new agent in one screen — which most agency banking apps do — creates immediate drop-off. People don't quit because the requirements are too hard. They quit because the requirements feel endless.",
           },
           {
             type: "paragraph",
@@ -990,7 +995,7 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "This is where Paymi Agent does something we hadn't seen in any Nigerian agency banking product. Nigerian interbank transfers and POS card processing are not uniformly reliable. Success rates vary by bank, by card scheme, and by time of day. An agent who tries to process a withdrawal from a First Bank card on Mastercard might see a 60% success rate. The same card scheme through Stanbic IBTC might see 23%. But the same customer's Visa card at Stanbic would be 99.45%.",
+            text: "This is where Payzeep does something we hadn't seen in any Nigerian agency banking product. Nigerian interbank transfers and POS card processing are not uniformly reliable. Success rates vary by bank, by card scheme, and by time of day. An agent who tries to process a withdrawal from a First Bank card on Mastercard might see a 60% success rate. The same card scheme through Stanbic IBTC might see 23%. But the same customer's Visa card at Stanbic would be 99.45%.",
           },
           {
             type: "paragraph",
@@ -1045,7 +1050,7 @@ const projects: Record<string, Project> = {
           },
           {
             type: "paragraph",
-            text: "Most banking apps pretend the physical world doesn't exist. Paymi doesn't. The Devices section shows every PayZeep terminal linked to an agent's account — device name, status, terminal ID, connection action. Request New Device lets agents choose their hardware self-serve: Card Reader or T3 Android Smart Mobile POS. For an agent in Aba who can't get to a PayZeep office, this isn't a nice-to-have. It's a necessity.",
+            text: "Most banking apps pretend the physical world doesn't exist. Payzeep doesn't. The Devices section shows every PayZeep terminal linked to an agent's account — device name, status, terminal ID, connection action. Request New Device lets agents choose their hardware self-serve: Card Reader or T3 Android Smart Mobile POS. For an agent in Aba who can't get to a PayZeep office, this isn't a nice-to-have. It's a necessity.",
           },
         ],
       },
@@ -1075,7 +1080,7 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "Paymi Agent shipped as an end-to-end agency banking platform that treats agents as operational professionals, not just form-fillers. The Network Monitor transformed intelligence that previously lived in WhatsApp groups into a real-time, in-app tool — giving agents the ability to make decisions before a transaction fails, not after.",
+            text: "Payzeep shipped as an end-to-end agency banking platform that treats agents as operational professionals, not just form-fillers. The Network Monitor transformed intelligence that previously lived in WhatsApp groups into a real-time, in-app tool — giving agents the ability to make decisions before a transaction fails, not after.",
           },
           {
             type: "paragraph",
@@ -1093,7 +1098,7 @@ const projects: Record<string, Project> = {
           {
             type: "list",
             items: [
-              "Commission analytics. Agents currently see their balance and can redeem. They can't see which transaction types earn most, which hours are most profitable, or how their commission trends week-over-week. A lightweight earnings dashboard would turn Paymi from a tool into a business partner.",
+              "Commission analytics. Agents currently see their balance and can redeem. They can't see which transaction types earn most, which hours are most profitable, or how their commission trends week-over-week. A lightweight earnings dashboard would turn Payzeep from a tool into a business partner.",
               "Network Monitor push notifications. The monitor is reactive — you check it when you remember. A proactive alert when a major bank drops below 30% ('UBA transfers are currently unreliable') would make it genuinely predictive.",
               "Customer profiles. The 'Save Customer's Details' button hints at a CRM layer that doesn't fully exist. An agent who serves the same 200 people regularly should pull up a customer's usual data bundle in two taps.",
               "Offline mode. An agent who can draft a transaction offline and submit when connectivity returns is an agent who never loses a customer. Technically complex but operationally transformative.",
@@ -1110,11 +1115,11 @@ const projects: Record<string, Project> = {
           },
           {
             type: "paragraph",
-            text: "Chidinma doesn't open Paymi Agent thinking about compliance. She opens it thinking: is this going to work today? Is the network up? Will the Zenith card process? Does she have enough float? Every screen we designed was an answer to one of those questions.",
+            text: "Chidinma doesn't open Payzeep thinking about compliance. She opens it thinking: is this going to work today? Is the network up? Will the Zenith card process? Does she have enough float? Every screen we designed was an answer to one of those questions.",
           },
           {
             type: "paragraph",
-            text: "If I were pushing the work further, I'd invest more in the proactive layer — notifications, predictive routing, usage analytics — so Paymi moves from a tool agents use to a tool that works with them. The foundation is there. The next version gets smarter.",
+            text: "If I were pushing the work further, I'd invest more in the proactive layer — notifications, predictive routing, usage analytics — so Payzeep moves from a tool agents use to a tool that works with them. The foundation is there. The next version gets smarter.",
           },
         ],
       },
@@ -2092,6 +2097,23 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
             </p>
           </div>
         </div>
+
+        {project.links && project.links.length > 0 && (
+          <div className="mt-8 flex flex-wrap gap-3">
+            {project.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+                className="inline-flex items-center gap-2 text-xs font-medium text-[#111]/55 border border-[#111]/15 rounded-full px-4 py-2 hover:border-[#111]/35 hover:text-[#111]/75 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="mt-24">
