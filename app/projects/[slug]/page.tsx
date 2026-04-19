@@ -1125,6 +1125,291 @@ const projects: Record<string, Project> = {
       },
     ],
   },
+  "payzeep-api-docs": {
+    title: "PayZeep API Documentation",
+    hero:
+      "Good documentation is a product. We designed it like one — building the developer experience for a CBN-licensed payment gateway from scattered resources into a structured, navigable portal.",
+    meta: {
+      role: "Product Designer · Content Design · IA",
+      company: "PayZeep (Paymi Solutions Limited)",
+      timeline: "2024 — Ongoing",
+      platform: "Web (Redocly)",
+      deliverables:
+        "Information Architecture, Developer Onboarding Flow, API Reference Structure, Content Design, Go-Live Checklist",
+    },
+    links: [
+      { label: "Live Docs ↗", href: "https://payzeep-apidoc.redocly.app" },
+      { label: "Checkout Demo ↗", href: "https://zeepway.com/checkout-demo" },
+    ],
+    closing: {
+      closer: [
+        "Developer documentation sits in an interesting gap in design practice. It is not consumer UX. It is not visual design. It is not content strategy alone. It is all three — applied to an audience that is highly technical, highly critical, and deeply impatient.",
+        "Designing the PayZeep API docs taught me that documentation quality is product quality. A merchant who cannot integrate because the documentation confused their developer is a lost merchant — one that a clearer onboarding sequence or a go-live checklist might have saved. That is not an engineering problem. That is a design problem.",
+      ],
+      reflection: [
+        "Start with the journey, not the reference — a developer's first question is never 'what does this endpoint return?'",
+        "Separate guide from reference — conceptual content and technical reference serve different reading modes",
+        "Say the obvious things — documentation that assumes too much leaves the majority behind",
+        "Mock servers are UX — removing the credential barrier changes how quickly developers form confidence",
+        "Error states are documentation too — document decline codes with the same care as the happy path",
+      ],
+      ps: [
+        "PS: If a developer can't find how to authenticate in under 60 seconds, the documentation has already failed — regardless of how thorough the endpoint reference is.",
+        "Also: 'documentation is never done' is not an excuse for shipping it broken. It is a reason to build on a platform that keeps it accurate automatically.",
+      ],
+      credits: [
+        {
+          name: "Femi Jimoh",
+          role: "Product Designer",
+        },
+        {
+          name: "Treasure Oladunni",
+          role: "Product Designer",
+        },
+      ],
+    },
+    sections: [
+      {
+        title: "The Brief",
+        content: [
+          {
+            type: "paragraph",
+            text: "Most fintech companies treat developer documentation as an engineering afterthought. The API works. The endpoints are live. The documentation is a README on GitHub that hasn't been updated since the first sprint.",
+          },
+          {
+            type: "paragraph",
+            text: "PayZeep was different in intention — but the problem was the same in practice. As ZeepWay, PayZeep's payment gateway product, grew and more merchants needed to integrate, the developer-facing documentation was scattered, inconsistent, and not designed for the people who actually had to use it.",
+          },
+          {
+            type: "paragraph",
+            text: "We were asked to design and build a centralised documentation hub. Not just write docs — design the whole experience of what it feels like to be a developer trying to integrate PayZeep.",
+          },
+        ],
+      },
+      {
+        title: "The Context",
+        content: [
+          {
+            type: "paragraph",
+            text: "Developers integrate payment APIs at a specific moment of pressure. They have been tasked with adding payments to a product, they have a deadline, and they need to get from zero to live as fast as possible. Any friction in that journey — unclear authentication steps, missing error code references, ambiguous endpoint descriptions — translates directly into failed integrations, support tickets, and lost merchant activations.",
+          },
+          {
+            type: "paragraph",
+            text: "PayZeep is a CBN-licensed PSSP and PTSP. The payment gateway handles card payments, bank transfers, and mobile money across Nigeria. The developers integrating it are typically mid-level engineers at merchant businesses — competent, deadline-driven, and not especially patient with documentation that buries the answers.",
+          },
+        ],
+      },
+      {
+        title: "The Problem",
+        content: [
+          {
+            type: "paragraph",
+            text: "The instinct in most engineering orgs is to treat documentation as technical writing. Put the endpoints somewhere. Explain the parameters. Ship it. But documentation is a UX problem before it is a content problem.",
+          },
+          {
+            type: "paragraph",
+            text: "A developer landing on a documentation site for the first time has a specific mental model: I need to know three things before I do anything else. What does this API actually do? How do I authenticate? What does a successful response look like? If those three answers are not findable in under 60 seconds, the documentation has already failed.",
+          },
+          {
+            type: "list",
+            items: [
+              "No structured starting point. Developers had no clear path from 'I need to integrate PayZeep' to 'I have a working integration.' Resources were scattered across Notion pages, Postman collections, and verbal onboarding calls.",
+              "Authentication was underdocumented. The difference between test and production credentials, how to generate API keys, and what each key type could authorise were all areas where developers regularly got stuck and opened support tickets.",
+              "No onboarding sequence. Most API docs skipped account creation entirely, assuming the reader already had credentials. In practice, developers hit the authentication step, realised they needed to create an account first, and left the docs to go sign up — losing context and momentum.",
+              "No go-live clarity. Developers finishing a test integration had no structured way to know whether they had done everything they needed to do before going live.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Platform Choice — Why Redocly",
+        content: [
+          {
+            type: "paragraph",
+            text: "When we evaluated platforms for building the documentation, the options fell into two camps. Custom-built: full design control, but enormous ongoing maintenance cost where every update requires a developer. Wiki-style tools like Notion or Confluence: easy to write, hard to structure as developer reference, with no native OpenAPI rendering.",
+          },
+          {
+            type: "paragraph",
+            text: "Redocly enforces a separation between two types of content most API docs conflate — the guide (how to think about the product) and the reference (what every endpoint does). That structural separation was a design decision baked into the platform. We could focus on content design and information architecture instead of rebuilding document rendering from scratch.",
+          },
+          {
+            type: "paragraph",
+            text: "The Redocly choice also meant the documentation could live alongside the codebase. Updates to the API spec automatically reflected in the docs, keeping reference content accurate without manual maintenance. For a growing product, that was the most important long-term decision we made.",
+          },
+        ],
+      },
+      {
+        title: "Information Architecture",
+        content: [
+          {
+            type: "paragraph",
+            text: "The navigation structure went through several iterations. The final architecture separates the developer journey into two distinct zones — a reading path and a reference layer.",
+          },
+          {
+            type: "paragraph",
+            text: "Zone 1 — Journey: Get Started, Guide, Transfer, API Keys, Incoming Payments. This is the linear path a developer follows on their first integration. Each section builds on the previous. A developer who reads these in order is ready to integrate before ever opening the API Reference.",
+          },
+          {
+            type: "paragraph",
+            text: "Zone 2 — Tools: Integration Tools and API Reference. These are reference resources developers return to repeatedly. Placed last not because they are less important, but because they are not the starting point.",
+          },
+          {
+            type: "list",
+            items: [
+              "Get Started — the onboarding journey: Create account → KYC verification → Go Live",
+              "Guide — conceptual explanations of how PayZeep's payment system works",
+              "Transfer — transfer-specific flows and edge cases",
+              "API Keys — authentication, test vs. production, key rotation",
+              "Incoming Payments — Card, Bank Transfer, Mobile Money documentation",
+              "Integration Tools — SDKs, webhooks, go-live checklist",
+              "API Reference — full OpenAPI endpoint documentation rendered by Redocly",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Developer Onboarding",
+        content: [
+          {
+            type: "paragraph",
+            text: "One of the most important design decisions was not about endpoints at all — it was about what a developer needed to understand before they could write a single line of code. Most API documentation skips account creation entirely. Then developers hit the authentication step, realise they need to create an account first, and leave the docs to go sign up — losing context and momentum.",
+          },
+          {
+            type: "paragraph",
+            text: "We surfaced the account creation requirement at the very beginning of the documentation, before a single endpoint is shown. Three steps, in order. No ambiguity about what comes first.",
+          },
+          {
+            type: "list",
+            items: [
+              "01 — Create an Account: Sign up at zeepway.com with business name, personal details, email, phone, and password. Verify email via OTP.",
+              "02 — Complete KYC Verification: Submit business registration certificate, tax ID, and owner identification to unlock live transaction capability.",
+              "03 — Go Live: After KYC approval, transfer test settings to the production environment and begin accepting real payments.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "This is content design solving a problem that no amount of technical accuracy can fix. The endpoint reference can be perfect and it still won't help a developer who doesn't have credentials yet.",
+          },
+        ],
+      },
+      {
+        title: "The API Reference",
+        content: [
+          {
+            type: "paragraph",
+            text: "The API reference is where most developer documentation dies. A wall of endpoints, parameters, and response schemas with no context, no examples, no sense of what you would actually use any of it for.",
+          },
+          {
+            type: "paragraph",
+            text: "We structured the PayZeep API Reference with Redocly's native OpenAPI rendering. Four principles guided the work:",
+          },
+          {
+            type: "list",
+            items: [
+              "Endpoint grouping by category — operations and transactions grouped semantically, not alphabetically, so developers navigate by intent, not by name.",
+              "Mock server included — developers can test requests against a live mock without needing production credentials. Removing that credential barrier changes how quickly a developer forms confidence in the product.",
+              "Production URL clearly separated — no ambiguity between mock and live environments, one of the most common sources of developer confusion during integration.",
+              "Request and response schemas always in sync — rendered directly from the OpenAPI spec, so when the API changes, the documentation reflects it automatically.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Every endpoint exists in context. A developer looking at a payments endpoint should understand why you would call it and what comes before and after it in a typical integration flow — not just what parameters it accepts.",
+          },
+        ],
+      },
+      {
+        title: "Incoming Payments",
+        content: [
+          {
+            type: "paragraph",
+            text: "The PayZeep API supports three payment collection methods. Each has different developer requirements, different customer experiences, and different failure modes. Designing documentation for three distinct payment rails under a single section required careful information architecture.",
+          },
+          {
+            type: "list",
+            items: [
+              "Card Payments — covers authentication flow, 3DS handling, card tokenisation for recurring charges, and decline code interpretation. The most familiar method for web integrations.",
+              "Bank Transfer — Nigeria's fastest-growing online payment method. The API generates one-time virtual accounts per transaction, covering lifecycle, expiry handling, and webhook confirmation.",
+              "Mobile Money — mobile wallet integrations including initiating charges, handling pending states, and managing confirmation callbacks.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "We used a consistent structure for each method — how it works, how to implement it, how to handle errors — so developers familiar with one payment method could onboard to another without re-learning the documentation structure.",
+          },
+        ],
+      },
+      {
+        title: "Authentication & API Keys",
+        content: [
+          {
+            type: "paragraph",
+            text: "Authentication is where integrations most commonly break — not because the API is wrong, but because the documentation does not clearly explain the difference between test and production credentials, when to use which, and how to manage key rotation.",
+          },
+          {
+            type: "list",
+            items: [
+              "Generating API keys from the merchant dashboard",
+              "Test vs. Production keys — what each environment allows and how to switch between them",
+              "Key security — what to do with keys in a codebase, and what not to do",
+              "Key rotation — how to update keys without causing downtime",
+              "Scoped permissions — which operations each key type can authorise",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "The documentation is written assuming the reader is a competent developer but not necessarily familiar with PayZeep's specific security model. Every assumption is stated explicitly. This is not condescension — it is the only approach that works for an audience you cannot interview in advance.",
+          },
+        ],
+      },
+      {
+        title: "The Go-Live Checklist",
+        content: [
+          {
+            type: "paragraph",
+            text: "A go-live checklist was one of the most practically useful pieces of content we designed. It answers the question every developer asks before flipping a payment integration to production: have I actually done everything I need to do?",
+          },
+          {
+            type: "paragraph",
+            text: "This content does not come from the API spec. It comes from understanding the developer journey end-to-end and identifying the moments where people make mistakes or lose confidence. That is a design job.",
+          },
+          {
+            type: "list",
+            items: [
+              "Account fully KYC-verified and approved",
+              "API keys generated for the production environment",
+              "Webhook endpoints configured and tested",
+              "At least one successful test transaction confirmed",
+              "Error handling implemented for key decline codes",
+              "Customer-facing payment UI reviewed",
+              "Support contact added for payment disputes",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        content: [
+          {
+            type: "paragraph",
+            text: "The PayZeep API documentation portal went live at payzeep-apidoc.redocly.app — a centralised hub for every developer working with PayZeep's payment infrastructure, replacing scattered resources across Notion pages and Postman collections with a single, structured, navigable portal.",
+          },
+          {
+            type: "list",
+            items: [
+              "Structured documentation covering the full developer journey from account creation to live transactions",
+              "Clear three-step onboarding sequence surfaced before any endpoint reference",
+              "Incoming payments coverage for all three methods: Card, Bank Transfer, Mobile Money",
+              "API Reference powered by OpenAPI, with mock server for zero-credential testing",
+              "Go-live checklist giving developers a clear pre-launch framework",
+              "Authentication guide covering test and production key separation, security best practices, and key rotation",
+              "Built on Redocly for long-term maintainability — docs update with the API, not behind it",
+            ],
+          },
+        ],
+      },
+    ],
+  },
   "drivevault-driver": {
     title: "DriveVault — Driver",
     hero:
