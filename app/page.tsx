@@ -33,8 +33,8 @@ const HERO_WORDS = [
 /* ─── filter + project data ──────────────────────────────────── */
 
 const filters = [
-  { label: "All",          count: 17 },
-  { label: "Mobile Apps",  count: 5  },
+  { label: "All",          count: 19 },
+  { label: "Mobile Apps",  count: 7  },
   { label: "Web App",      count: 6  },
   { label: "Experimental", count: 4  },
   { label: "HCI",          count: 3  },
@@ -433,6 +433,140 @@ const projects: Project[] = [
             background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)",
             padding: "2px 7px", borderRadius: 20, letterSpacing: "0.02em",
           }}>CBN-licensed</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "DriveVault — Driver",
+    year: 2025,
+    description:
+      "Ride-hailing driver app for Lagos — real-time demand intelligence, minimum price control, and per-trip earnings transparency.",
+    href: "/projects/drivevault-driver",
+    links: [{ label: "Case Study →", href: "/projects/drivevault-driver" }],
+    category: "Mobile Apps",
+    thumbnail: (
+      <div className="w-full h-full bg-[#0a0e1a] flex items-center justify-center relative overflow-hidden">
+        {/* subtle radial glow */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 60% 30%, rgba(234,179,8,0.08) 0%, transparent 65%)" }} />
+        {/* phone mock */}
+        <div style={{
+          width: 78, height: 140,
+          background: "#111827",
+          borderRadius: 18,
+          border: "1.5px solid rgba(255,255,255,0.08)",
+          overflow: "hidden",
+          display: "flex", flexDirection: "column",
+          boxShadow: "0 20px 48px rgba(0,0,0,0.7)",
+        }}>
+          {/* status bar */}
+          <div style={{ height: 8, background: "#0d1117" }} />
+          {/* earnings header */}
+          <div style={{ padding: "8px 10px 4px" }}>
+            <div style={{ fontSize: 5, color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", marginBottom: 2 }}>TODAY'S EARNINGS</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#eab308", letterSpacing: "-0.03em" }}>₦85,000</div>
+          </div>
+          {/* online pill */}
+          <div style={{ margin: "2px 8px 6px", background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: 20, padding: "3px 8px", display: "flex", alignItems: "center", gap: 4 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e" }} />
+            <span style={{ fontSize: 5, color: "#22c55e", fontWeight: 600, letterSpacing: "0.04em" }}>ONLINE</span>
+          </div>
+          {/* opportunity card */}
+          <div style={{ margin: "0 6px 6px", background: "#1a2035", border: "1px solid rgba(234,179,8,0.15)", borderRadius: 8, padding: "7px 8px" }}>
+            <div style={{ fontSize: 4.5, color: "#eab308", fontWeight: 700, letterSpacing: "0.06em", marginBottom: 3 }}>OPPORTUNITY</div>
+            <div style={{ fontSize: 5.5, color: "#fff", fontWeight: 600, marginBottom: 2 }}>Concert · National Stadium</div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span style={{ fontSize: 4.5, color: "rgba(255,255,255,0.4)" }}>1.8× surge</span>
+              <span style={{ fontSize: 4.5, color: "#eab308" }}>+₦200/trip</span>
+            </div>
+          </div>
+          {/* stats row */}
+          <div style={{ display: "flex", gap: 4, padding: "0 6px" }}>
+            {[["7", "Trips"], ["4.5★", "Rating"], ["₦12k", "Potential"]].map(([v, l]) => (
+              <div key={l} style={{ flex: 1, background: "#1a2035", borderRadius: 6, padding: "5px 4px", textAlign: "center" }}>
+                <div style={{ fontSize: 6, fontWeight: 700, color: "#fff" }}>{v}</div>
+                <div style={{ fontSize: 4, color: "rgba(255,255,255,0.3)" }}>{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* label */}
+        <div style={{ position: "absolute", bottom: 14, left: 14 }}>
+          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
+            Driver · iOS
+          </span>
+        </div>
+        {/* badge */}
+        <div style={{ position: "absolute", top: 14, right: 14 }}>
+          <span style={{ fontSize: 8, fontWeight: 600, color: "#eab308", background: "rgba(234,179,8,0.1)", border: "1px solid rgba(234,179,8,0.2)", padding: "2px 7px", borderRadius: 20 }}>Lagos-first</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "DriveVault — Rider",
+    year: 2025,
+    description:
+      "Ride-hailing rider app for Lagos — price transparency, Ride for Someone, scheduled rides, and safety tools that aren't buried in settings.",
+    href: "/projects/drivevault-rider",
+    links: [{ label: "Case Study →", href: "/projects/drivevault-rider" }],
+    category: "Mobile Apps",
+    thumbnail: (
+      <div className="w-full h-full bg-[#f5f4f0] flex items-center justify-center relative overflow-hidden">
+        {/* subtle texture */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 40% 60%, rgba(59,130,246,0.06) 0%, transparent 60%)" }} />
+        {/* phone mock */}
+        <div style={{
+          width: 78, height: 140,
+          background: "#fff",
+          borderRadius: 18,
+          border: "1px solid rgba(0,0,0,0.08)",
+          overflow: "hidden",
+          display: "flex", flexDirection: "column",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.12)",
+        }}>
+          {/* status bar */}
+          <div style={{ height: 8, background: "#fafafa", borderBottom: "1px solid rgba(0,0,0,0.04)" }} />
+          {/* greeting */}
+          <div style={{ padding: "7px 10px 4px" }}>
+            <div style={{ fontSize: 6, color: "#111", fontWeight: 600 }}>Good morning, Chidi 👋</div>
+          </div>
+          {/* search bar */}
+          <div style={{ margin: "0 7px 6px", background: "#f4f4f4", borderRadius: 8, padding: "5px 8px", display: "flex", alignItems: "center", gap: 5 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", border: "1.5px solid #3b82f6" }} />
+            <div style={{ height: 3, flex: 1, background: "rgba(0,0,0,0.1)", borderRadius: 2 }} />
+          </div>
+          {/* shortcut chips */}
+          <div style={{ display: "flex", gap: 4, padding: "0 7px 5px" }}>
+            {["🏠 Home", "💼 Work"].map(label => (
+              <div key={label} style={{ flex: 1, background: "#f0f4ff", border: "1px solid rgba(59,130,246,0.15)", borderRadius: 6, padding: "4px 0", textAlign: "center", fontSize: 4.5, color: "#3b82f6", fontWeight: 500 }}>{label}</div>
+            ))}
+          </div>
+          {/* quick actions */}
+          <div style={{ display: "flex", gap: 4, padding: "0 7px 5px" }}>
+            {["Schedule →", "For Someone →"].map(a => (
+              <div key={a} style={{ flex: 1, background: "#f9f9f9", border: "1px solid rgba(0,0,0,0.06)", borderRadius: 6, padding: "4px 3px", textAlign: "center", fontSize: 4, color: "#555" }}>{a}</div>
+            ))}
+          </div>
+          {/* price compare card */}
+          <div style={{ margin: "0 7px", background: "#f0f7ff", border: "1px solid rgba(59,130,246,0.15)", borderRadius: 8, padding: "6px 8px" }}>
+            <div style={{ fontSize: 4.5, color: "#3b82f6", fontWeight: 700, letterSpacing: "0.04em", marginBottom: 3 }}>ECONOMY · 5 min</div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 7, fontWeight: 700, color: "#111" }}>₦6,200</span>
+              <span style={{ fontSize: 4, color: "#22c55e", fontWeight: 600 }}>Save ₦1,000</span>
+            </div>
+            <div style={{ fontSize: 4, color: "rgba(0,0,0,0.35)", marginTop: 2 }}>Others: ₦7,200–₦9,500</div>
+          </div>
+        </div>
+        {/* label */}
+        <div style={{ position: "absolute", bottom: 14, left: 14 }}>
+          <span style={{ fontSize: 8, color: "rgba(0,0,0,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
+            Rider · iOS
+          </span>
+        </div>
+        {/* badge */}
+        <div style={{ position: "absolute", top: 14, right: 14 }}>
+          <span style={{ fontSize: 8, fontWeight: 600, color: "#3b82f6", background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)", padding: "2px 7px", borderRadius: 20 }}>Lagos-first</span>
         </div>
       </div>
     ),

@@ -1120,6 +1120,561 @@ const projects: Record<string, Project> = {
       },
     ],
   },
+  "drivevault-driver": {
+    title: "DriveVault — Driver",
+    hero:
+      "Making eight words true — Drive on your terms. Get paid fairly. — through a ride-hailing app designed around the Lagos driver's actual day.",
+    meta: {
+      role: "Product Designer (Solo)",
+      company: "DriveVault",
+      timeline: "2025",
+      platform: "Mobile (iOS — iPhone 14 & 15 Pro)",
+      deliverables:
+        "End-to-end UX/UI — Onboarding, Preferences, Home, Opportunity Planner, Ride Flows, Document Management, Payouts",
+    },
+    closing: {
+      closer: [
+        "The most lasting insight from this project is that gig economy apps are designed for the platform, not the worker. Driver information needs are treated as secondary. Safety is handled by a policy page. Earnings are a number buried in settings. DriveVault was designed with the premise that the driver is the product — and every decision followed from that.",
+        "The Opportunity Planner is the feature I am most proud of. Not because it is technically complex, but because it came from actually listening. Drivers already knew which events drove demand. They already knew airport timing. That intelligence lived in WhatsApp groups and years of experience. Putting it in the app, specific and actionable, was the work.",
+      ],
+      reflection: [
+        "Operational intelligence that exists in WhatsApp groups belongs in the product",
+        "Transparency about commission is not generosity — it is table stakes for driver trust",
+        "Showing the 'not eligible' state clearly is more motivating than hiding it",
+        "Auto-rest is not a safety checkbox — it is what a platform looks like when it actually cares",
+      ],
+      ps: [
+        "PS: If a driver has to join a WhatsApp group to find out which areas have demand tonight, the product has already failed them.",
+        "Also: 'Drive on your terms' is a promise. A minimum price filter is the mechanism that makes it real.",
+      ],
+      credits: [
+        {
+          name: "Femi Jimoh",
+          role: "Product Designer",
+        },
+      ],
+    },
+    sections: [
+      {
+        title: "The Brief",
+        content: [
+          {
+            type: "paragraph",
+            text: "Drive on your terms. Get paid fairly. Eight words. A bold claim.",
+          },
+          {
+            type: "paragraph",
+            text: "In a market where Uber and Bolt drivers feel squeezed — where commission structures are opaque, surge logic is a mystery, and cancellation penalties feel arbitrary — those eight words are either the most compelling promise in the product, or the fastest way to get laughed at.",
+          },
+          {
+            type: "paragraph",
+            text: "Designing DriveVault's driver experience meant making those words true. Not in copy. In screens. Every driver who downloads the app has already been burned by something: a cancellation fee they did not understand, a surge that did not materialise, a payout that arrived two weeks late with no breakdown. They come with experience, frustration, and a very low bar for marketing language they have heard before.",
+          },
+          {
+            type: "paragraph",
+            text: "The only way to earn them was to show — not tell — that this platform was built differently.",
+          },
+        ],
+      },
+      {
+        title: "The Context",
+        content: [
+          {
+            type: "paragraph",
+            text: "A Lagos driver's day starts with a decision: is it worth going online today?",
+          },
+          {
+            type: "paragraph",
+            text: "That calculation is more complex than most people realise. Traffic patterns. Fuel cost. Which areas have demand. Whether it is a weekday, a weekend, or an event day at the National Stadium. Which card networks are processing. Whether the airport has international arrivals coming in.",
+          },
+          {
+            type: "paragraph",
+            text: "Before DriveVault, drivers made this decision using WhatsApp groups, experience, and guesswork. Other apps gave them a map and a toggle. That was it. DriveVault was designed to give drivers the information they need to make that decision well — and then get out of the way while they work.",
+          },
+        ],
+      },
+      {
+        title: "The Problem",
+        content: [
+          {
+            type: "paragraph",
+            text: "There is a design failure that runs through most gig economy apps: they treat workers as a resource, not a user. The driver is a revenue source to be optimised. Their information needs are secondary. Their questions get directed to an FAQ. Their earnings are a number somewhere in settings.",
+          },
+          {
+            type: "paragraph",
+            text: "Studying the category made three specific failures visible:",
+          },
+          {
+            type: "list",
+            items: [
+              "1. No pricing control. Drivers received a suggested fare, took it or left it, and had no input into the rates they were willing to work for. A driver who needed ₦3,000 minimum to make a trip worthwhile had no way to express that — the app would keep sending ₦1,500 requests until the driver learned to ignore them.",
+              "2. No demand intelligence. Every competitor showed a map. If demand was clustered somewhere, maybe the map lit up. That was the extent of it. A driver who knew the National Stadium had a concert tonight had no in-app way to validate that, plan for it, or know where to position.",
+              "3. Earnings opacity. Commission deductions happened, but the breakdown was not shown per trip. A driver who saw ₦5,100 credited to their account after a ₦6,000 cash trip did not know why the difference was ₦900 — and had no receipt to reference in a dispute.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Goals",
+        content: [
+          {
+            type: "paragraph",
+            text: "Four outcomes shaped the design direction:",
+          },
+          {
+            type: "list",
+            items: [
+              "Give drivers real pricing control — a minimum price filter that the platform enforces, not just a preference the driver has to manage manually",
+              "Surface demand intelligence that exists in WhatsApp groups and driver experience into an in-app Opportunity Planner",
+              "Make every earnings breakdown transparent at the per-trip level, so commission deductions are never a surprise",
+              "Build onboarding that communicates the full journey upfront — so drivers commit knowing what they are committing to",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Approach",
+        content: [
+          {
+            type: "paragraph",
+            text: "Onboarding: a promise, then a process",
+          },
+          {
+            type: "paragraph",
+            text: "The splash screen does not waste time. No carousel of feature illustrations. Just the value proposition — drive on your terms, get paid fairly — followed immediately by Get Started and Login.",
+          },
+          {
+            type: "paragraph",
+            text: "Then, before any form, a How It Works screen. Four steps, plain English: verify identity, register vehicle, get approved, set preferences and go online. This screen exists because of a specific failure I observed across every competitor: drivers who start an onboarding flow and abandon it midway because they do not know how long it will take or what they will need. Showing the full journey upfront lets a driver make an informed decision to commit before they have typed a single character.",
+          },
+          {
+            type: "paragraph",
+            text: "The five-step onboarding covers Driver Details, Identity Verification with a liveness check (Face, Light, Blink, Smile), Vehicle Details with live ride category eligibility feedback, Vehicle Documents, and KYC. When a document photo is rejected, the feedback is not a generic error. It lists the specific issue — face not visible, sunglasses detected, blurry image — so the driver knows exactly what to fix without guessing or contacting support.",
+          },
+          {
+            type: "paragraph",
+            text: "On approval, the screen does not just say congratulations and push the driver online. It shows their profile summary and offers a fork: set preferences now, or skip and go online with defaults. This respects autonomy. A driver who wants to configure everything before their first trip can. A driver who just wants to start earning can skip and return later. Neither choice is wrong.",
+          },
+          {
+            type: "paragraph",
+            text: "Preferences setup: the feature that makes the tagline true",
+          },
+          {
+            type: "paragraph",
+            text: "Most ride-hailing apps give drivers one control: online or offline. DriveVault gives them a four-step preference configuration system that runs once after approval and shapes every trip they will ever take.",
+          },
+          {
+            type: "paragraph",
+            text: "Step one is ride request type: instant booking only, flexible price only, or both. The recommended option is clearly labelled with the reasoning — instant booking plus flexible negotiation gives the most opportunities. The default parameters are shown: maximum discount 10%, peak-demand cap 40%, negotiation on. This is transparency most platforms never offer. The driver knows what rules the platform is applying to their trips before they go online.",
+          },
+          {
+            type: "paragraph",
+            text: "Step two is minimum trip price. Set the lowest price you are willing to accept. Requests below this are automatically declined. The default is ₦2,500, with quick suggestions at ₦1,500, ₦2,000, ₦3,000, ₦5,000, and ₦8,000. Three honest explanations sit below the input: riders who offer below this amount will not reach you, you can always accept a lower offer during a live negotiation, and you can change this at any time in settings. A driver who sets ₦5,000 minimum knows they will not see short, cheap trips. The platform does not judge. It executes.",
+          },
+          {
+            type: "paragraph",
+            text: "Step three is driving safety. Auto-rest after long driving, recommended on, with an explicit reason: this helps prevent fatigue and keeps you safe on the road. Most apps never write that sentence. Making the reason explicit is what separates a genuine feature from a PR feature.",
+          },
+          {
+            type: "paragraph",
+            text: "The home screen: command centre",
+          },
+          {
+            type: "paragraph",
+            text: "The driver home has more information density than the rider home, deliberately. A driver who has decided to work needs operational intelligence, not a minimal interface. Earnings visible at all times. A slider for going online and offline, not a tap, which prevents accidental mode changes. A wait time indicator that shows the average wait for trips over the last hour — not a vague 'riders nearby' signal but a real estimate. Today's total earnings and current rating visible without navigating anywhere.",
+          },
+          {
+            type: "paragraph",
+            text: "Ride requests and earnings breakdown",
+          },
+          {
+            type: "paragraph",
+            text: "When a request comes in, the driver sees distance to pickup, trip length, the offered price, the negotiable price range, and the rider's rating. The price range is the key design element: a driver in negotiation mode can counter anywhere within it, and the system tells them when the maximum negotiation limit has been reached so they know to stop.",
+          },
+          {
+            type: "paragraph",
+            text: "After a cash trip, the earnings screen shows the full financial breakdown — rider paid, base fare, surge, service fee, commission deducted, and the driver's actual earnings. No other Nigerian ride-hailing platform shows drivers this breakdown per trip. The driver knows exactly what they made, how it was calculated, and where the commission went. Download receipt and contact support sit below for any disputes.",
+          },
+          {
+            type: "paragraph",
+            text: "Document management and payouts",
+          },
+          {
+            type: "paragraph",
+            text: "Documents do not just matter at onboarding. They expire. They get rejected. They need renewal. Each document has a clear status — approved, pending review, expired, or rejected — visible at the dashboard level, not buried in settings. A pending document shows a verification timeline: document received, verification check in progress, decision pending. A driver waiting for a document review knows exactly where in the process it is. No anxiety, no unnecessary support tickets.",
+          },
+          {
+            type: "paragraph",
+            text: "The payouts section covers standard weekly automatic transfers, early payout for on-demand withdrawal before the weekly cycle, transaction history, tax identification, and a connection to verified tax partners for filing support. The tax partner integration acknowledges that gig economy drivers have real tax obligations — and rather than ignoring that reality, the platform connects drivers to help.",
+          },
+        ],
+      },
+      {
+        title: "The Opportunity Planner",
+        content: [
+          {
+            type: "paragraph",
+            text: "This is the design decision I am most proud of on the driver side, and the one that most clearly separates DriveVault from every competitor in the Nigerian market.",
+          },
+          {
+            type: "paragraph",
+            text: "Most ride-hailing apps show drivers a map. If there are clusters of demand somewhere, maybe the map lights up. The driver has to figure out the rest. DriveVault's Opportunity Planner shows drivers why demand will be high, where it will be, when to leave, and how much they could earn.",
+          },
+          {
+            type: "paragraph",
+            text: "A demand forecast chart shows HIGH, MED, and LOW periods across the day. A driver looking at their schedule can see at a glance that the next HIGH window is at 6PM and plan accordingly.",
+          },
+          {
+            type: "paragraph",
+            text: "Three types of opportunity cards surface in the planner:",
+          },
+          {
+            type: "list",
+            items: [
+              "Events. Concert at National Stadium — Event starting soon, +₦200 per trip, 2:30PM–4:00PM. Tapping opens the full detail: 20,000+ attendees expected, 1.8x surge, estimated 4–6 trips per hour, potential ₦12,000–₦18,000, and specific tips — position near the main gates 30 minutes before the event ends, expect high demand for trips to Victoria Island and Lekki, stay online until 11:30PM for maximum earnings.",
+              "Airport Arrivals. Multiple international flights landing between 2:30PM and 4:00PM — high passenger demand expected at MMA. Tips: arrive 15 minutes before peak time, position near Terminal 2 for international arrivals, check flight schedules for optimal timing.",
+              "Turbo Bonus Zones. Limited-time areas with a per-trip bonus, visible until they expire, with a clear deadline so drivers know exactly when the window closes.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "What makes this feature genuinely different is not just the information — it is the specificity of the tips. Position near Terminal 2 is not generic advice. It is the kind of knowledge a Lagos driver with three years of airport runs has figured out through trial and error. DriveVault puts it in the app for every driver, on day one.",
+          },
+          {
+            type: "paragraph",
+            text: "A Gold tier progress bar sits alongside the planner — 253 of 300 points — connecting daily positioning decisions to a longer-term rewards journey.",
+          },
+        ],
+      },
+      {
+        title: "Key Screens",
+        content: [
+          {
+            type: "list",
+            items: [
+              "Splash and How It Works. Value proposition upfront, four-step journey preview before any form — so drivers commit knowing the full scope.",
+              "Five-step onboarding. Driver details, liveness-verified identity check, vehicle details with live category eligibility, vehicle documents, and KYC. Rejection feedback is specific, not generic.",
+              "Approval screen with preference setup fork. Profile summary, then a choice: configure now or go online with defaults.",
+              "Four-step preferences setup. Ride request type with default parameters shown, minimum price with quick suggestions and honest explanations, auto-rest with explicit safety reasoning, and a review confirmation before going online.",
+              "Driver home. Earnings counter, online/offline slider, wait time estimate with data source, trip counter, rating, and referral promo.",
+              "Opportunity Planner. Demand forecast chart, three opportunity card types (events, airport arrivals, turbo zones), full opportunity detail with surge, trip estimates, earnings range, and actionable positioning tips.",
+              "Ride request flow. Price, range, negotiation, accept or counter, maximum negotiation toast, cancellation and reporting states.",
+              "Cash trip earnings breakdown. Per-trip itemised view: rider paid, base fare, surge, service fee, commission, driver earnings. Download receipt option.",
+              "Ride categories. Economy, Comfort, XL, Executive — with eligibility status shown and requirements listed for categories the driver does not yet qualify for.",
+              "Document management. Per-document status: approved with details, pending with verification timeline, expired with overdue indicator, rejected with specific issue list.",
+              "Payouts and compliance. Weekly automatic transfers, early payout, transaction history, TIN, account statement, and tax partner connection.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        content: [
+          {
+            type: "paragraph",
+            text: "DriveVault Driver shipped as an end-to-end driver platform where the core promise — drive on your terms, get paid fairly — was embedded in the mechanics of the product rather than left to marketing copy.",
+          },
+          {
+            type: "paragraph",
+            text: "The minimum price filter made driver autonomy structural. The Opportunity Planner moved demand intelligence out of WhatsApp groups and into the app. The per-trip earnings breakdown made commission deductions transparent at the level where they actually mattered.",
+          },
+          {
+            type: "paragraph",
+            text: "The onboarding flow — with its upfront journey preview and post-approval preference setup — was designed to reduce the drop-off that competitor apps see when drivers hit the first form without knowing how many more follow.",
+          },
+        ],
+      },
+      {
+        title: "Reflection",
+        content: [
+          {
+            type: "paragraph",
+            text: "This project pushed me to think more carefully about what it means to design for someone whose workplace is their vehicle and whose income depends on every decision the platform makes on their behalf. That is a different design responsibility than a consumer app.",
+          },
+          {
+            type: "paragraph",
+            text: "If I were pushing the work further, the next layer would be predictive: push notifications that turn the Opportunity Planner from a screen you check into a tool that checks in with you. The concert at National Stadium starts in 90 minutes — position now. That shift from passive to active would make the planner genuinely operational rather than informational.",
+          },
+          {
+            type: "paragraph",
+            text: "Earnings projections would also be the right next investment — not just what you earned today, but what you are on track to earn this week and how many more trips to reach a goal. That kind of forward visibility changes how drivers plan their time, and planning their time is the core job the app exists to support.",
+          },
+        ],
+      },
+    ],
+  },
+  "drivevault-rider": {
+    title: "DriveVault — Rider",
+    hero:
+      "The ride starts before the car does — designing a Lagos ride-hailing experience around the quiet anxiety that opens with every booking.",
+    meta: {
+      role: "Product Designer (Solo)",
+      company: "DriveVault",
+      timeline: "2025",
+      platform: "Mobile (iOS — iPhone 14 & 15 Pro)",
+      deliverables:
+        "End-to-end UX/UI — Authentication, Booking, Ride for Someone, Scheduled Rides, Safety, Support, Account",
+    },
+    closing: {
+      closer: [
+        "The hardest thing to design in ride-hailing is trust. You cannot manufacture it. You cannot animate your way to it. You earn it by being honest about price, clear about what happens next, real about safety, and useful when things go wrong. Every screen in the DriveVault rider experience was designed with one question: what does this rider need to feel confident right now?",
+        "The Ride for Someone feature is the one I keep returning to. It came from an observation about how Lagos actually works, not from a product brief. A mother booking a ride for her child coming home from school. A colleague arranging transport for a partner who does not use smartphones. That use case was real, frequent, and underserved across every competitor. Putting it on the home screen was the right call.",
+      ],
+      reflection: [
+        "Trust is built in details — a 10-minute pickup window is more honest than a single promised time",
+        "Start with the trip, not the ticket — support that shows your recent rides first is faster for everyone",
+        "Ride for Someone deserved to be on the home screen, not buried in a menu",
+        "Showing competitor prices on the booking screen only works if the price is actually better",
+      ],
+      ps: [
+        "PS: 'Good morning, Chidi 👋' is not a small detail. It is the first signal that this app knows who you are.",
+        "Also: surfacing the cancellation fee before a rider commits, not after, is the difference between a policy and a product decision.",
+      ],
+      credits: [
+        {
+          name: "Femi Jimoh",
+          role: "Product Designer",
+        },
+      ],
+    },
+    sections: [
+      {
+        title: "The Brief",
+        content: [
+          {
+            type: "paragraph",
+            text: "The ride starts before the car does. That is the insight nobody in Nigerian ride-hailing talks about enough.",
+          },
+          {
+            type: "paragraph",
+            text: "The moment a rider opens the app, something psychological begins. A quiet audit: is this going to work? Will the driver actually show up? Is the price fair? What if something goes wrong? In a market where Uber, Bolt, and InDriver have all had their trust-breaking moments — drivers cancelling on arrival, surge pricing that does not feel honest, zero recourse when something goes wrong — every rider carries a baseline anxiety into every booking.",
+          },
+          {
+            type: "paragraph",
+            text: "DriveVault's rider experience was designed to answer that anxiety at every step. Not with reassurance copy. Not with empty animations. With decisions — information surfacing at the right moment, controls existing where they are expected, safety that is not a tab buried in settings.",
+          },
+        ],
+      },
+      {
+        title: "The Context",
+        content: [
+          {
+            type: "paragraph",
+            text: "Lagos is not a city that forgives a bad ride-hailing app. Traffic is unpredictable. Routes are political. Drivers have their own logic about what is worth their time. Riders have learned — through repeated experience — to negotiate, to verify, to screenshot conversations, to share their location with someone who is watching.",
+          },
+          {
+            type: "paragraph",
+            text: "The market shapes the product. Designing for a Lagos rider means designing for someone with strong opinions, limited patience, and real stakes. A ride at 10pm in Lekki is not a casual UX interaction. It is a safety decision.",
+          },
+          {
+            type: "paragraph",
+            text: "Five things I knew a DriveVault rider needed before designing a single screen: price clarity, not just the fare but whether it is a good fare. Booking flexibility, for themselves, for others, for later. Safety infrastructure — real tools, not checkbox features. Promos that feel real, not buried and expired by the time you find them. And support that works when something goes wrong, because something will.",
+          },
+        ],
+      },
+      {
+        title: "The Problem",
+        content: [
+          {
+            type: "paragraph",
+            text: "Broken trust in Nigerian ride-hailing has specific shapes. After studying the category and riding with multiple platforms, four failure patterns stood out:",
+          },
+          {
+            type: "list",
+            items: [
+              "1. Price opacity. The fare shows, but not whether it is fair. Riders switching between Uber and Bolt to compare prices are doing manually what the product should do for them.",
+              "2. Booking only for yourself. The most common booking edge case — getting a ride for someone who cannot book for themselves — was treated as a hidden feature by every competitor, if it was supported at all.",
+              "3. Safety as a tab. Trusted contacts, verify your driver, emergency tools — these lived in menus riders found after the fact. Safety infrastructure that requires navigation to find is safety infrastructure that does not work.",
+              "4. Support that starts from scratch. Filing a support issue required remembering the date, route, and driver details of the trip. A rider who had a problem last night should not have to reconstruct the context — the app should know.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Goals",
+        content: [
+          {
+            type: "paragraph",
+            text: "Four design goals shaped the rider experience:",
+          },
+          {
+            type: "list",
+            items: [
+              "Surface price comparison at the booking screen — show what the same trip costs on other platforms so the price earns trust rather than requiring it",
+              "Put Ride for Someone and Schedule Ahead on the home screen, not in menus, because frequency of use should determine placement",
+              "Make safety tools visible before they are needed — trusted contacts, driver verification, and real-time location sharing as first-class features",
+              "Build support that starts with the trip, not a blank ticket — recent rides visible immediately so a rider can tap rather than type",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The Approach",
+        content: [
+          {
+            type: "paragraph",
+            text: "Authentication: short, honest, human",
+          },
+          {
+            type: "paragraph",
+            text: "The signup flow asks for first name, last name, and phone number. The phone field has a nudge — we will send a verification code here — which does two things simultaneously: it tells you what is going to happen next and it explains why the phone number is needed. Social sign-in via Google and Apple sits below as an alternative, not the primary, because phone-first is right for this market.",
+          },
+          {
+            type: "paragraph",
+            text: "OTP verification is a 4-digit code with an explicit 60-second countdown. Error states are specific — incorrect code, try again — not a generic red banner. The forgot password flow sets a 5-minute expectation for the reset email, preventing the premature support tickets that come from users who assume no email means a broken product.",
+          },
+          {
+            type: "paragraph",
+            text: "The home screen: a dashboard that knows you",
+          },
+          {
+            type: "paragraph",
+            text: "Good morning, Chidi 👋. That greeting — personalised, time-aware — sets the tone for the entire home screen. This is not a utility app. It knows who you are.",
+          },
+          {
+            type: "paragraph",
+            text: "The home is built around a central search bar — Where are you heading? — with saved shortcuts directly below: Home, Work, and custom locations. A rider going to the same destination five times a week should never have to type it again after the first time. Schedule ahead and Ride for someone sit as quick-action chips below the shortcuts, promoted to the home screen because they represent real use cases that competitors treat as afterthoughts.",
+          },
+          {
+            type: "paragraph",
+            text: "The promo section is visible without scrolling, with specific amounts and real expiry times — 10% off your next ride, expires tonight — not vague up-to discounts. DriveVault Rewards shows progress in a way that makes the next goal feel reachable: three of five rides this week, twenty points away from the next reward. Twenty points is one ride. That specificity turns an abstract loyalty programme into a concrete next-trip feeling.",
+          },
+          {
+            type: "paragraph",
+            text: "Booking: every decision, in order",
+          },
+          {
+            type: "paragraph",
+            text: "The route screen shows saved places at the top and recent searches below — so the two most likely destinations are tappable before a character is typed. Multi-stop is supported with a clear Add another stop structure, which matters for riders dropping a package before getting home or picking someone up en route.",
+          },
+          {
+            type: "paragraph",
+            text: "The pickup confirmation screen shows a map with a draggable pin — drag or edit address to set your pickup — because in Lagos, building numbers are approximate and a compound description is more reliable than a postcode. Add note for driver sits at the bottom for gate codes, guard names, and landmark instructions that no GPS can capture. Airport pickups surface specific terminal options: MMA1, MMA2.",
+          },
+          {
+            type: "paragraph",
+            text: "The ride category screen is where the design earns its keep. Categories — Economy, Comfort, Executive, XL, Courier — each show estimated arrival, price, and relevant detail. Economy leads with Faster Pickup because speed is its core value. The standout element: Save ₦1,000 — Typical price on other apps: NGN 7,200–9,500. DriveVault shows its price and the competitor price for the same ride. This is a bold, honest signal that assumes the rider is already comparing apps and chooses to win that comparison transparently. Uber and Bolt do not do this.",
+          },
+          {
+            type: "paragraph",
+            text: "Ride for Someone: a feature built for how Lagos actually works",
+          },
+          {
+            type: "paragraph",
+            text: "In Lagos, it is common to book a ride for someone else. An older parent who does not use smartphones. A child coming home from school. A friend stranded after an event. Uber treats this as a secondary mode hidden in menus. DriveVault puts Ride for Someone on the home screen.",
+          },
+          {
+            type: "paragraph",
+            text: "The flow asks who is riding — Me, or Add someone — then takes the rider's name and phone number. The driver receives the actual rider's contact details. After booking, a Share ride details prompt lets the booker send vehicle number, arrival time, and driver location directly. The booker stays in the loop. The driver knows who to expect. The actual rider has the information they need. Three people, one booking, zero confusion.",
+          },
+          {
+            type: "paragraph",
+            text: "Scheduled rides: trust expressed as time",
+          },
+          {
+            type: "paragraph",
+            text: "Scheduling a ride is an act of trust — committing to a pickup time hours or days in advance. The design has to earn that commitment. The review screen shows a pickup window — 4:13 AM to 4:23 AM — not a single promised time, because a range is honest and a single time overpromises. The cancellation policy appears before the rider commits: a fee of ₦1,500 applies if you cancel within 60 minutes of pickup. Not after. Before. So no one feels ambushed by a fee they did not know about.",
+          },
+          {
+            type: "paragraph",
+            text: "Scheduled rides surface as a persistent card on the home screen — Tomorrow, 6:30 AM, destination, view or cancel. Riders do not have to go hunting to confirm or cancel a booking they made yesterday.",
+          },
+        ],
+      },
+      {
+        title: "Safety and Support",
+        content: [
+          {
+            type: "paragraph",
+            text: "Safety: real tools, not checkbox features",
+          },
+          {
+            type: "paragraph",
+            text: "The Safety section is not a wall of text. It is a set of actual tools designed for actual risk scenarios.",
+          },
+          {
+            type: "paragraph",
+            text: "Trusted Contacts asks riders to add at least one person they trust to be called in an emergency. The relationship field — spouse, parent, family, friend — is not just metadata. A rider who adds a trusted contact has done something that makes them meaningfully safer. A rider who sees Trusted contacts: None added next to the warning is more likely to act than one who reads a generic safety tips page.",
+          },
+          {
+            type: "paragraph",
+            text: "Verify your driver surfaces before boarding, giving riders a way to confirm the car, plate, and driver details match before getting in. Safety tips are curated, not comprehensive — short enough to be read, specific enough to be useful.",
+          },
+          {
+            type: "paragraph",
+            text: "Support: designed for the unhappy path",
+          },
+          {
+            type: "paragraph",
+            text: "A support system that is hard to use is a broken promise. The most important design decision in the support flow was to start with the trip, not the ticket. Get help with a recent ride shows the last few trips immediately. A rider reporting a problem with last night's ride taps it directly — no date, no route, no driver name required.",
+          },
+          {
+            type: "paragraph",
+            text: "Issue categories — charged twice, cancellation fee issue, ride did not happen — lead to an explanation before escalation. Selecting 'charged twice' shows context about temporary card authorisations first, then asks whether that information resolved the issue. If yes: resolved without human contact. If no: chat with us. The escalation path exists. The self-resolution path is always tried first.",
+          },
+          {
+            type: "paragraph",
+            text: "Active support cases show in the Inbox with a clear status: our team is reviewing your case. A rider with an open case knows it is open. No wondering whether the message was received.",
+          },
+        ],
+      },
+      {
+        title: "Key Screens",
+        content: [
+          {
+            type: "list",
+            items: [
+              "Auth flow. Sign up with phone-first approach, OTP with explicit countdown, password creation with live validation checklist, forgot password with timed expectation for the reset email.",
+              "Home. Personalised time-aware greeting, destination search bar, saved shortcuts, Schedule Ahead and Ride for Someone as home screen chips, specific promos with real expiry, Rewards progress with points-to-next-reward shown.",
+              "Route and pickup. Saved places and recent searches, multi-stop support, draggable pickup pin, driver note field, airport terminal selection.",
+              "Ride category selection. Economy through XL and Courier, with arrival times, prices, and competitor price comparison shown inline.",
+              "Ride for Someone. Who is riding selector, rider name and phone input, post-booking share details prompt covering vehicle, ETA, and driver location.",
+              "Scheduled rides. Date and time picker, category selection with scheduled availability, pickup window (not a single time), cancellation fee disclosed pre-booking, home screen persistent card with view or cancel.",
+              "Payment selection. Saved card or cash, selection at booking not at drop-off, specific decline error with reason and recovery path.",
+              "Flexible pricing and negotiation. Price range shown, rider proposal input, negotiation cancelled toast on collapse.",
+              "Safety section. Trusted contacts with relationship field and minimum-one nudge, verify your driver, curated safety tips.",
+              "Support. Recent rides as entry point, issue categories, self-resolution explanation before escalation, chat escalation path, Inbox with active case status.",
+              "Account. Rider rating and trip count visible on profile, passkeys with device context and last-used date, Request my data in plain view, Become a driver path at the bottom.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        content: [
+          {
+            type: "paragraph",
+            text: "DriveVault Rider shipped as a booking experience where the anxiety that opens with every booking in Nigerian ride-hailing was addressed with decisions rather than reassurance copy.",
+          },
+          {
+            type: "paragraph",
+            text: "The competitor price comparison on the category screen made price trust structural rather than assumed. The Ride for Someone flow served a use case that competitors had left to workarounds. Scheduled rides showed the pickup window honestly and disclosed the cancellation fee before commitment.",
+          },
+          {
+            type: "paragraph",
+            text: "Safety tools were placed where riders would find them before they needed them, not after. Support was redesigned around the trip rather than the ticket, reducing the reconstruction burden on riders who already had a bad experience.",
+          },
+        ],
+      },
+      {
+        title: "Reflection",
+        content: [
+          {
+            type: "paragraph",
+            text: "Designing for trust taught me that most of the work is in what you choose to say and when you choose to say it. The cancellation fee disclosed before the rider commits rather than after. The competitor price shown at the booking screen rather than left to the rider to find. The pickup window as a range rather than a single time. These are writing decisions as much as design decisions.",
+          },
+          {
+            type: "paragraph",
+            text: "If I were pushing the work further, real-time negotiation transparency would be the next layer — showing riders when a driver has countered, with the specific counter-offer and a clear accept, counter, or decline path. Right now the negotiation interaction is opaque enough to feel like a guessing game. It should feel like a conversation.",
+          },
+          {
+            type: "paragraph",
+            text: "In-trip safety escalation would also be the right next investment — a discreet SOS flow that alerts trusted contacts silently, without requiring the rider to navigate anywhere during an active ride. The trusted contacts infrastructure is already there. The in-trip trigger is the missing piece.",
+          },
+        ],
+      },
+    ],
+  },
   safepulse: {
     title: "SafePulse",
     hero:
