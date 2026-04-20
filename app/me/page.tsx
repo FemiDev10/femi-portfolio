@@ -112,7 +112,6 @@ export default function MePage() {
                 ref={(el) => { wordRefs.current[i] = el; }}
                 style={{
                   display: "inline-block",
-                  color: "#ddd",
                   filter: "blur(4px)",
                   fontStyle: word.italic ? "italic" : "normal",
                   fontWeight: word.italic ? 300 : 400,
