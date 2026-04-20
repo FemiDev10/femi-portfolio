@@ -67,13 +67,11 @@ export default function ScrollFingerprint() {
 
   const [currentPath,  setCurrentPath]  = useState<string | null>(null);
   const [personality,  setPersonality]  = useState<string | null>(null);
-  const [savedWaves,   setSavedWaves]   = useState<Waveform[]>([]);
+  const [savedWaves,   setSavedWaves]   = useState<Waveform[]>(() =>
+    typeof window === "undefined" ? [] : loadSaved()
+  );
   const [added,        setAdded]        = useState(false);
-
-  /* load saved on mount */
-  useEffect(() => {
-    setSavedWaves(loadSaved());
-  }, []);
+  const [sampleCount,  setSampleCount]  = useState(0);
 
   /* scroll velocity capture */
   const onScroll = useCallback(() => {
@@ -86,6 +84,7 @@ export default function ScrollFingerprint() {
     samplesRef.current.push(Math.min(vel, 100));
     if (samplesRef.current.length > SAMPLE_COUNT)
       samplesRef.current = samplesRef.current.slice(-SAMPLE_COUNT);
+    setSampleCount(samplesRef.current.length);
 
     lastScrollY.current = window.scrollY;
     lastTime.current    = now;
@@ -108,6 +107,7 @@ export default function ScrollFingerprint() {
         if (entry.isIntersecting && samplesRef.current.length === 0) {
           setCurrentPath(samplesToPath([]));
           setPersonality(null);
+          setSampleCount(0);
         }
       },
       { threshold: 0.2, root: null }
@@ -215,9 +215,9 @@ export default function ScrollFingerprint() {
             >
               {added ? "Added to the wall ✓" : "Add mine to the wall →"}
             </button>
-            {samplesRef.current.length > 0 && (
+            {sampleCount > 0 && (
               <p style={{ fontSize: 10, color: "rgba(17,17,17,0.3)" }}>
-                {samplesRef.current.length} samples captured
+                {sampleCount} samples captured
               </p>
             )}
           </div>

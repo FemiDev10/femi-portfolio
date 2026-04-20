@@ -1,7 +1,7 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useEffect, useRef, useState, Fragment } from "react";
-import Link from "next/link";
 import PhotoStrip from "@/components/PhotoStrip";
 
 /* ─── Hero Words ─────────────────────────────────────────────── */

@@ -23,9 +23,6 @@ export default function Nav() {
   const pathname  = usePathname();
   const [open, setOpen] = useState(false);
 
-  // close on route change
-  useEffect(() => { setOpen(false); }, [pathname]);
-
   // lock body scroll when overlay is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -122,6 +119,7 @@ export default function Nav() {
         }}>
           <Link
             href="/"
+            onClick={() => setOpen(false)}
             style={{ fontSize: 14, color: "#111", textDecoration: "none", display: "flex", alignItems: "center", gap: 6 }}
           >
             <span>•</span> Femi Jimoh
@@ -145,6 +143,7 @@ export default function Nav() {
             <Link
               key={href}
               href={href}
+              onClick={() => setOpen(false)}
               style={{
                 fontSize:      32,
                 fontWeight:    400,

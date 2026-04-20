@@ -228,7 +228,6 @@ function BigStat({ target, suffix = "", label, decimals = 0 }: {
 /* ─── page ────────────────────────────────────────────────────── */
 export default function FallDetectionPage() {
   const BORDER = "1px solid rgba(17,17,17,0.08)";
-  const MAX = "max-width:1100px; margin:0 auto; padding:0 24px";
 
   return (
     <div style={{ background: "#fff", color: "#111" }}>

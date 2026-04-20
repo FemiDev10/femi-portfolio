@@ -36,6 +36,102 @@ type Project = {
 };
 
 const projects: Record<string, Project> = {
+  "f1-money-race": {
+    title: "F1 Money Race",
+    hero:
+      "Turning personal finance into a competitive racing experience, where progress feels active, visible, and a little more fun.",
+    meta: {
+      role: "Product Designer",
+      company: "Independent Experiment",
+      timeline: "2025",
+      platform: "Flutter, mobile",
+      deliverables:
+        "Product concept, interaction design, UI design, gamified finance experience",
+    },
+    closing: {
+      closer: [
+        "F1 Money Race was a reminder that utility products do not always have to feel serious to feel useful. Sometimes the right metaphor can make a familiar behavior feel fresh again, especially when the underlying task usually comes with boredom or avoidance.",
+        "If I push the concept further, I would spend more time testing how far the racing metaphor can go before it starts to distract from the financial habits it is meant to support.",
+      ],
+      reflection: [
+        "Gamification works best when it supports clarity, not when it competes with it",
+        "Metaphors can make hard-to-repeat behaviors feel lighter",
+        "Feedback loops matter more when they feel immediate",
+        "Experimental products still need a strong mental model",
+      ],
+      ps: [
+        "PS: Personal finance gets slightly less intimidating when your balance feels like race progress instead of a lecture.",
+        "Also, seeing +0.4% this lap is just more fun than staring at another empty chart.",
+      ],
+      credits: [
+        {
+          name: "Femi Jimoh",
+          role: "Product Designer",
+        },
+      ],
+    },
+    sections: [
+      {
+        title: "Overview",
+        content: [
+          {
+            type: "paragraph",
+            text: "F1 Money Race started as a Flutter-based experiment where finance tracking was reimagined through the language of racing. Instead of a static dashboard, the product treats your financial movement like a race, with laps, positions, and lightweight performance signals.",
+          },
+        ],
+      },
+      {
+        title: "Problem",
+        content: [
+          {
+            type: "paragraph",
+            text: "Most finance apps feel passive and repetitive. People are often asked to log in, review numbers, and stay disciplined without any real emotional feedback loop. That makes consistency harder than it needs to be.",
+          },
+        ],
+      },
+      {
+        title: "Approach",
+        content: [
+          {
+            type: "paragraph",
+            text: "The concept explored gamification by mapping financial progress to racing mechanics. Laps represent time cycles, balance changes reflect speed, and rankings introduce a feeling of momentum and competition without making the product too heavy.",
+          },
+        ],
+      },
+      {
+        title: "Experience",
+        content: [
+          {
+            type: "list",
+            items: [
+              "Real-time balance updates visualized as race progress",
+              "Lap-based tracking system built around weekly or monthly cycles",
+              "Performance indicators such as +0.4% this lap",
+              "A dark, high-contrast interface inspired by racing dashboards",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Outcome",
+        content: [
+          {
+            type: "paragraph",
+            text: "The concept made finance tracking feel more active than passive. Instead of only looking backward at spending, the interface made progress feel like something unfolding in real time.",
+          },
+        ],
+      },
+      {
+        title: "Reflection",
+        content: [
+          {
+            type: "paragraph",
+            text: "The next version would benefit from deeper analytics, milestone rewards, and lightweight social or multiplayer mechanics. The core idea still feels promising because it changes the emotional posture of the experience without losing the utility underneath it.",
+          },
+        ],
+      },
+    ],
+  },
   "payzeep-merchant-portal": {
     title: "PayZeep Merchant Portal",
     hero:

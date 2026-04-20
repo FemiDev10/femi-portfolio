@@ -1,7 +1,8 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 /* ─── filter + project data ──────────────────────────────────── */
 

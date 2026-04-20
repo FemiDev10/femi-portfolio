@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const PHOTOS = [
   { id: 1, label: "Studio", bg: "#f3f3f3" },
