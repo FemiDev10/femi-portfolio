@@ -14,6 +14,12 @@ type ContentBlock =
       type: "table";
       headers: string[];
       rows: string[][];
+    }
+  | {
+      type: "media";
+      label: string;
+      kind: "image" | "video";
+      height?: string;
     };
 
 type Project = {
@@ -39,29 +45,32 @@ const projects: Record<string, Project> = {
   "f1-money-race": {
     title: "F1 Money Race",
     hero:
-      "Turning personal finance into a competitive racing experience, where progress feels active, visible, and a little more fun.",
+      "Designing a finance app that turns Nigerian bank accounts into a live F1 race, so checking your money feels visual, immediate, and actually worth opening.",
     meta: {
       role: "Product Designer",
       company: "Independent Experiment",
       timeline: "2025",
-      platform: "Flutter, mobile",
+      platform: "Flutter, iOS mobile",
       deliverables:
-        "Product concept, interaction design, UI design, gamified finance experience",
+        "Product concept, UX/UI design, interaction design, motion concept, AI-assisted Flutter build direction",
     },
+    links: [
+      { label: "GitHub", href: "https://github.com/FemiDev10/moneyrace" },
+    ],
     closing: {
       closer: [
-        "F1 Money Race was a reminder that utility products do not always have to feel serious to feel useful. Sometimes the right metaphor can make a familiar behavior feel fresh again, especially when the underlying task usually comes with boredom or avoidance.",
-        "If I push the concept further, I would spend more time testing how far the racing metaphor can go before it starts to distract from the financial habits it is meant to support.",
+        "MoneyRace reminded me that utility products do not have to feel emotionally flat to be useful. A strong metaphor can make a familiar behavior feel fresh again, especially when the default experience is repetitive and forgettable.",
+        "If I keep pushing it, I would spend more time testing how far the racing metaphor can go before it starts competing with the financial clarity it is supposed to support. The best version of this product still needs to feel exciting without becoming noisy.",
       ],
       reflection: [
-        "Gamification works best when it supports clarity, not when it competes with it",
-        "Metaphors can make hard-to-repeat behaviors feel lighter",
-        "Feedback loops matter more when they feel immediate",
-        "Experimental products still need a strong mental model",
+        "Gamification works best when it sharpens understanding instead of distracting from it",
+        "A strong mental model can turn routine financial behavior into something people want to revisit",
+        "Motion feels valuable when it reflects real change, not decoration",
+        "Experimental products still need structure, consistency, and a believable system underneath the idea",
       ],
       ps: [
-        "PS: Personal finance gets slightly less intimidating when your balance feels like race progress instead of a lecture.",
-        "Also, seeing +0.4% this lap is just more fun than staring at another empty chart.",
+        "PS: Personal finance gets a little less intimidating when your balance feels like race progress instead of a lecture.",
+        "Also, P1 is objectively a more motivating way to say \"your savings account is doing well.\"",
       ],
       credits: [
         {
@@ -76,7 +85,17 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "F1 Money Race started as a Flutter-based experiment where finance tracking was reimagined through the language of racing. Instead of a static dashboard, the product treats your financial movement like a race, with laps, positions, and lightweight performance signals.",
+            text: "MoneyRace is a Flutter mobile app that turns Nigerian bank accounts into an F1 race. Every account becomes a car on a live animated circuit. The account with the highest balance sits in P1 and moves fastest. When money comes in, the car overtakes. When money goes out, it drops a position. The race keeps running.",
+          },
+          {
+            type: "paragraph",
+            text: "This started as a portfolio side project, not a production fintech product. The point was to reimagine a boring financial behavior through a mental model that people can understand in seconds. Instead of checking five separate apps and trying to interpret isolated balances, the product turns your overall financial position into something spatial, comparative, and alive.",
+          },
+          {
+            type: "media",
+            kind: "video",
+            label: "MoneyRace live race demo video",
+            height: "420px",
           },
         ],
       },
@@ -85,7 +104,15 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "Most finance apps feel passive and repetitive. People are often asked to log in, review numbers, and stay disciplined without any real emotional feedback loop. That makes consistency harder than it needs to be.",
+            text: "In Nigeria, many people have money spread across multiple accounts. OPay for quick transfers, PalmPay for everyday spending, GTB or UBA for salary, Kuda for savings. Checking all of them means opening four or five different apps, staring at numbers, and closing them having learned very little about your actual financial position.",
+          },
+          {
+            type: "paragraph",
+            text: "Most finance apps show you data, but they do not make the experience feel meaningful. The interaction pattern is passive: open app, read number, close app, repeat. There is no emotional feedback loop, no sense of movement, and no strong reason to come back unless something is already wrong.",
+          },
+          {
+            type: "paragraph",
+            text: "The deeper problem is that standard aggregation patterns do not map neatly to the Nigerian banking reality. Money is distributed across multiple institutions, and each one asks you to adopt its own mental model. MoneyRace was my attempt to make that fragmented reality easier to understand through one strong visual system.",
           },
         ],
       },
@@ -94,7 +121,25 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "The concept explored gamification by mapping financial progress to racing mechanics. Laps represent time cycles, balance changes reflect speed, and rankings introduce a feeling of momentum and competition without making the product too heavy.",
+            text: "The core design move was to stop thinking about the product as a dashboard and start thinking about it as a race. A dashboard shows you five numbers and asks your brain to do the comparison work every time. A race track makes the same information spatial. P1 is ahead. P5 is behind. Gaps matter. Overtakes signal change. You understand the situation almost instantly.",
+          },
+          {
+            type: "paragraph",
+            text: "That meant treating motion as meaning. Speed equals balance rank. Overtakes reflect credits or stronger account performance. Dropping back reflects spending or weaker position. The animation could not be decorative. If movement did not correspond to something real, it had no place in the product.",
+          },
+          {
+            type: "paragraph",
+            text: "The app was designed around four clear screens. Race for understanding your position right now. Timeline for what happened and when. Standings for the broader picture over time. Garage for managing which banks are in the race. Each screen answers one primary question instead of trying to do everything.",
+          },
+          {
+            type: "paragraph",
+            text: "From a build perspective, this project was also important because I had never written Flutter or Dart before it. The app was built through AI-assisted development, with Claude Code handling the Flutter implementation while I directed the product vision, feature logic, interaction model, and design system.",
+          },
+          {
+            type: "media",
+            kind: "image",
+            label: "Race screen and app flow screenshots",
+            height: "420px",
           },
         ],
       },
@@ -104,11 +149,48 @@ const projects: Record<string, Project> = {
           {
             type: "list",
             items: [
-              "Real-time balance updates visualized as race progress",
-              "Lap-based tracking system built around weekly or monthly cycles",
-              "Performance indicators such as +0.4% this lap",
-              "A dark, high-contrast interface inspired by racing dashboards",
+              "Race Screen with total portfolio balance, daily change, live animated F1 circuit, P1 to P5 leaderboard, LIVE or PAUSED control, fullscreen race mode, and recent activity",
+              "Timeline Screen with a full cross-bank transaction feed, date grouping, bank filters, and clear red or green movement cues",
+              "Standings Screen inspired by constructor championship tables, showing position, bank, balance, and 7-day change",
+              "Garage Screen with profile card, connected bank list, bottom-sheet actions, Add Bank, settings, and notifications",
+              "Persistent bank color system, where each bank keeps its own identity across the track, leaderboard, transactions, and bank cards",
+              "Dark premium visual direction, built to feel closer to a live sports interface than a generic finance dashboard",
             ],
+          },
+          {
+            type: "media",
+            kind: "image",
+            label: "Timeline, standings, and garage screen images",
+            height: "400px",
+          },
+        ],
+      },
+      {
+        title: "Technical Direction",
+        content: [
+          {
+            type: "paragraph",
+            text: "The racing effect is not faked with pre-rendered assets. The circuit is drawn entirely in code using Flutter's CustomPainter. PathMetric is used to extract exact positions and tangent angles around the track, so each car knows where to sit and how to face at any moment.",
+          },
+          {
+            type: "paragraph",
+            text: "Animation is handled through an AnimationController running continuously, with speed values tied to balance rank. Demo data simulates a realistic Nigerian banking environment through salary credits, transfers, purchases, and recurring spend. The architecture also uses an abstract BankRepository so a future real API integration can slot in without requiring the UI to be rebuilt.",
+          },
+          {
+            type: "list",
+            items: [
+              "Flutter 3.13.9 via FVM",
+              "Riverpod for state management",
+              "fl_chart for standings and data visualization",
+              "Rajdhani and DM Sans for typography",
+              "CustomPainter and PathMetric for the circuit and live car positioning",
+            ],
+          },
+          {
+            type: "media",
+            kind: "image",
+            label: "Code architecture or implementation visuals",
+            height: "360px",
           },
         ],
       },
@@ -117,7 +199,11 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "The concept made finance tracking feel more active than passive. Instead of only looking backward at spending, the interface made progress feel like something unfolding in real time.",
+            text: "MoneyRace proved that a finance product can feel distinct without losing clarity. Instead of treating balances as static facts, the app reframed them as a live competitive system. That made financial position feel more immediate and easier to understand at a glance.",
+          },
+          {
+            type: "paragraph",
+            text: "It also became an important proof point for how I work. As a designer with no prior Flutter experience, I was still able to direct and shape a technically ambitious product by being precise about the logic, interaction model, and visual system. The result is an open source project that shows both product thinking and execution range.",
           },
         ],
       },
@@ -126,7 +212,11 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "The next version would benefit from deeper analytics, milestone rewards, and lightweight social or multiplayer mechanics. The core idea still feels promising because it changes the emotional posture of the experience without losing the utility underneath it.",
+            text: "The next version would benefit from real bank integrations through something like Mono, SMS parsing for providers like OPay and PalmPay, and more advanced race replay features so users can watch how money moved across time. A shareable weekly race card and lightweight social racing layer could also make the concept more expressive.",
+          },
+          {
+            type: "paragraph",
+            text: "What stayed with me most is that the bottleneck in building this kind of product was not only technical skill. It was clarity of intent. Once the mental model was strong enough, the rest of the product had something real to orbit around. That made MoneyRace one of the most useful experiments in my portfolio, because it showed how far a strong product idea can go when the interaction system really commits to it.",
           },
         ],
       },
@@ -2390,6 +2480,21 @@ function renderContentBlock(block: ContentBlock) {
             ))}
           </tbody>
         </table>
+      </div>
+    );
+  }
+
+  if (block.type === "media") {
+    return (
+      <div className="my-8 max-w-[72ch]">
+        <div
+          className="w-full rounded-xl bg-gray-100 flex items-center justify-center"
+          style={{ height: block.height ?? "400px" }}
+        >
+          <p className="text-[10px] tracking-widest uppercase text-[#111]/30">
+            {block.kind} placeholder · {block.label}
+          </p>
+        </div>
       </div>
     );
   }
