@@ -62,16 +62,17 @@ const projects: Project[] = [
     category: "Mobile Apps",
     thumbnail: (
       <div className="w-full h-full bg-[#0d0d12] flex items-center justify-center overflow-hidden">
-        {/* race screen screenshot, slightly lifted and centred */}
-        <img
-          src="/moneyRace/race-screen.png"
-          alt="MoneyRace race screen"
+        <video
+          src="/moneyRace/screen-recordingV2.mov"
+          autoPlay
+          muted
+          loop
+          playsInline
           style={{
             height: "115%",
             width: "auto",
             display: "block",
             marginTop: "8%",
-            boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
           }}
         />
       </div>
