@@ -83,8 +83,8 @@ export default function F1MoneyRacePage() {
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section style={{
-        minHeight: "75vh", padding: "80px 64px",
-        display: "flex", flexDirection: "column", justifyContent: "flex-end",
+        padding: "64px 64px 80px",
+        display: "flex", flexDirection: "column", justifyContent: "flex-start",
         borderBottom: "1px solid #ebebeb",
         maxWidth: 1200, margin: "0 auto",
       }}>
@@ -207,13 +207,39 @@ export default function F1MoneyRacePage() {
           </p>
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 40, flexWrap: "wrap" }}>
+            {/* V1 — landscape video, fixed height so it reads as large as V2 */}
             <div style={{ textAlign: "center" }}>
-              <Screen src="/moneyRace/screen-recordingV1.mov" width={240} isVideo />
+              <div style={{
+                background: "#f0f0f0", padding: 24, display: "inline-flex",
+                alignItems: "center", justifyContent: "center",
+              }}>
+                <div style={{ height: 480, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", lineHeight: 0, display: "flex", alignItems: "center" }}>
+                  <video
+                    src="/moneyRace/screen-recordingV1.mov"
+                    autoPlay muted loop playsInline
+                    style={{ height: "100%", width: "auto", display: "block" }}
+                  />
+                </div>
+              </div>
               <Label>Version 1 — Original circuit</Label>
             </div>
+
             <p style={{ fontSize: 24, color: "#ccc", flexShrink: 0 }}>→</p>
+
+            {/* V2 — portrait screenshot */}
             <div style={{ textAlign: "center" }}>
-              <Screen src="/moneyRace/race-screen.png" alt="V2" width={240} />
+              <div style={{
+                background: "#f0f0f0", padding: 24, display: "inline-flex",
+                alignItems: "center", justifyContent: "center",
+              }}>
+                <div style={{ height: 480, overflow: "hidden", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", lineHeight: 0 }}>
+                  <img
+                    src="/moneyRace/race-screen.png"
+                    alt="V2"
+                    style={{ height: "100%", width: "auto", display: "block" }}
+                  />
+                </div>
+              </div>
               <Label>Version 2 — Redesigned circuit + UI</Label>
             </div>
           </div>
