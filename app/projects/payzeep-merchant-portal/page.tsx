@@ -236,19 +236,19 @@ export default function MerchantPortalPage() {
           </p>
 
           {/* Two dashboards — big, stacked */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <div style={{ background: "#0a0d1a", borderRadius: 16, padding: "40px 40px 28px" }}>
-              <BrowserMockup src="/merchantPortal/dashboard/Dashboard%20Empty%20State.png" alt="Dashboard Empty State" bg="#111d30" />
-              <Label light>Dashboard — Test Mode (Empty State)</Label>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            <div>
+              <BrowserMockup src="/merchantPortal/dashboard/Dashboard%20Empty%20State.png" alt="Dashboard Empty State" bg="#f0f2f5" />
+              <Label>Dashboard — Test Mode (Empty State)</Label>
             </div>
-            <div style={{ background: "#0a0d1a", borderRadius: 16, padding: "40px 40px 28px" }}>
-              <BrowserMockup src="/merchantPortal/dashboard/Dashboard%20Filled%20State.png" alt="Dashboard Filled State" bg="#111d30" />
-              <Label light>Dashboard — Live Mode (Filled State)</Label>
+            <div>
+              <BrowserMockup src="/merchantPortal/dashboard/Dashboard%20Filled%20State.png" alt="Dashboard Filled State" bg="#f0f2f5" />
+              <Label>Dashboard — Live Mode (Filled State)</Label>
             </div>
-            <div style={{ background: "#0a101a", borderRadius: 16, padding: "40px 40px 28px" }}>
-              <BrowserMockup src="/merchantPortal/dashboard/USD%20Dashboard.png" alt="USD Dashboard" bg="#0d1a2e" />
-              <Label light>Dashboard — USD Wallet Added (New Feature)</Label>
-              <p style={{ textAlign: "center", fontSize: 13, color: "rgba(255,255,255,0.25)", fontWeight: 300, marginTop: 10 }}>
+            <div>
+              <BrowserMockup src="/merchantPortal/dashboard/USD%20Dashboard.png" alt="USD Dashboard" bg="#f0f2f5" />
+              <Label>Dashboard — USD Wallet Added (New Feature)</Label>
+              <p style={{ textAlign: "center", fontSize: 13, color: "#bbb", fontWeight: 300, marginTop: 10 }}>
                 Merchants can now see total balance in both NGN and USD from one screen.
               </p>
             </div>
