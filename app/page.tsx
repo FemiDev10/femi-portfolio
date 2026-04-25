@@ -53,12 +53,12 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "MoneyRace",
+    title: "F1 Money Race",
     year: 2025,
     description:
       "Flutter app where your bank accounts race like F1 cars. Finance as pit stops, lap times, positions.",
-    href: "/projects/moneyrace",
-    links: [{ label: "Case Study →", href: "/projects/moneyrace" }],
+    href: "/projects/f1-money-race",
+    links: [{ label: "Case Study →", href: "/projects/f1-money-race" }],
     category: "Mobile Apps",
     thumbnail: (
       <div className="w-full h-full bg-[#0d0d0d] flex flex-col justify-end p-5 relative overflow-hidden">
