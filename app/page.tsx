@@ -118,24 +118,12 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "#" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full bg-[#f6f6f3] flex items-center justify-center px-6">
-        <div className="w-full max-w-56 bg-white rounded-2xl shadow-sm p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[9px] tracking-widest uppercase text-[#111]/30">PayZeep</p>
-              <p className="text-xs text-[#111] mt-1">Merchant Portal</p>
-            </div>
-            <div className="w-2 h-2 rounded-full bg-[#22c55e]" />
-          </div>
-          <div className="space-y-2">
-            <div className="h-2 rounded-full bg-[#111]/8 w-3/4" />
-            <div className="h-8 rounded-xl bg-[#111]/5" />
-            <div className="grid grid-cols-2 gap-2">
-              <div className="h-14 rounded-xl bg-[#111]/5" />
-              <div className="h-14 rounded-xl bg-[#111]/5" />
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full overflow-hidden">
+        <img
+          src="/merchantPortal/merchant%20portal%20home.png"
+          alt="PayZeep Merchant Portal"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       </div>
     ),
   },
