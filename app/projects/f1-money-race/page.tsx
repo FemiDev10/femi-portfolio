@@ -185,24 +185,6 @@ export default function F1MoneyRacePage() {
         </div>
       </section>
 
-      {/* ── LANDSCAPE FULL-BLEED ─────────────────────────────────── */}
-      <section style={{ background: "#f5f5f5" }}>
-        <Image
-          src="/moneyRace/landscape.png"
-          alt="MoneyRace circuit"
-          width={2400}
-          height={1200}
-          style={{ width: "100%", height: "auto", display: "block" }}
-        />
-        <p style={{
-          fontSize: 10, color: "#999", fontFamily: "monospace",
-          textTransform: "uppercase", letterSpacing: "0.12em",
-          textAlign: "center", padding: "20px 64px",
-        }}>
-          The circuit — drawn entirely in code. No images. No SVGs. Pure math.
-        </p>
-      </section>
-
       {/* ── V1 → V2 ──────────────────────────────────────────────── */}
       <section style={{ padding: "96px 64px", borderBottom: "1px solid #ebebeb" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -226,12 +208,12 @@ export default function F1MoneyRacePage() {
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 40, flexWrap: "wrap" }}>
             <div style={{ textAlign: "center" }}>
-              <Screen src="/moneyRace/landscape.png" alt="V1" width={220} />
+              <Screen src="/moneyRace/screen-recordingV1.mov" width={240} isVideo />
               <Label>Version 1 — Original circuit</Label>
             </div>
             <p style={{ fontSize: 24, color: "#ccc", flexShrink: 0 }}>→</p>
             <div style={{ textAlign: "center" }}>
-              <Screen src="/moneyRace/race-screen.png" alt="V2" width={220} />
+              <Screen src="/moneyRace/race-screen.png" alt="V2" width={240} />
               <Label>Version 2 — Redesigned circuit + UI</Label>
             </div>
           </div>
@@ -331,9 +313,9 @@ export default function F1MoneyRacePage() {
       </section>
 
       {/* ── VIDEO ────────────────────────────────────────────────── */}
-      <section style={{ padding: "96px 64px", borderBottom: "1px solid #ebebeb" }}>
+      <section style={{ background: "#f5f5f5", padding: "96px 64px", borderBottom: "1px solid #ebebeb" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontSize: 10, color: "#bbb", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 16 }}>Live Demo</p>
+          <p style={{ fontSize: 10, color: "#999", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 16 }}>Live Demo</p>
           <h2 style={{
             fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 400,
             letterSpacing: "-0.04em", color: "#111",
@@ -341,29 +323,34 @@ export default function F1MoneyRacePage() {
           }}>
             Watch it race.
           </h2>
-          <p style={{ fontSize: 18, color: "#aaa", fontWeight: 300, marginBottom: 64 }}>
+          <p style={{ fontSize: 18, color: "#888", fontWeight: 300, marginBottom: 64 }}>
             The race runs at 60fps. Every movement reflects a real balance change.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 80, alignItems: "center" }}>
-            <Screen src="/moneyRace/screen-recordingV2.mov" width={380} isVideo />
+          {/* big centred video */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 64 }}>
+            <Screen src="/moneyRace/screen-recordingV2.mov" width={460} isVideo />
+            <Label>Screen recording V2 — live 60fps race</Label>
+          </div>
 
-            <div>
-              {[
-                { title: "Live at 60fps",       body: "The race runs continuously. Every frame is real." },
-                { title: "Overtakes on credit",  body: "Money comes in, the car moves. Instantly." },
-                { title: "Persistent colours",   body: "OPay is always green. Everywhere." },
-                { title: "Fullscreen mode",      body: "Tap expand. The race fills the screen." },
-              ].map(({ title, body }, i) => (
-                <div key={title} style={{
-                  padding: "24px 0",
-                  borderTop: i === 0 ? "none" : "1px solid #ebebeb",
-                }}>
-                  <p style={{ fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 4 }}>{title}</p>
-                  <p style={{ fontSize: 14, color: "#888", fontWeight: 300 }}>{body}</p>
-                </div>
-              ))}
-            </div>
+          {/* four facts below */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid #e0e0e0" }}>
+            {[
+              { title: "Live at 60fps",       body: "The race runs continuously. Every frame is real." },
+              { title: "Overtakes on credit",  body: "Money comes in, the car moves. Instantly." },
+              { title: "Persistent colours",   body: "OPay is always green. Everywhere." },
+              { title: "Fullscreen mode",      body: "Tap expand. The race fills the screen." },
+            ].map(({ title, body }, i) => (
+              <div key={title} style={{
+                padding: "32px 28px 0 0",
+                borderRight: i < 3 ? "1px solid #e0e0e0" : "none",
+                paddingRight: i < 3 ? 28 : 0,
+                paddingLeft: i > 0 ? 28 : 0,
+              }}>
+                <p style={{ fontSize: 14, fontWeight: 500, color: "#111", marginBottom: 6 }}>{title}</p>
+                <p style={{ fontSize: 13, color: "#888", fontWeight: 300, lineHeight: 1.7 }}>{body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -61,21 +61,15 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "/projects/f1-money-race" }],
     category: "Mobile Apps",
     thumbnail: (
-      <div className="w-full h-full bg-[#0d0d0d] flex flex-col justify-end p-5 relative overflow-hidden">
-        <div className="absolute top-4 left-5">
-          <span className="text-[9px] text-white/30 tracking-widest uppercase">
-            EXPERIMENT · FLUTTER
-          </span>
-        </div>
-        <div>
-          <p className="text-white/40 text-[10px] tracking-widest uppercase mb-1">BALANCE</p>
-          <p className="text-white text-3xl font-medium tracking-tight leading-none">₦481,296</p>
-          <div className="flex items-center gap-1 mt-2">
-            <span className="text-[#f97316] text-xs">▲ P3</span>
-            <span className="text-white/30 text-xs">+0.4% this lap</span>
-          </div>
-          <div className="mt-3 h-0.5 w-full bg-[#f97316] rounded-full opacity-60" />
-        </div>
+      <div className="w-full h-full bg-[#0d0d0d] overflow-hidden relative flex items-center justify-center">
+        <video
+          src="/moneyRace/screen-recordingV2.mov"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ height: "100%", width: "auto", display: "block", objectFit: "cover" }}
+        />
       </div>
     ),
   },
