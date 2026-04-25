@@ -127,7 +127,7 @@ export default function MerchantPortalPage() {
       </section>
 
       {/* ── STATS ── */}
-      <section style={{ background: "#fff", padding: "80px 48px", borderTop: "1px solid #f0f0f0" }}>
+      <section style={{ background: "#fff", padding: "72px 48px", borderTop: "1px solid #f0f0f0" }}>
         <div className="mp-inner">
           <div className="mp-stat-6">
             {[
@@ -138,9 +138,9 @@ export default function MerchantPortalPage() {
               { num: "12mo+", label: "Design Timeline" },
               { num: "6",     label: "Dashboard States Designed" },
             ].map(({ num, label }) => (
-              <div key={label}>
-                <p style={{ fontSize: "clamp(64px, 8vw, 120px)", fontWeight: 300, color: "#111", letterSpacing: "-0.03em", lineHeight: 1, margin: 0 }}>{num}</p>
-                <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.12em", color: "#bbb", marginTop: 8, marginBottom: 0 }}>{label}</p>
+              <div key={label} style={{ borderTop: "1px solid #e8e8e8", paddingTop: 20 }}>
+                <p style={{ fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 600, color: "#111", letterSpacing: "-0.03em", lineHeight: 1, margin: 0 }}>{num}</p>
+                <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.12em", color: "#999", marginTop: 10, marginBottom: 0 }}>{label}</p>
               </div>
             ))}
           </div>
@@ -403,6 +403,29 @@ export default function MerchantPortalPage() {
           ))}
         </div>
       </section>
+
+      {/* ── NEXT PROJECT ── */}
+      <Link
+        href="/projects/f1-money-race"
+        style={{ display: "block", background: "#0d0d0d", padding: "80px 48px", textDecoration: "none" }}
+      >
+        <div className="mp-inner">
+          <p style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 32 }}>
+            Next Project
+          </p>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
+            <div>
+              <h2 style={{ fontSize: "clamp(36px, 6vw, 80px)", fontWeight: 400, color: "#fff", letterSpacing: "-0.04em", lineHeight: 0.95, margin: "0 0 16px" }}>
+                F1 Money Race.
+              </h2>
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.35)", fontWeight: 300, margin: 0 }}>
+                Flutter app — bank accounts racing like F1 cars
+              </p>
+            </div>
+            <span style={{ fontSize: "clamp(28px, 4vw, 48px)", color: "rgba(255,255,255,0.2)", flexShrink: 0, lineHeight: 1 }}>→</span>
+          </div>
+        </div>
+      </Link>
 
       {/* ── CREDITS ── */}
       <section style={{ padding: "64px 48px", borderTop: "1px solid #f0f0f0" }}>
