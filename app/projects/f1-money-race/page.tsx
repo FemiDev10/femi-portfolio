@@ -222,7 +222,13 @@ export default function F1MoneyRacePage() {
             The race runs at 60fps. Every movement reflects a real balance change.
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 48 }}>
-            <Screen src="/moneyRace/screen-recordingV2.mov" width={400} isVideo />
+            <div className="mr-video-wrap">
+              <video
+                src="/moneyRace/screen-recordingV2.mov"
+                autoPlay muted loop playsInline
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
             <Label>Screen recording V2 — live 60fps race</Label>
           </div>
           <div className="mr-facts-grid">
@@ -397,6 +403,14 @@ export default function F1MoneyRacePage() {
           flex-wrap: wrap;
         }
 
+        /* ── Watch it race video ── */
+        .mr-video-wrap {
+          background: #f0f0f0;
+          padding: 20px;
+          width: min(520px, calc(100vw - 48px));
+          box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
         /* ── Video facts grid ── */
         .mr-facts-grid {
           display: grid;
@@ -474,16 +488,26 @@ export default function F1MoneyRacePage() {
             height: auto !important;
           }
 
-          /* screens scroll horizontally */
+          /* screens scroll horizontally — break out of section padding */
           .mr-screens-row {
             flex-wrap: nowrap;
             overflow-x: auto;
             justify-content: flex-start;
-            padding-bottom: 12px;
+            padding-bottom: 16px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: -20px;
+            margin-right: -20px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
           }
           .mr-screens-row::-webkit-scrollbar { display: none; }
+
+          /* video full-width on mobile */
+          .mr-video-wrap {
+            width: calc(100vw - 48px) !important;
+            padding: 16px;
+          }
 
           /* facts single column */
           .mr-facts-grid {
