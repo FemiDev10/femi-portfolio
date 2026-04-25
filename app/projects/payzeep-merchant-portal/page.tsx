@@ -117,28 +117,32 @@ export default function MerchantPortalPage() {
         <div className="mp-inner">
           <SecLabel>The Project</SecLabel>
           <h2 className="mp-h2">One portal. Two lives.</h2>
-          <div className="mp-two-col">
-            <div>
-              <p className="mp-body" style={{ marginBottom: 20 }}>
-                When I joined PayZeep in June 2024, the Merchant Portal existed — but it was still figuring itself out. Multiple iterations, shifting priorities, and expanding capabilities meant the experience needed steady, deliberate refinement.
-              </p>
-              <p className="mp-body">
-                The portal serves <strong style={{ fontWeight: 500, color: "#111" }}>two completely different moments</strong> in a merchant&apos;s life: the <strong style={{ fontWeight: 500, color: "#111" }}>pre-live phase</strong> — onboarding, KYC, setting up payment tools — and the <strong style={{ fontWeight: 500, color: "#111" }}>live phase</strong> — transacting, tracking, withdrawing, growing. One product. Two very different jobs.
-              </p>
-            </div>
-            <div className="mp-stat-grid">
-              {[
-                { num: "4",  label: "Business types supported" },
-                { num: "6",  label: "Dashboard states designed" },
-                { num: "3",  label: "Payment tool types" },
-                { num: "2",  label: "Portal phases" },
-              ].map(({ num, label }) => (
-                <div key={label}>
-                  <p style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 400, color: "#111", letterSpacing: "-0.04em", lineHeight: 1, margin: "0 0 8px" }}>{num}</p>
-                  <p style={{ fontSize: 11, color: "#bbb", textTransform: "uppercase", letterSpacing: "0.1em" }}>{label}</p>
-                </div>
-              ))}
-            </div>
+          <p className="mp-body" style={{ marginBottom: 20 }}>
+            When I joined PayZeep in June 2024, the Merchant Portal existed — but it was still figuring itself out. Multiple iterations, shifting priorities, and expanding capabilities meant the experience needed steady, deliberate refinement.
+          </p>
+          <p className="mp-body">
+            The portal serves <strong style={{ fontWeight: 500, color: "#111" }}>two completely different moments</strong> in a merchant&apos;s life: the <strong style={{ fontWeight: 500, color: "#111" }}>pre-live phase</strong> — onboarding, KYC, setting up payment tools — and the <strong style={{ fontWeight: 500, color: "#111" }}>live phase</strong> — transacting, tracking, withdrawing, growing. One product. Two very different jobs.
+          </p>
+        </div>
+      </section>
+
+      {/* ── STATS ── */}
+      <section style={{ background: "#fff", padding: "80px 48px", borderTop: "1px solid #f0f0f0" }}>
+        <div className="mp-inner">
+          <div className="mp-stat-6">
+            {[
+              { num: "100k+", label: "Merchants on Platform" },
+              { num: "300+",  label: "Screens Designed" },
+              { num: "10",    label: "Engineers Handed Off To" },
+              { num: "4",     label: "Business Types Supported" },
+              { num: "12mo+", label: "Design Timeline" },
+              { num: "6",     label: "Dashboard States Designed" },
+            ].map(({ num, label }) => (
+              <div key={label}>
+                <p style={{ fontSize: "clamp(64px, 8vw, 120px)", fontWeight: 300, color: "#111", letterSpacing: "-0.03em", lineHeight: 1, margin: 0 }}>{num}</p>
+                <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.12em", color: "#bbb", marginTop: 8, marginBottom: 0 }}>{label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -448,6 +452,9 @@ export default function MerchantPortalPage() {
         .mp-stat-grid {
           display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
         }
+        .mp-stat-6 {
+          display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px 40px;
+        }
         .mp-prob-row {
           border-top: 1px solid #f0f0f0; padding: 32px 0;
           display: grid; grid-template-columns: 48px 1fr;
@@ -470,6 +477,7 @@ export default function MerchantPortalPage() {
           .mp-two-col { grid-template-columns: 1fr; gap: 32px; }
           .mp-nav-col { grid-template-columns: 1fr; gap: 32px; }
           .mp-stat-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+          .mp-stat-6 { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
           .mp-prob-row { grid-template-columns: 1fr; gap: 8px; }
           .mp-grid-3 { grid-template-columns: 1fr; }
           .mp-grid-2 { grid-template-columns: 1fr; }
