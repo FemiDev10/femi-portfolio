@@ -103,12 +103,12 @@ export default function MerchantPortalPage() {
       </section>
 
       {/* ── FULL MOCKUP IMAGE ── */}
-      <div style={{ lineHeight: 0 }}>
+      <div style={{ background: "#070a18", display: "flex", justifyContent: "center", padding: "72px 48px" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/merchantPortal/dashboard/mockup%20image.jpeg"
+          src="/merchantPortal/dashboard/merchant%20portal-mockup.png"
           alt="PayZeep Merchant Portal — Product Mockup"
-          style={{ width: "100%", display: "block" }}
+          style={{ width: "100%", maxWidth: 1000, display: "block" }}
         />
       </div>
 
@@ -297,84 +297,74 @@ export default function MerchantPortalPage() {
       </section>
 
       {/* ── KEY SCREENS ── */}
-      <section className="mp-sec" style={{ background: "#0d0d0d" }}>
+      <section className="mp-sec" style={{ background: "#fafafa", borderTop: "1px solid #f0f0f0" }}>
         <div className="mp-inner">
-          <SecLabel style={{ color: "#444" }}>Key Screens</SecLabel>
-          <h2 style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 400, letterSpacing: "-0.04em", color: "#fff", lineHeight: 0.95, marginBottom: 16 }}>
+          <SecLabel>Key Screens</SecLabel>
+          <h2 style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 400, letterSpacing: "-0.04em", color: "#111", lineHeight: 0.95, marginBottom: 16 }}>
             The full product.
           </h2>
-          <p style={{ fontSize: 16, color: "#555", fontWeight: 300, lineHeight: 1.8, maxWidth: 560, marginBottom: 72 }}>
+          <p style={{ fontSize: 16, color: "#777", fontWeight: 300, lineHeight: 1.8, maxWidth: 560, marginBottom: 72 }}>
             Transactions, settlements, settings, developer tools — every screen designed around what a merchant needs in the moment, not what the backend can expose.
           </p>
 
           {/* Transactions */}
-          <p className="mp-group-label">Transactions &amp; Finance</p>
-          <div className="mp-grid-2" style={{ marginBottom: 12 }}>
-            <div>
-              <BrowserMockup src="/merchantPortal/Transaction.png" alt="Web Transactions" bg="#0a0a1a" />
-              <Label light>Web Transactions</Label>
-            </div>
-            <div>
-              <BrowserMockup src="/merchantPortal/Transfer.png" alt="Single Transfer" bg="#0a0a1a" />
-              <Label light>Single Transfer</Label>
-            </div>
-          </div>
-          <div style={{ marginBottom: 4 }}>
-            <BrowserMockup src="/merchantPortal/Bulk%20Transfer.png" alt="Bulk Transfer" bg="#0a0a1a" />
-            <Label light>Bulk Transfer</Label>
+          <p className="mp-group-label" style={{ color: "#bbb" }}>Transactions &amp; Finance</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {[
+              { src: "/merchantPortal/Transaction.png",      label: "Web Transactions" },
+              { src: "/merchantPortal/Transfer.png",         label: "Single Transfer" },
+              { src: "/merchantPortal/Bulk%20Transfer.png",  label: "Bulk Transfer" },
+            ].map(({ src, label }) => (
+              <div key={label}>
+                <BrowserMockup src={src} alt={label} bg="#f0f2f5" />
+                <Label>{label}</Label>
+              </div>
+            ))}
           </div>
 
           {/* Settlements */}
-          <p className="mp-group-label" style={{ marginTop: 64 }}>Settlements &amp; Payouts</p>
-          <div className="mp-grid-2">
-            <div>
-              <BrowserMockup src="/merchantPortal/Settlement.png" alt="Settlements" bg="#0a0a1a" />
-              <Label light>Settlements</Label>
-            </div>
-            <div>
-              <BrowserMockup src="/merchantPortal/Payout%20Account%205.png" alt="Payout Accounts" bg="#0a0a1a" />
-              <Label light>Payout Accounts</Label>
-            </div>
+          <p className="mp-group-label" style={{ marginTop: 72, color: "#bbb" }}>Settlements &amp; Payouts</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {[
+              { src: "/merchantPortal/Settlement.png",           label: "Settlements" },
+              { src: "/merchantPortal/Payout%20Account%205.png", label: "Payout Accounts" },
+            ].map(({ src, label }) => (
+              <div key={label}>
+                <BrowserMockup src={src} alt={label} bg="#f0f2f5" />
+                <Label>{label}</Label>
+              </div>
+            ))}
           </div>
 
           {/* Settings */}
-          <p className="mp-group-label" style={{ marginTop: 64 }}>Settings &amp; Account</p>
-          <div className="mp-grid-3" style={{ marginBottom: 12 }}>
+          <p className="mp-group-label" style={{ marginTop: 72, color: "#bbb" }}>Settings &amp; Account</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
               { src: "/merchantPortal/Profile.png",            label: "Personal Profile" },
               { src: "/merchantPortal/Business%20Profile.png", label: "Business Profile" },
               { src: "/merchantPortal/Security.png",           label: "Security" },
+              { src: "/merchantPortal/Teams-1.png",            label: "Team Management" },
+              { src: "/merchantPortal/Role.png",               label: "Role Management" },
+              { src: "/merchantPortal/Sub%20Account.png",      label: "Sub Accounts" },
             ].map(({ src, label }) => (
               <div key={label}>
-                <BrowserMockup src={src} alt={label} bg="#0a0a1a" />
-                <Label light>{label}</Label>
-              </div>
-            ))}
-          </div>
-          <div className="mp-grid-3">
-            {[
-              { src: "/merchantPortal/Teams-1.png",       label: "Team Management" },
-              { src: "/merchantPortal/Role.png",          label: "Role Management" },
-              { src: "/merchantPortal/Sub%20Account.png", label: "Sub Accounts" },
-            ].map(({ src, label }) => (
-              <div key={label}>
-                <BrowserMockup src={src} alt={label} bg="#0a0a1a" />
-                <Label light>{label}</Label>
+                <BrowserMockup src={src} alt={label} bg="#f0f2f5" />
+                <Label>{label}</Label>
               </div>
             ))}
           </div>
 
           {/* Developer Tools */}
-          <p className="mp-group-label" style={{ marginTop: 64 }}>Developer Tools</p>
-          <div className="mp-grid-3">
+          <p className="mp-group-label" style={{ marginTop: 72, color: "#bbb" }}>Developer Tools</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
-              { src: "/merchantPortal/API%20Keys.png",           label: "API Keys" },
-              { src: "/merchantPortal/API%20Keys-1.png",         label: "API Key Created" },
-              { src: "/merchantPortal/Approval%20Settings.png",  label: "Approval Settings" },
+              { src: "/merchantPortal/API%20Keys.png",          label: "API Keys" },
+              { src: "/merchantPortal/API%20Keys-1.png",        label: "API Key Created" },
+              { src: "/merchantPortal/Approval%20Settings.png", label: "Approval Settings" },
             ].map(({ src, label }) => (
               <div key={label}>
-                <BrowserMockup src={src} alt={label} bg="#0a0a1a" />
-                <Label light>{label}</Label>
+                <BrowserMockup src={src} alt={label} bg="#f0f2f5" />
+                <Label>{label}</Label>
               </div>
             ))}
           </div>
