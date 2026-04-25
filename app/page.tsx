@@ -61,7 +61,7 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "/projects/f1-money-race" }],
     category: "Mobile Apps",
     thumbnail: (
-      <div className="w-full h-full bg-[#0d0d12] flex items-center justify-center overflow-hidden">
+      <div className="w-full h-full overflow-hidden">
         <video
           src="/moneyRace/screen-recordingV2.mov"
           autoPlay
@@ -69,10 +69,10 @@ const projects: Project[] = [
           loop
           playsInline
           style={{
-            height: "115%",
-            width: "auto",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
             display: "block",
-            marginTop: "8%",
           }}
         />
       </div>
