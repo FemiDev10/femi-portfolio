@@ -118,11 +118,11 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "#" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full overflow-hidden">
+      <div className="w-full h-full overflow-hidden" style={{ background: "#070a18", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img
-          src="/merchantPortal/merchant%20portal%20home.png"
+          src="/merchantPortal/dashboard/merchant%20portal-mockup.png"
           alt="PayZeep Merchant Portal"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
         />
       </div>
     ),

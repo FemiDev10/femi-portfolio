@@ -106,7 +106,7 @@ export default function MerchantPortalPage() {
       <div style={{ background: "#070a18", display: "flex", justifyContent: "center", padding: "72px 48px" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/merchantPortal/dashboard/merchant%20portal-mockup.png"
+          src="/merchantPortal/dashboard/mockup%20image.jpeg"
           alt="PayZeep Merchant Portal — Product Mockup"
           style={{ width: "100%", maxWidth: 1000, display: "block" }}
         />
