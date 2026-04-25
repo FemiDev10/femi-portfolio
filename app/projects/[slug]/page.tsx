@@ -20,11 +20,20 @@ type ContentBlock =
       label: string;
       kind: "image" | "video";
       height?: string;
+    }
+  | {
+      type: "subheading";
+      text: string;
     };
 
 type Project = {
   title: string;
   hero: string;
+  heroImage?: {
+    label: string;
+    kind: "image" | "video";
+    height?: string;
+  };
   meta: {
     role: string;
     client?: string;
@@ -2155,6 +2164,11 @@ const projects: Record<string, Project> = {
     title: "SafePulse",
     hero:
       "Designing Nigeria's real-time public safety intelligence platform, where verified incident data reaches people quickly, clearly, and without unnecessary friction.",
+    heroImage: {
+      kind: "image",
+      label: "Main Dashboard (Map + Stats + Activity Feed)",
+      height: "560px",
+    },
     meta: {
       role: "Product Designer (Client Project)",
       client: "SafePulse",
@@ -2166,8 +2180,8 @@ const projects: Record<string, Project> = {
     },
     closing: {
       closer: [
-        "SafePulse pushed me into a different kind of design mindset. When the product is about public safety, every interaction carries more urgency. People are not just browsing. They may be trying to decide whether to move, wait, reroute, or warn someone else.",
-        "Because I handled this work myself, the project also became a lesson in focus. I had to make constant calls about what needed depth now and what could wait. If I revisit it, I would spend more time stress-testing the mobile experience and the low-data moments where trust is easiest to lose.",
+        "SafePulse pushed me into a different kind of design mindset. When the product is about public safety, **every interaction carries more urgency**. People are not just browsing; they are often making decisions about their movement and safety in real-time.",
+        "Because I handled this work alone, it became a **lesson in ruthless focus**. I had to make constant calls about what needed depth immediately and what could wait, ensuring that trust was never sacrificed for speed.",
       ],
       reflection: [
         "Public safety products need speed, but they also need trust",
@@ -2192,15 +2206,15 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "The client came to me with a clear problem and an ambitious product idea. Nigeria is one of the most complex public safety environments in the world. There are bandit attacks on highways, traffic collisions in Lagos, street fires in Port Harcourt, and suspicious gatherings that can shift quickly. Information about these events exists, but it lives across Twitter, WhatsApp groups, radio stations, and word of mouth. It is fragmented, hard to verify, difficult to access as a system, and almost impossible to act on at scale.",
+            text: "The client came with a clear problem: **Nigeria is one of the most complex public safety environments in the world.** From highway attacks and urban fires to shifting suspicious gatherings, incidents happen fast and information is vital.",
           },
           {
             type: "paragraph",
-            text: "SafePulse wanted to change that. The idea was a real-time public safety platform with a live map of incidents across Nigeria, searchable and filterable, plus a verified reporting mechanism that keeps data quality high. It needed to work for citizens, journalists, emergency responders, and researchers.",
+            text: "While data exists, it is **highly fragmented**, living across Twitter, WhatsApp groups, and word of mouth. This makes it hard to verify, difficult to access systematically, and nearly impossible to act on at scale.",
           },
           {
             type: "paragraph",
-            text: "My job was to design the full product from the ground up. Four months. One designer.",
+            text: "SafePulse's vision was to bridge this gap with a **real-time public safety platform** featuring a live, searchable map and a verified reporting mechanism. My role was to design this full product from the ground up in just four months.",
           },
         ],
       },
@@ -2209,23 +2223,27 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "The safety information problem in Nigeria is not a lack of data. It is a lack of structure. Every day, incidents are reported in some form on social media, in community groups, and through news alerts. But that information is rarely centralized, often unverified, and difficult to access without effort.",
+            text: "The safety problem in Nigeria isn't a lack of data—it's a **lack of structure**. While incidents are reported daily, the information remains:",
           },
           {
             type: "list",
             items: [
-              "Centralized. People often need to check several different sources just to understand what is happening across states.",
-              "Verified. The line between rumor and confirmed incident is often blurred.",
-              "Accessible without effort. Looking up incident history for a place like Kaduna over the last year usually means a manual journalism research process, or no access at all.",
+              "**Fragmented:** Users must check multiple sources to understand what is happening across different states.",
+              "**Unverified:** The line between rumor and confirmed incident is often blurred, leading to panic or inaction.",
+              "**Inaccessible:** Historical data for research or journalism is rarely centralized or easy to query.",
             ],
           },
           {
             type: "paragraph",
-            text: "SafePulse sits in that gap. It is part civic tech, part safety tool, and part data platform. The challenge was that the users are genuinely different from each other. A citizen wants to know if their route home is safe. A journalist wants to export state-level incident data for a story. An emergency coordinator wants to see what is active right now on a map.",
+            text: "SafePulse sits at the intersection of **civic tech and data intelligence**. The core challenge was designing for three distinct user groups with very different needs:",
           },
           {
-            type: "paragraph",
-            text: "Designing for all three without building something too broad or too shallow became the main tension of the project.",
+            type: "list",
+            items: [
+              "**Citizens** who need to know if their route home is safe right now.",
+              "**Journalists** who need verified, state-level data for accurate reporting.",
+              "**Emergency Coordinators** who need a real-time, high-level view of active incidents.",
+            ],
           },
         ],
       },
@@ -2233,13 +2251,17 @@ const projects: Record<string, Project> = {
         title: "The Problem",
         content: [
           {
+            type: "paragraph",
+            text: "During research and discovery, I identified five critical gaps in how safety information is handled in Nigeria:",
+          },
+          {
             type: "list",
             items: [
-              "1. Safety information in Nigeria takes too much effort to find, and even more effort to trust. Twitter threads, WhatsApp forwards, and local news are fragmented and often unverified. A citizen in Abuja may hear about unrest near their office but still have no reliable way to know whether it is confirmed or just rumor.",
-              "2. Existing tools often treat reporting as the entry point. Many safety products gate everything behind login, which is backwards for a product that needs public trust and regular usage. Most people are information consumers first, not reporters.",
-              "3. Fake and low-quality reports can damage trust in the whole system. If anyone can report anything without accountability, the feed becomes noise. If verification is too heavy, genuine reporters stop. Finding the balance between accessibility and integrity was the hardest product problem in the project.",
-              "4. Safety data across Nigerian states had not really been visualised at scale. Comparing Kaduna's incident rate, Lagos's resolution speed, or Kano's concentration of risk was difficult because the data was scattered and rarely presented as an interactive intelligence layer.",
-              "5. Responding to an incident matters as much as knowing it happened. A listing alone is not enough. When something serious happens, users need updates, nearby context, media evidence, and a way to share verified information with others who need it.",
+              "**The Trust Deficit:** Fragmented news makes it hard to distinguish confirmed facts from rumors.",
+              "**Backward Entry Points:** Most tools force users to login immediately, which is a barrier for **information consumers**.",
+              "**The Integrity Balance:** Open reporting leads to noise, but heavy verification stops genuine reporters. Finding the middle ground was the hardest product problem.",
+              "**Lack of Visualization:** State-level data was scattered and rarely presented as an interactive intelligence layer.",
+              "**Static Information:** Users need more than just a list; they need real-time updates and media evidence to act effectively.",
             ],
           },
         ],
@@ -2249,21 +2271,21 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "Before moving into Figma, I mapped the core intent of the product. It needed to:",
+            text: "To address these problems, I established several foundational goals for the SafePulse platform:",
           },
           {
             type: "list",
             items: [
-              "Let anyone access safety information without friction, with no login barrier to see what is happening.",
-              "Only introduce authentication when a user takes an action that requires it, specifically reporting an incident.",
-              "Gate reporting behind identity verification, so data quality stays high without punishing passive users.",
-              "Give power users, including researchers, journalists, and responders, a proper analytical layer instead of only a feed.",
-              "Visualise incidents geographically across Nigeria through state-level heatmaps, demographic breakdowns, and time-of-day patterns.",
+              "**Frictionless Access:** Allow anyone to see what is happening without a login barrier.",
+              "**Contextual Auth:** Introduce authentication only when a user takes a significant action, like reporting.",
+              "**KYC-Gated Integrity:** Use identity verification to ensure high data quality without punishing passive users.",
+              "**Analytical Depth:** Provide power users with a dedicated intelligence layer rather than just a simple feed.",
+              "**Geographic Intelligence:** Use heatmaps and demographic data to visualize risk patterns across the country.",
             ],
           },
           {
             type: "paragraph",
-            text: "One line from my user flow diagram stayed visible throughout the project: \"Let users access safety information without friction. Only introduce login and KYC when an action is required.\"",
+            text: "**\"Let users access safety information without friction. Only introduce login and KYC when an action is required.\"**",
           },
         ],
       },
@@ -2272,94 +2294,58 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "Progressive disclosure of authentication",
+            text: "**Progressive Disclosure of Authentication**",
           },
           {
             type: "paragraph",
-            text: "This became the foundational product decision. Many comparable platforms put login at the front door, which loses the exact audience they need most, casual users who are still deciding whether the product is useful.",
+            text: "Unlike comparable platforms that put login at the front door, SafePulse uses a **progressive model**. Home, Incidents, and Historical Data are fully accessible without an account.",
           },
           {
             type: "paragraph",
-            text: "SafePulse flips that model. Home, Incidents, and Historical Data are fully accessible without an account. People can browse the live map, read incident details, and explore historical data across Nigerian states without signing in. Authentication only appears when someone clicks \"Report Incident\", and the product explains why it is needed.",
+            text: "Authentication only appears when someone clicks **\"Report Incident\"**. The sign-in gate explains *why* it's needed: to help us verify the authenticity of reports and maintain system integrity.",
           },
           {
             type: "paragraph",
-            text: "The sign-in gate does not behave like a wall. The modal explains, \"You need to sign in to report an incident. This helps us verify the authenticity of reports.\" It then offers three clear paths, Sign In, Create Account, or Continue Browsing. That last option mattered. It told users that browsing still has value, even if they never report anything.",
+            text: "**A Two-Layered Security Gate**",
           },
           {
             type: "paragraph",
-            text: "Two layers of gate, auth, then KYC",
-          },
-          {
-            type: "paragraph",
-            text: "Signing in is not enough to report an incident. Once authenticated, anyone who has not completed KYC sees a second gate that explains why identity verification is required. Their KYC status is visible as \"Not Started\" and the product offers two next steps, Start KYC Verification or Go to Profile.",
+            text: "Signing in is just the first step. To report an incident, users must pass a **KYC (Know Your Customer)** check. This creates a clear hierarchy of access:",
           },
           {
             type: "list",
             items: [
-              "Browsing. Anyone, no friction.",
-              "Reporting. Authenticated and KYC-verified users only.",
+              "**Browsing:** Fully open to everyone with zero friction.",
+              "**Reporting:** Reserved for authenticated and KYC-verified users only.",
             ],
           },
           {
             type: "paragraph",
-            text: "The KYC flow itself follows three simple steps, Upload Government ID, Face Verification, and Review & Submit. After submission, the confirmation screen tells users their documents are under review and that approval usually takes 24 to 48 hours. The tone stays clear and accountable.",
+            text: "**Designing the Live Map as the Anchor**",
           },
           {
             type: "paragraph",
-            text: "Designing the live map as the anchor",
+            text: "The Home dashboard is built around a **live, severity-coded map**. It provides an immediate national picture through four key stat cards: Total Incidents, High Severity count, Top Incident Type, and Verification Rate.",
           },
           {
             type: "paragraph",
-            text: "The Home dashboard is built around a live map. Incidents are plotted across Nigeria with severity-coded pins for Critical, High, Medium, and Low. The map is not decorative. It is the core product surface. Four stat cards at the top, Total Incidents, High Severity count, Top Incident Type, and Verification Rate, provide the national picture. The map shows where that picture is unfolding.",
+            text: "I focused on **summary first**. The activity feed answers immediate safety questions, while the Recent Incident Log provides the deeper, filterable data table for power users.",
           },
           {
             type: "paragraph",
-            text: "Alongside the map, an Activity Feed surfaces the latest incidents with just enough information to trigger a click, incident type, location, time, verification status, and severity. Below that, the Recent Incident Log gives a fuller table view with filtering and download capability.",
+            text: "**Historical Data: Three Analytical Lenses**",
           },
           {
             type: "paragraph",
-            text: "The design tension I kept coming back to was simple. How much information is useful, and how much is overwhelming, for someone who just wants to know if they should take a different route home? I landed on summary first. The stat cards and activity feed answer the immediate question. The incident log is there for deeper exploration.",
-          },
-          {
-            type: "paragraph",
-            text: "Individual incident detail as a reporting unit",
-          },
-          {
-            type: "paragraph",
-            text: "An incident on SafePulse is not just a row in a table. It is a full information package. The incident detail view includes an ID number, incident title, timestamp, precise location, verification count, distance from the user, a description narrative, media evidence, a live mini-map, share and export actions, a timeline feed of updates, and a nearby incidents panel.",
-          },
-          {
-            type: "paragraph",
-            text: "The timeline inside each incident became especially important. Safety events develop over time. Incident Reported, Verification Complete, and Emergency Response Dispatched are not just updates. They help people move from panic to clarity. The verification count also became one of the fastest trust signals on the page. In a context where safety information is often exaggerated or fabricated, that small piece of information helps readers calibrate their response.",
-          },
-          {
-            type: "paragraph",
-            text: "The Historical Data section, three analytical lenses",
-          },
-          {
-            type: "paragraph",
-            text: "Historical Data was designed for users who need depth, not just recency. I structured it around three named tabs, each answering a different question.",
+            text: "For depth, I structured the Historical Data section around three questions rather than just chart types:",
           },
           {
             type: "list",
             items: [
-              "Incident Overview answers, what is the trend. It includes stat cards, a trend-over-time chart, a time-of-day activity chart, monthly comparison, and a detailed dataset table.",
-              "Geographic Insights answers, where is the risk concentrated. It includes a Nigeria heatmap, state bar chart, demographic breakdown, and state-level performance table.",
-              "Patterns & Risk answers, what patterns point to future risk. This is the analytical layer for users moving from description into prediction.",
+              "**Incident Overview:** Answers \"What is the trend?\" using time-of-day and longitudinal charts.",
+              "**Geographic Insights:** Answers \"Where is the risk concentrated?\" using heatmaps and state bar charts.",
+              "**Patterns & Risk:** Focuses on moving from description into prediction for expert analysis.",
             ],
-          },
-          {
-            type: "paragraph",
-            text: "Naming the tabs by the question they answer, instead of by the chart type they contain, made the section easier to understand. \"Geographic Insights\" tells you what you will learn. \"Heatmap & Charts\" only tells you what you will see.",
-          },
-          {
-            type: "paragraph",
-            text: "KYC embedded in Profile, not hidden inside reporting",
-          },
-          {
-            type: "paragraph",
-            text: "The Profile & Settings page carries KYC status as a first-class element. It is not buried inside a submenu. Users can see their personal information, identity verification status, notification preferences, and security settings in one place. That way, KYC is not only encountered under pressure during the first reporting attempt. It also appears in a calmer, more contextual space.",
           },
         ],
       },
@@ -2369,17 +2355,12 @@ const projects: Record<string, Project> = {
           {
             type: "list",
             items: [
-              "Home Dashboard. Four metric cards, a live Nigeria map with severity legend, an Activity Feed, and a Recent Incident Log table with filters and download.",
-              "Incident Detail. Full incident record with ID, title, timestamp, location, verification count, description, media evidence, share and export actions, live mini-map, timeline, and Nearby Incidents panel.",
-              "Incidents Page, Map View. Real-time monitoring with a map and list toggle, department filter, and split view with incident list panel.",
-              "Incidents Page, List View. A searchable and filterable table with map preview on click.",
-              "Historical Data, Incident Overview. Trend chart, time-of-day chart, monthly comparison, and detailed dataset table.",
-              "Historical Data, Geographic Insights. Nigeria heatmap, state bar chart, demographic breakdown, and state performance table.",
-              "Report Incident, Sign In Gate. A sign-in modal with clear reason copy and three paths, Sign In, Create Account, and Continue Browsing.",
-              "Report Incident, KYC Gate. An identity verification gate with visible KYC status and two clear paths.",
-              "KYC Flow. Government ID upload, Face Verification, Review & Submit, then a 24 to 48 hour confirmation notice.",
-              "Profile & Settings. Personal info, KYC status card, notification preferences, and security settings.",
-              "Auth Flow. Sign In, Sign Up, Forgot Password, Password Instructions Sent, Reset Password, and Password Reset Successful.",
+              "**Home Dashboard:** Four metric cards, a live Nigeria map with severity legend, and an Activity Feed.",
+              "**Incident Detail:** Full record including ID, verification count, media evidence, and a live mini-map.",
+              "**Incidents Page (Map & List):** Real-time monitoring with department filters and a split-view toggle.",
+              "**Historical Data (Overview & Geographic):** Trend charts, Nigeria heatmaps, and demographic breakdowns.",
+              "**The Report Flow:** Progressive sign-in gates and the three-step KYC verification process.",
+              "**Profile & Settings:** Centralized management of identity status and security preferences.",
             ],
           },
         ],
@@ -2389,15 +2370,19 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "SafePulse moved from a brief into a fully designed multi-section product in four months. Every core user journey was designed end to end, from a first-time visitor browsing the live map without an account, to a verified citizen submitting a geo-tagged report, to a researcher running state-level incident analysis.",
+            text: "In four months, SafePulse evolved from an ambitious brief into a **fully designed intelligence platform**. We successfully mapped every core journey, from casual browsing to state-level data analysis.",
           },
           {
             type: "paragraph",
-            text: "The progressive authentication model became the most important product decision in the work. By removing the login barrier from browsing, SafePulse creates room for adoption among people who would never get past a gated landing page. Over time, some of that audience can become the verified reporters the ecosystem depends on.",
+            text: "**Key wins included:**",
           },
           {
-            type: "paragraph",
-            text: "The three-tab Historical Data section gave the analytical use case a proper home, instead of treating it like a bolt-on. The KYC-gated reporting system also protects data integrity without punishing casual users. In a market where safety information can be fabricated or weaponised, that trust layer is one of the product's most important promises.",
+            type: "list",
+            items: [
+              "**Massive Barrier Reduction:** The progressive auth model ensures maximum reach without sacrificing data integrity.",
+              "**Structured Analytical Power:** The three-tab historical section turned raw data into actionable intelligence.",
+              "**Scalable Trust:** The KYC-gated reporting system established a baseline of reliability in a high-stakes environment.",
+            ],
           },
         ],
       },
@@ -2406,23 +2391,19 @@ const projects: Record<string, Project> = {
         content: [
           {
             type: "paragraph",
-            text: "If I were pushing the work further, I would start with mobile. SafePulse was designed at MacBook Pro 14\" dimensions, but many of the most safety-critical moments happen on a phone. The product needs a mobile-first incident feed and a lighter map experience that works well even under poor connectivity.",
+            text: "**Designing for public safety is fundamentally different from designing for commerce.** The emotional stakes are higher, and every decision around hierarchy and status labels carries immense weight.",
+          },
+          {
+            type: "list",
+            items: [
+              "**Mobile-First is Critical:** While designed for desktop, the most safety-critical moments happen on phones. A lighter experience would be the next priority.",
+              "**Trust in the Quiet Moments:** Empty states and low-density maps need as much care as active ones. Trust is built when the system remains reliable even when quiet.",
+              "**The Power of Constraints:** Being the sole designer for four months forced sharp prioritization, helping me distinguish between 'launch-critical' and 'future-growth' features.",
+            ],
           },
           {
             type: "paragraph",
-            text: "I would also invest more deliberately in empty states. The live map with no verified incidents nearby, or Historical Data charts for places with low reporting density, need just as much care as full-data states. Trust is often built in those quieter moments.",
-          },
-          {
-            type: "paragraph",
-            text: "This project also changed how I think about civic infrastructure. Designing for public safety is different from designing for commerce. The emotional stakes are higher, and every decision around information hierarchy, loading behavior, and status labeling carries more weight. That became a useful filter for the whole product, does this help someone act faster, or does it slow them down?",
-          },
-          {
-            type: "paragraph",
-            text: "The other thing the project sharpened was the value of designing inside real constraints. Four months. One designer. Multiple user types, plus a genuinely complex information architecture. That kind of scope forces clear prioritisation. It helped me separate what the product needed to do well at launch from what it could grow into later.",
-          },
-          {
-            type: "paragraph",
-            text: "SafePulse is the kind of product that makes a strong case for Nigerian-built civic tech. Getting to design it was the right kind of hard.",
+            text: "SafePulse taught me that **verification is a design problem**, not just a policy one. It remains a powerful example of why Nigeria needs locally-built civic infrastructure.",
           },
         ],
       },
@@ -2601,6 +2582,19 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
           </div>
         )}
       </section>
+
+      {project.heroImage && (
+        <section className="mt-20">
+          <div
+            className="w-full rounded-2xl bg-gray-100 flex items-center justify-center overflow-hidden"
+            style={{ height: project.heroImage.height ?? "500px" }}
+          >
+            <p className="text-[10px] tracking-widest uppercase text-[#111]/30">
+              {project.heroImage.kind} placeholder · {project.heroImage.label}
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="mt-24">
         {project.sections.map((section, index) => (
