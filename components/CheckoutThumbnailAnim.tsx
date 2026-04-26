@@ -42,7 +42,7 @@ export default function CheckoutThumbnailAnim() {
         style={{
           width: 170,
           background: "white",
-          borderRadius: 12,
+          borderRadius: 6,
           boxShadow: "0 16px 48px rgba(0,0,0,0.45)",
           overflow: "hidden",
         }}
