@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BrowserMockup from "@/components/BrowserMockup";
 import ScreenCarousel from "@/components/ScreenCarousel";
+import PayZeepNavDemo from "@/components/PayZeepNavDemo";
 import type { ReactNode, CSSProperties } from "react";
 
 export const metadata = {
@@ -153,38 +154,9 @@ export default function MerchantPortalPage() {
           <SecLabel>Navigation Structure</SecLabel>
           <h2 className="mp-h2">Built like money moves.</h2>
           <p style={{ fontSize: 18, color: "#aaa", fontWeight: 300, marginBottom: 56, lineHeight: 1.6 }}>
-            The sidebar isn&apos;t a feature list. It&apos;s a map of how merchants think about their money.
+            The sidebar isn&apos;t a feature list. It&apos;s a map of how merchants think about their money. Hover each item.
           </p>
-          <div className="mp-nav-col">
-            <div style={{ background: "#111", borderRadius: 12, padding: 32, width: "fit-content", minWidth: 260 }}>
-              <div style={{ fontSize: 13, color: "#fff", lineHeight: 2.4, paddingLeft: 12, borderLeft: "2px solid #4a6cf7" }}>Dashboard</div>
-              <div style={{ fontSize: 10, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4, marginTop: 20 }}>Business Tools</div>
-              {["Point of Sale", "Payment Links", "Virtual Accounts"].map((item) => (
-                <div key={item} style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 2.4, paddingLeft: 12 }}>{item}</div>
-              ))}
-              <div style={{ fontSize: 10, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4, marginTop: 20 }}>Incoming</div>
-              {["Web Transactions", "POS Transactions", "Dispute"].map((item) => (
-                <div key={item} style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 2.4, paddingLeft: 12 }}>{item}</div>
-              ))}
-              <div style={{ fontSize: 10, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4, marginTop: 20 }}>Outgoing</div>
-              {["Payout", "Transfer", "Settlements", "Sub Accounts"].map((item) => (
-                <div key={item} style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 2.4, paddingLeft: 12 }}>{item}</div>
-              ))}
-              <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                {["Support", "Developer Tools", "Settings"].map((item) => (
-                  <div key={item} style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 2.4, paddingLeft: 12 }}>{item}</div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="mp-body" style={{ marginBottom: 20 }}>
-                The question isn&apos;t <strong style={{ fontWeight: 500, color: "#111" }}>&apos;what does the product do&apos;</strong>. It&apos;s <strong style={{ fontWeight: 500, color: "#111" }}>&apos;what am I trying to do with my money right now&apos;</strong>.
-              </p>
-              <p className="mp-body">
-                Business Tools surfaces money-generating actions first. Incoming shows what arrived. Outgoing shows what left. That sequence — generate, receive, send — mirrors how merchants actually think through their day.
-              </p>
-            </div>
-          </div>
+          <PayZeepNavDemo />
         </div>
       </section>
 
