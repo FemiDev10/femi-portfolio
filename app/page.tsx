@@ -160,7 +160,7 @@ const projects: Project[] = [
         <img
           src="/safePulse/historical_data_mockup.jpeg"
           alt="SafePulse"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center bottom", display: "block" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 70%", display: "block" }}
         />
       </div>
     ),
