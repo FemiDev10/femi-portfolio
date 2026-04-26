@@ -155,32 +155,13 @@ const projects: Project[] = [
     links: [{ label: "Case Study →", href: "/projects/safepulse" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full bg-[#f4f5f7] flex items-center justify-center px-6">
-        <div className="w-full max-w-56 bg-white rounded-2xl shadow-sm p-4">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <p className="text-[9px] tracking-widest uppercase text-[#111]/30">
-                SafePulse
-              </p>
-              <p className="text-xs text-[#111] mt-1">Live Incident Map</p>
-            </div>
-            <div className="flex flex-col gap-1 items-end">
-              <div className="w-2 h-2 rounded-full bg-[#ef4444]" />
-              <div className="w-2 h-2 rounded-full bg-[#f59e0b]" />
-            </div>
-          </div>
-          <div className="space-y-3">
-            <div className="h-20 rounded-xl bg-[#111]/5 relative overflow-hidden">
-              <div className="absolute left-6 top-4 w-2 h-2 rounded-full bg-[#ef4444]" />
-              <div className="absolute left-16 top-9 w-2 h-2 rounded-full bg-[#f59e0b]" />
-              <div className="absolute right-8 bottom-5 w-2 h-2 rounded-full bg-[#22c55e]" />
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="h-10 rounded-xl bg-[#111]/5" />
-              <div className="h-10 rounded-xl bg-[#111]/5" />
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/safePulse/historical_data_mockup.jpeg"
+          alt="SafePulse"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       </div>
     ),
   },

@@ -289,7 +289,7 @@ export default function SafePulsePage() {
             The same incident, three entry points. No hierarchy between them.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 8 }}>
-            <SafeBrowser src="/safePulse/incidents_list view.png" alt="Incidents List View" />
+            <SafeBrowser src="/safePulse/incidents_list%20view.png" alt="Incidents List View" />
             <SafeBrowser src="/safePulse/incident_map-view.png" alt="Incidents Map View" />
           </div>
           <p style={{ ...cap, marginBottom: 32 }}>List view and map view. Same data, different spatial thinking.</p>
@@ -329,8 +329,8 @@ export default function SafePulsePage() {
           </div>
           <p style={{ ...cap, marginBottom: 32 }}>The full report flow: auth gate → KYC → ID upload → face verification → review.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 8 }}>
-            <SafeBrowser src="/safePulse/report incident_form.png" alt="Report Incident Form" />
-            <SafeBrowser src="/safePulse/my reports_table.png" alt="My Reports Table" />
+            <SafeBrowser src="/safePulse/report%20incident_form.png" alt="Report Incident Form" />
+            <SafeBrowser src="/safePulse/my%20reports_table.png" alt="My Reports Table" />
           </div>
           <p style={cap}>Report form and My Reports table. Submit, track, manage.</p>
         </div>
@@ -375,7 +375,7 @@ export default function SafePulsePage() {
             <p style={{ ...body, marginBottom: 32 }}>
               The third tab shifts from description to prediction. Highest Risk Severity Type, Peak Critical Window, Highest Risk Month, and Recurring Pattern are surfaced as headline callouts. A multi-line severity trend chart tracks Critical, High, Medium, and Low over time on one canvas. A Time vs Day heatmap shows which hours of which days see the highest incident frequency — the kind of pattern that informs emergency resource allocation. An incident type breakdown shows Traffic, Medical Emergency, Fire/Smoke, Public Disturbance, and others ranked by volume.
             </p>
-            <SafeBrowser src="/safePulse/historicalData_pattern&risks.png" alt="Historical Data — Patterns and Risk" />
+            <SafeBrowser src="/safePulse/historicalData_pattern%26risks.png" alt="Historical Data — Patterns and Risk" />
           </div>
 
           <div style={{ background: "#f9f9f9", borderRadius: 12, padding: 48, marginBottom: 8 }}>
@@ -396,11 +396,11 @@ export default function SafePulsePage() {
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
-              { src: "/safePulse/Colour System.png",  label: "Colour System" },
+              { src: "/safePulse/Colour%20System.png",  label: "Colour System" },
               { src: "/safePulse/typography.png",     label: "Typography" },
               { src: "/safePulse/grids.png",           label: "Grids" },
               { src: "/safePulse/shadows.png",         label: "Shadows" },
-              { src: "/safePulse/border radius.png",   label: "Border Radius" },
+              { src: "/safePulse/border%20radius.png",   label: "Border Radius" },
               { src: "/safePulse/spacin.png",          label: "Spacing" },
             ].map(({ src, label }) => (
               <div key={label}>
@@ -428,7 +428,7 @@ export default function SafePulsePage() {
           </p>
           <div style={{ background: "#0a0a14", borderRadius: 16, padding: 48 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/safePulse/branding logo.png" alt="SafePulse Brand" style={{ width: "100%", display: "block", borderRadius: 8 }} />
+            <img src="/safePulse/branding%20logo.png" alt="SafePulse Brand" style={{ width: "100%", display: "block", borderRadius: 8 }} />
           </div>
           <p style={cap}>SafePulse brand system — logo, lockup, and social kit.</p>
         </div>
