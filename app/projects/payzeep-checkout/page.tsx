@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import CheckoutHeroAnimation from "@/components/CheckoutHeroAnimation";
 
 export const metadata: Metadata = {
   title: "PayZeep Checkout — Femi Jimoh",
@@ -123,8 +122,14 @@ export default function PayZeepCheckoutPage() {
   return (
     <main style={{ fontFamily: "inherit", background: "#fff" }}>
 
-      {/* ── ANIMATED HERO ── */}
-      <CheckoutHeroAnimation />
+      {/* ── HERO IMAGE ── */}
+      <div style={{ width: "100%", background: "#0d0d1a" }}>
+        <img
+          src="/checkout/thumbnail_mockup.jpeg"
+          alt="PayZeep Checkout"
+          style={{ width: "100%", display: "block", maxHeight: 680, objectFit: "cover" }}
+        />
+      </div>
 
       {/* ── HEADER METADATA ── */}
       <div

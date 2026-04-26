@@ -8,6 +8,7 @@ import FragmentsSection from "@/components/FragmentsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import ScrollFingerprint from "@/components/ScrollFingerprint";
+import CheckoutThumbnailAnim from "@/components/CheckoutThumbnailAnim";
 
 /* ─── hero word list ─────────────────────────────────────────── */
 
@@ -173,16 +174,7 @@ const projects: Project[] = [
     href: "/projects/payzeep-checkout",
     links: [{ label: "Case Study →", href: "/projects/payzeep-checkout" }],
     category: "Web App",
-    thumbnail: (
-      <div className="w-full h-full overflow-hidden" style={{ background: "#1a1a3e" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/checkout/thumbnail_mockup.jpeg"
-          alt="PayZeep Checkout"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
-      </div>
-    ),
+    thumbnail: <CheckoutThumbnailAnim />,
   },
   {
     title: "PayZeep API Docs",
