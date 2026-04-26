@@ -84,7 +84,7 @@ const cap: React.CSSProperties = {
 };
 
 const grid2: React.CSSProperties = {
-  display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16,
+  display: "flex", flexDirection: "column", gap: 20,
 };
 
 const SEC = "100px 0";
@@ -280,10 +280,11 @@ export default function MerchantAdminPage() {
             or reject with a documented trail. Every action is logged.
           </p>
           <div style={{ marginBottom: 24 }}>
-            <LaptopMockup src="/merchantAdmin/kyc_mockup.jpeg" alt="KYC Overview" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/merchantAdmin/kyc_mockup.jpeg" alt="KYC Overview" style={{ width: "100%", borderRadius: 12, display: "block" }} />
           </div>
           <div style={{ marginBottom: 16 }}>
-            <LaptopMockup src="/merchantAdmin/business_details.png" alt="Business Details in KYC Review" />
+            <AdminBrowser src="/merchantAdmin/business_details.png" alt="Business Details in KYC Review" />
           </div>
           <p style={cap}>KYC review structured by business type. Approve, request info, or reject — all in product.</p>
         </div>
@@ -377,7 +378,8 @@ export default function MerchantAdminPage() {
             Batch settlements are reviewed and approved before release. Every action creates a log entry.
           </p>
           <div style={{ marginBottom: 24 }}>
-            <LaptopMockup src="/merchantAdmin/settlement_batchview%20mockup.jpeg" alt="Settlement Batch View" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/merchantAdmin/settlement_batchview%20mockup.jpeg" alt="Settlement Batch View" style={{ width: "100%", borderRadius: 12, display: "block" }} />
           </div>
           <AdminBrowser src="/merchantAdmin/settlement_report.png" alt="Settlement Reports" />
           <p style={cap}>Settlement batch view and reports. Approval before release, history after.</p>
@@ -459,7 +461,7 @@ export default function MerchantAdminPage() {
           <p style={{ ...body, marginBottom: 48 }}>
             Selected screens from across the admin.
           </p>
-          <div className="ma-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
               { src: "/merchantAdmin/add_transactionmodel.png",          label: "Add Transaction Model" },
               { src: "/merchantAdmin/batch_transfer.png",                label: "Batch Transfer" },

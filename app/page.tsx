@@ -115,7 +115,7 @@ const projects: Project[] = [
     description:
       "Merchant-facing payments dashboard focused on onboarding clarity, transaction trust, and discoverable payment tools.",
     href: "/projects/payzeep-merchant-portal",
-    links: [{ label: "Case Study →", href: "#" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-portal" }],
     category: "Web App",
     thumbnail: (
       <div className="w-full h-full overflow-hidden" style={{ background: "#eeeaff", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -133,7 +133,7 @@ const projects: Project[] = [
     description:
       "Internal operations platform for merchant compliance, approvals, permissions, and terminal management.",
     href: "/projects/payzeep-merchant-admin",
-    links: [{ label: "Case Study →", href: "#" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-admin" }],
     category: "Web App",
     thumbnail: (
       <div className="w-full h-full overflow-hidden">
@@ -791,7 +791,7 @@ export default function Home() {
 
         {/* ── Work Grid ── */}
         <section className="pb-20 md:pb-32">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-6">
             {filtered.slice(0, 6).map((project) => (
               project.href ? (
                 <Link
