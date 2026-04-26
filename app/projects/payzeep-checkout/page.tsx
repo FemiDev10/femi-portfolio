@@ -45,77 +45,75 @@ const caption: React.CSSProperties = {
   fontStyle: "italic",
 };
 
-const BRAND = "#3a3a9e";
+const grid2: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 20,
+  marginTop: 40,
+};
 
-// ─── Phone frame wrapper ───────────────────────────────────────────────────
-function PhoneFrame({ src, alt, label }: { src: string; alt: string; label: string }) {
-  return (
-    <div style={{ flexShrink: 0, width: 180 }}>
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 36,
-          boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
-          overflow: "hidden",
-        }}
-      >
-        <img src={src} alt={alt} style={{ width: "100%", display: "block" }} />
-      </div>
-      <p style={{ fontSize: 11, color: "#aaa", textAlign: "center", marginTop: 8, letterSpacing: "0.06em" }}>
-        {label}
-      </p>
-    </div>
-  );
-}
-
-// ─── Desktop widget frame ──────────────────────────────────────────────────
+// Desktop widget card (with light shadow + border-radius — these are browser widgets not phones)
 function WidgetCard({ src, alt, label }: { src: string; alt: string; label?: string }) {
   return (
     <div>
       <div
         style={{
           background: "#fff",
-          borderRadius: 14,
+          borderRadius: 12,
           boxShadow: "0 4px 24px rgba(0,0,0,0.09)",
           overflow: "hidden",
         }}
       >
         <img src={src} alt={alt} style={{ width: "100%", display: "block" }} />
-        {label && (
-          <div
-            style={{
-              padding: "10px 14px",
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "#aaa",
-            }}
-          >
-            {label}
-          </div>
-        )}
       </div>
+      {label && (
+        <p
+          style={{
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            color: "#aaa",
+            textAlign: "center",
+            marginTop: 10,
+          }}
+        >
+          {label}
+        </p>
+      )}
     </div>
   );
 }
 
-// ─── Horizontal scroll strip ───────────────────────────────────────────────
-function HScrollStrip({ children }: { children: React.ReactNode }) {
+// Mobile screen — plain image, no fake phone chrome
+function MobileScreen({ src, alt, label }: { src: string; alt: string; label: string }) {
   return (
-    <div
-      className="no-scrollbar"
-      style={{
-        overflowX: "auto",
-        display: "flex",
-        gap: 20,
-        padding: "32px 0",
-        WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
-      }}
-    >
-      {children}
+    <div>
+      <img src={src} alt={alt} style={{ width: "100%", display: "block" }} />
+      <p
+        style={{
+          fontSize: 11,
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          color: "#aaa",
+          textAlign: "center",
+          marginTop: 10,
+        }}
+      >
+        {label}
+      </p>
     </div>
   );
 }
+
+// Strip label above a group
+const stripLabel = (text: string, mt = 64): React.CSSProperties => ({
+  fontSize: 11,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  color: "#bbb",
+  marginTop: mt,
+  marginBottom: 20,
+});
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function PayZeepCheckoutPage() {
@@ -200,7 +198,6 @@ export default function PayZeepCheckoutPage() {
             Session Timeout. I designed each of those endings with the same rigour as the entry points.
           </p>
 
-          {/* Stats */}
           <div
             style={{
               display: "grid",
@@ -218,26 +215,10 @@ export default function PayZeepCheckoutPage() {
               ["40+", "Screens Designed"],
             ].map(([num, label]) => (
               <div key={label} style={{ marginBottom: 40 }}>
-                <div
-                  style={{
-                    fontSize: "clamp(56px, 7vw, 100px)",
-                    fontWeight: 300,
-                    color: "#111",
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1,
-                  }}
-                >
+                <div style={{ fontSize: "clamp(56px, 7vw, 100px)", fontWeight: 300, color: "#111", letterSpacing: "-0.03em", lineHeight: 1 }}>
                   {num}
                 </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: "#bbb",
-                    marginTop: 8,
-                  }}
-                >
+                <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.12em", color: "#bbb", marginTop: 8 }}>
                   {label}
                 </div>
               </div>
@@ -266,25 +247,11 @@ export default function PayZeepCheckoutPage() {
             treated as a fallback or an afterthought. Card checkout is not 'the real one' — it is one of five equals.
           </p>
 
-          <div
-            style={{
-              background: "#0d0d1a",
-              borderRadius: 16,
-              padding: "48px 48px",
-              textAlign: "center",
-              marginTop: 64,
-            }}
-          >
+          <div style={{ background: "#0d0d1a", borderRadius: 16, padding: 48, textAlign: "center", marginTop: 64 }}>
             <img
               src="/checkout/thumbnail_mockup.jpeg"
               alt="PayZeep Checkout widget across merchant ecosystem"
-              style={{
-                width: "100%",
-                maxWidth: 900,
-                margin: "0 auto",
-                borderRadius: 12,
-                display: "block",
-              }}
+              style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderRadius: 12, display: "block" }}
             />
             <p style={{ ...caption, color: "rgba(255,255,255,0.4)", marginTop: 24 }}>
               PayZeep Checkout — the widget that powers payments across the merchant ecosystem.
@@ -303,47 +270,13 @@ export default function PayZeepCheckoutPage() {
           </p>
 
           {[
-            {
-              num: "01",
-              title: "Five methods, zero consistency",
-              body: "Card, Transfer, USSD, QR, and Bank each work at a completely different technical and conceptual level. But users shouldn't feel that. The widget needed to feel unified across all five — same confidence, same clarity, same brand — regardless of which tab they're on.",
-            },
-            {
-              num: "02",
-              title: "Error states were afterthoughts",
-              body: "In Nigerian fintech, network issues, session timeouts, invalid amounts, and failed transactions are everyday events — not edge cases. Treating these as secondary design concerns would mean the most common failure moments in a user's payment journey go undesigned. That was not acceptable.",
-            },
-            {
-              num: "03",
-              title: "The transfer handoff problem",
-              body: "Bank transfer checkout has a UX challenge no other method shares: the user must leave your product, open their banking app, make a real money transfer, then come back and confirm. Designing that handoff — the wait state, the countdown timer, the progress indicator, the confirmation — required a completely different approach.",
-            },
-            {
-              num: "04",
-              title: "Mobile and desktop are different canvases",
-              body: "The web widget is constrained to a modal on a merchant's site. The mobile flow is full-screen. Same information architecture, completely different spatial rules. Both needed to feel native to their environment without diverging in brand or logic.",
-            },
+            { num: "01", title: "Five methods, zero consistency", body: "Card, Transfer, USSD, QR, and Bank each work at a completely different technical and conceptual level. But users shouldn't feel that. The widget needed to feel unified across all five — same confidence, same clarity, same brand — regardless of which tab they're on." },
+            { num: "02", title: "Error states were afterthoughts", body: "In Nigerian fintech, network issues, session timeouts, invalid amounts, and failed transactions are everyday events — not edge cases. Treating these as secondary design concerns would mean the most common failure moments in a user's payment journey go undesigned. That was not acceptable." },
+            { num: "03", title: "The transfer handoff problem", body: "Bank transfer checkout has a UX challenge no other method shares: the user must leave your product, open their banking app, make a real money transfer, then come back and confirm. Designing that handoff — the wait state, the countdown timer, the progress indicator, the confirmation — required a completely different approach." },
+            { num: "04", title: "Mobile and desktop are different canvases", body: "The web widget is constrained to a modal on a merchant's site. The mobile flow is full-screen. Same information architecture, completely different spatial rules. Both needed to feel native to their environment without diverging in brand or logic." },
           ].map(({ num, title, body }) => (
-            <div
-              key={num}
-              style={{
-                display: "flex",
-                gap: 40,
-                alignItems: "flex-start",
-                borderBottom: "1px solid #f0f0f0",
-                padding: "36px 0",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "clamp(48px, 5vw, 72px)",
-                  fontWeight: 300,
-                  color: "#ebebeb",
-                  lineHeight: 1,
-                  minWidth: 80,
-                  flexShrink: 0,
-                }}
-              >
+            <div key={num} style={{ display: "flex", gap: 40, alignItems: "flex-start", borderBottom: "1px solid #f0f0f0", padding: "36px 0" }}>
+              <div style={{ fontSize: "clamp(48px, 5vw, 72px)", fontWeight: 300, color: "#ebebeb", lineHeight: 1, minWidth: 80, flexShrink: 0 }}>
                 {num}
               </div>
               <div>
@@ -367,34 +300,15 @@ export default function PayZeepCheckoutPage() {
           </p>
           <p style={{ ...bodyText, marginTop: 24 }}>
             Inside that shell, each payment method has its own distinct flow and interaction pattern. The shell is the
-            trust anchor — it says 'you are still in the same safe place' even as the content shifts completely
-            beneath it.
+            trust anchor — it says 'you are still in the same safe place' even as the content shifts completely beneath it.
           </p>
           <p style={{ ...bodyText, marginTop: 24 }}>
             This decision also made the widget extensible. Adding a sixth payment method in the future means adding a
             new inner flow, not redesigning the frame.
           </p>
 
-          <div
-            style={{
-              background: "#f7f7f7",
-              borderRadius: 20,
-              padding: "64px 48px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              marginTop: 64,
-            }}
-          >
-            <div
-              style={{
-                filter: "drop-shadow(0 16px 48px rgba(0,0,0,0.18))",
-                borderRadius: 16,
-                overflow: "hidden",
-                maxWidth: 360,
-                width: "100%",
-              }}
-            >
+          <div style={{ background: "#f7f7f7", borderRadius: 20, padding: "64px 48px", display: "flex", flexDirection: "column", alignItems: "center", marginTop: 64 }}>
+            <div style={{ filter: "drop-shadow(0 16px 48px rgba(0,0,0,0.18))", borderRadius: 16, overflow: "hidden", maxWidth: 480, width: "100%" }}>
               <img src="/checkout/Card.png" alt="PayZeep checkout shell" style={{ width: "100%", display: "block" }} />
             </div>
             <p style={{ ...caption, marginTop: 24 }}>
@@ -423,8 +337,8 @@ export default function PayZeepCheckoutPage() {
             reflecting what the system is actually about to do, not a generic 'Submit' that means nothing.
           </p>
 
-          {/* Horizontal scroll strip */}
-          <HScrollStrip>
+          {/* Card flow — 2×4 grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
             {[
               { src: "/checkout/Card.png", label: "Entry" },
               { src: "/checkout/Card-1.png", label: "Card Number" },
@@ -437,26 +351,22 @@ export default function PayZeepCheckoutPage() {
             ].map(({ src, label }) => (
               <WidgetCard key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
 
-          {/* Saved cards */}
-          <p style={{ ...bodyText, marginTop: 16 }}>
+          {/* Saved cards — side by side */}
+          <p style={{ ...bodyText, marginTop: 64 }}>
             Beyond the main card flow, two additional states handle the saved cards experience.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 40 }}>
+          <div style={grid2}>
             <div>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Saved cards — select
-              </p>
-              <div style={{ maxWidth: 360, borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+              <p style={{ ...stripLabel("Saved cards — select", 0) }}>Saved cards — select</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/Saved%20Card1.png" alt="Saved cards select" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
             <div>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Saved card — selected
-              </p>
-              <div style={{ maxWidth: 360, borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+              <p style={{ ...stripLabel("Saved card — selected", 0) }}>Saved card — selected</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/Saved%20Card2.png" alt="Saved card selected" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
@@ -465,21 +375,17 @@ export default function PayZeepCheckoutPage() {
             Masked card numbers (****4198) give enough information to identify without exposing sensitive data.
           </p>
 
-          {/* Add new card */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 48 }}>
+          {/* Add new card — side by side */}
+          <div style={{ ...grid2, marginTop: 48 }}>
             <div>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Add new card — empty
-              </p>
-              <div style={{ maxWidth: 360, borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+              <p style={{ ...stripLabel("Add new card — empty", 0) }}>Add new card — empty</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/add%20new.png" alt="Add new card empty" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
             <div>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Add new card — filled
-              </p>
-              <div style={{ maxWidth: 360, borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+              <p style={{ ...stripLabel("Add new card — filled", 0) }}>Add new card — filled</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/add%20new%202.png" alt="Add new card filled" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
@@ -504,14 +410,7 @@ export default function PayZeepCheckoutPage() {
             same 'Try Again' path. Session Timeout is purple/neutral — security-framed, the only action is Login.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: 24,
-              marginTop: 64,
-            }}
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 64 }}>
             {[
               { src: "/checkout/Success.png", label: "Transaction Successful — ✓ green" },
               { src: "/checkout/Failed.png", label: "Transaction Failed — ✗ red" },
@@ -548,32 +447,27 @@ export default function PayZeepCheckoutPage() {
             Two entry variants were designed to accommodate different merchant implementations.
           </p>
 
-          {/* Two transfer entry layouts */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 64 }}>
-            <div style={{ maxWidth: 360 }}>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Transfer entry — layout 1
-              </p>
-              <div style={{ borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+          {/* Transfer layouts — side by side */}
+          <div style={grid2}>
+            <div>
+              <p style={{ ...stripLabel("Transfer entry — layout 1", 0) }}>Transfer entry — layout 1</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/Transfer.png" alt="Transfer layout 1" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
-            <div style={{ maxWidth: 360 }}>
-              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 12 }}>
-                Transfer entry — layout 2
-              </p>
-              <div style={{ borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
+            <div>
+              <p style={{ ...stripLabel("Transfer entry — layout 2", 0) }}>Transfer entry — layout 2</p>
+              <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
                 <img src="/checkout/Transfer%20option%202.png" alt="Transfer layout 2" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
           </div>
           <p style={caption}>
-            Two transfer entry layouts — same information architecture, different spatial arrangement for different
-            merchant contexts.
+            Two transfer entry layouts — same information architecture, different spatial arrangement for different merchant contexts.
           </p>
 
-          {/* Transfer wait state trilogy */}
-          <HScrollStrip>
+          {/* Wait state trilogy — 3 columns */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, marginTop: 48 }}>
             {[
               { src: "/checkout/Transfer-1.png", label: "Initiated — timer visible" },
               { src: "/checkout/Transfer-2.png", label: "In Progress — progress bar" },
@@ -581,7 +475,7 @@ export default function PayZeepCheckoutPage() {
             ].map(({ src, label }) => (
               <WidgetCard key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
           <p style={caption}>The wait state trilogy — the most considered sequence in the entire checkout.</p>
         </div>
       </section>
@@ -606,19 +500,13 @@ export default function PayZeepCheckoutPage() {
             state and success state as every other method.
           </p>
 
-          <HScrollStrip>
+          {/* All 8 USSD screens in one 2×4 grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
             {[
               { src: "/checkout/USSD.png", label: "Bank Select" },
               { src: "/checkout/USSD-1.png", label: "USSD Code Generated" },
               { src: "/checkout/USSD-2.png", label: "Dial Prompt" },
               { src: "/checkout/USSD-3.png", label: "Confirm" },
-            ].map(({ src, label }) => (
-              <WidgetCard key={label} src={src} alt={label} label={label} />
-            ))}
-          </HScrollStrip>
-
-          <HScrollStrip>
-            {[
               { src: "/checkout/USSD-4.png", label: "Completed" },
               { src: "/checkout/USSD-5.png", label: "Cancel Option" },
               { src: "/checkout/USSD-6.png", label: "Checking" },
@@ -626,7 +514,7 @@ export default function PayZeepCheckoutPage() {
             ].map(({ src, label }) => (
               <WidgetCard key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
           <p style={caption}>8 states across the full USSD flow — bank selection through async confirmation.</p>
         </div>
       </section>
@@ -648,40 +536,26 @@ export default function PayZeepCheckoutPage() {
             direct bank debit transactions.
           </p>
 
+          {/* QR — centred, max-width so it's not full bleed */}
           <div style={{ marginTop: 64 }}>
-            <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 16 }}>
-              QR Code — one screen. Scan and done.
-            </p>
-            <div
-              style={{
-                background: "#f7f7f7",
-                borderRadius: 20,
-                padding: "48px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                style={{
-                  filter: "drop-shadow(0 16px 48px rgba(0,0,0,0.18))",
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  maxWidth: 360,
-                  width: "100%",
-                }}
-              >
+            <p style={{ ...sectionLabel, marginBottom: 16 }}>QR Code — one screen. Scan and done.</p>
+            <div style={{ background: "#f7f7f7", borderRadius: 20, padding: "48px", display: "flex", justifyContent: "center" }}>
+              <div style={{ filter: "drop-shadow(0 16px 48px rgba(0,0,0,0.18))", borderRadius: 16, overflow: "hidden", maxWidth: 480, width: "100%" }}>
                 <img src="/checkout/QR%20Code.png" alt="QR Code checkout" style={{ width: "100%", display: "block" }} />
               </div>
             </div>
             <p style={caption}>QR Code — one screen. Scan and done. Zero form fields.</p>
           </div>
 
+          {/* Bank — constrained to 60vh max so it doesn't overwhelm */}
           <div style={{ marginTop: 64 }}>
-            <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", color: "#bbb", marginBottom: 16 }}>
-              Bank direct debit — full flow
-            </p>
-            <div style={{ borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)" }}>
-              <img src="/checkout/Bank.png" alt="Bank direct debit" style={{ width: "100%", display: "block" }} />
+            <p style={{ ...sectionLabel, marginBottom: 16 }}>Bank direct debit — full flow</p>
+            <div style={{ borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.09)", maxHeight: "60vh", display: "flex", alignItems: "flex-start" }}>
+              <img
+                src="/checkout/Bank.png"
+                alt="Bank direct debit"
+                style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }}
+              />
             </div>
             <p style={caption}>
               Bank direct debit — account resolution, identity verification, secure debit authorisation.
@@ -706,30 +580,18 @@ export default function PayZeepCheckoutPage() {
             phone environment.
           </p>
 
-          <div
-            style={{
-              background: "#f0f0f0",
-              borderRadius: 16,
-              padding: 48,
-              textAlign: "center",
-              marginTop: 64,
-            }}
-          >
+          {/* Mockup — constrained height */}
+          <div style={{ background: "#f0f0f0", borderRadius: 16, padding: 48, textAlign: "center", marginTop: 64 }}>
             <img
               src="/checkout/mobile_checkout/Bank-1_mockup.png"
               alt="Mobile checkout card flow in context"
-              style={{
-                maxWidth: 800,
-                width: "100%",
-                margin: "0 auto",
-                borderRadius: 12,
-                display: "block",
-              }}
+              style={{ maxWidth: 700, maxHeight: "70vh", width: "100%", margin: "0 auto", objectFit: "contain", display: "block" }}
             />
             <p style={{ ...caption, marginTop: 20 }}>Mobile checkout — card flow in context.</p>
           </div>
 
-          <HScrollStrip>
+          {/* Mobile card screens — 2-col grid, plain images */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Card1.png", label: "Card Number" },
@@ -742,9 +604,9 @@ export default function PayZeepCheckoutPage() {
               { src: "/checkout/mobile_checkout/Invalid.png", label: "⚠ Invalid" },
               { src: "/checkout/mobile_checkout/Checkout1.png", label: "⏱ Timeout" },
             ].map(({ src, label }) => (
-              <PhoneFrame key={label} src={src} alt={label} label={label} />
+              <MobileScreen key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
         </div>
       </section>
 
@@ -763,30 +625,18 @@ export default function PayZeepCheckoutPage() {
             account details expanding beneath it on confirmation.
           </p>
 
-          <div
-            style={{
-              background: "#f0f0f0",
-              borderRadius: 16,
-              padding: 48,
-              textAlign: "center",
-              marginTop: 64,
-            }}
-          >
+          {/* Mockup — constrained */}
+          <div style={{ background: "#f0f0f0", borderRadius: 16, padding: 48, textAlign: "center", marginTop: 64 }}>
             <img
               src="/checkout/mobile_checkout/Transfer1_mockup.png"
               alt="Mobile transfer flow in context"
-              style={{
-                maxWidth: 800,
-                width: "100%",
-                margin: "0 auto",
-                borderRadius: 12,
-                display: "block",
-              }}
+              style={{ maxWidth: 700, maxHeight: "70vh", width: "100%", margin: "0 auto", objectFit: "contain", display: "block" }}
             />
             <p style={{ ...caption, marginTop: 20 }}>Mobile transfer flow — handoff moment in context.</p>
           </div>
 
-          <HScrollStrip>
+          {/* Transfer screens — 2-col grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Transfer1.png", label: "Account Details" },
@@ -795,9 +645,9 @@ export default function PayZeepCheckoutPage() {
               { src: "/checkout/mobile_checkout/Card5.png", label: "Checking" },
               { src: "/checkout/mobile_checkout/Success.png", label: "✓ Success" },
             ].map(({ src, label }) => (
-              <PhoneFrame key={label} src={src} alt={label} label={label} />
+              <MobileScreen key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
         </div>
       </section>
 
@@ -819,20 +669,9 @@ export default function PayZeepCheckoutPage() {
             Success flow across 6 screens.
           </p>
 
-          {/* USSD strip */}
-          <p
-            style={{
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#bbb",
-              marginTop: 64,
-              marginBottom: 0,
-            }}
-          >
-            USSD
-          </p>
-          <HScrollStrip>
+          {/* USSD */}
+          <p style={{ ...stripLabel("USSD", 64) }}>USSD</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/USSD.png", label: "Bank Select" },
@@ -843,46 +682,24 @@ export default function PayZeepCheckoutPage() {
               { src: "/checkout/mobile_checkout/USSD-4.png", label: "Received" },
               { src: "/checkout/mobile_checkout/USSD-5.png", label: "✓ Success" },
             ].map(({ src, label }) => (
-              <PhoneFrame key={label} src={src} alt={label} label={label} />
+              <MobileScreen key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
 
-          {/* QR strip */}
-          <p
-            style={{
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#bbb",
-              marginTop: 40,
-              marginBottom: 0,
-            }}
-          >
-            QR Code
-          </p>
-          <HScrollStrip>
+          {/* QR */}
+          <p style={{ ...stripLabel("QR Code", 56) }}>QR Code</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/QR.png", label: "QR Display" },
             ].map(({ src, label }) => (
-              <PhoneFrame key={label} src={src} alt={label} label={label} />
+              <MobileScreen key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
 
-          {/* Bank strip */}
-          <p
-            style={{
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#bbb",
-              marginTop: 40,
-              marginBottom: 0,
-            }}
-          >
-            Bank Direct Debit
-          </p>
-          <HScrollStrip>
+          {/* Bank */}
+          <p style={{ ...stripLabel("Bank Direct Debit", 56) }}>Bank Direct Debit</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Bank.png", label: "Bank Select" },
@@ -891,9 +708,9 @@ export default function PayZeepCheckoutPage() {
               { src: "/checkout/mobile_checkout/Bank-3.png", label: "Checking" },
               { src: "/checkout/mobile_checkout/Bank-4.png", label: "✓ Success" },
             ].map(({ src, label }) => (
-              <PhoneFrame key={label} src={src} alt={label} label={label} />
+              <MobileScreen key={label} src={src} alt={label} label={label} />
             ))}
-          </HScrollStrip>
+          </div>
 
           <p style={caption}>Every method. Every device. No flow left undesigned.</p>
         </div>
@@ -905,56 +722,16 @@ export default function PayZeepCheckoutPage() {
           <p style={sectionLabel}>Design Decisions</p>
           <h2 style={sectionHeading}>The thinking behind the pixels.</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: 24,
-              marginTop: 48,
-            }}
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 48 }}>
             {[
-              {
-                title: "The persistent shell",
-                body: "Keeping the PayZeep branding, email, amount, and method tabs constant across all 5 flows was a deliberate trust anchor. Users switching methods shouldn't feel disoriented. The shell says: you are still in the same safe place. It also makes the widget extensible — a sixth payment method is a new inner flow, not a redesign.",
-              },
-              {
-                title: "The countdown timer on transfer",
-                body: "The one-time account expiry timer was debated. The risk: creating anxiety. The payoff: preventing the most common transfer failure — account expiry before the user returns. The decision was to keep it, but style it to inform rather than alarm. Small text, neutral colour, persistent but not screaming.",
-              },
-              {
-                title: "Saved card masking",
-                body: "Showing ****4198 with expiry date gives users enough to identify the right card without exposing sensitive data. The pattern is familiar from banking apps — users trust it immediately. 'Add New Card' is always visible at the bottom of the list, never buried behind a scroll.",
-              },
-              {
-                title: "The four end states as brand moments",
-                body: "Success, Failed, Invalid Amount, and Session Timeout are not functional afterthoughts — they are the last impression the checkout leaves. Each one uses a distinct icon, a distinct colour temperature, and copy that is specific to what actually happened. 'Try Again' appears on Failed and Invalid because both are recoverable. 'Login' appears on Timeout because re-authentication is the only path.",
-              },
-              {
-                title: "Mobile as a redesign, not a resize",
-                body: "The mobile checkout was designed from scratch for the phone environment — not adapted from the desktop widget. Full-screen layout, thumb-zone CTAs, larger input fields, and native-feeling transitions. The information architecture is identical. The spatial execution is entirely different.",
-              },
+              { title: "The persistent shell", body: "Keeping the PayZeep branding, email, amount, and method tabs constant across all 5 flows was a deliberate trust anchor. Users switching methods shouldn't feel disoriented. The shell says: you are still in the same safe place. It also makes the widget extensible — a sixth payment method is a new inner flow, not a redesign." },
+              { title: "The countdown timer on transfer", body: "The one-time account expiry timer was debated. The risk: creating anxiety. The payoff: preventing the most common transfer failure — account expiry before the user returns. The decision was to keep it, but style it to inform rather than alarm. Small text, neutral colour, persistent but not screaming." },
+              { title: "Saved card masking", body: "Showing ****4198 with expiry date gives users enough to identify the right card without exposing sensitive data. The pattern is familiar from banking apps — users trust it immediately. 'Add New Card' is always visible at the bottom of the list, never buried behind a scroll." },
+              { title: "The four end states as brand moments", body: "Success, Failed, Invalid Amount, and Session Timeout are not functional afterthoughts — they are the last impression the checkout leaves. Each one uses a distinct icon, a distinct colour temperature, and copy that is specific to what actually happened. 'Try Again' appears on Failed and Invalid because both are recoverable. 'Login' appears on Timeout because re-authentication is the only path." },
+              { title: "Mobile as a redesign, not a resize", body: "The mobile checkout was designed from scratch for the phone environment — not adapted from the desktop widget. Full-screen layout, thumb-zone CTAs, larger input fields, and native-feeling transitions. The information architecture is identical. The spatial execution is entirely different." },
             ].map(({ title, body }) => (
-              <div
-                key={title}
-                style={{
-                  border: "1px solid #ececec",
-                  borderRadius: 14,
-                  padding: 36,
-                  background: "#fff",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 500,
-                    color: "#111",
-                    marginBottom: 16,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  {title}
-                </div>
+              <div key={title} style={{ border: "1px solid #ececec", borderRadius: 14, padding: 36, background: "#fff" }}>
+                <div style={{ fontSize: 16, fontWeight: 500, color: "#111", marginBottom: 16, letterSpacing: "-0.01em" }}>{title}</div>
                 <div style={{ fontSize: 15, fontWeight: 300, color: "#666", lineHeight: 1.8 }}>{body}</div>
               </div>
             ))}
@@ -1021,40 +798,19 @@ export default function PayZeepCheckoutPage() {
             ].map(([name, role]) => (
               <div key={name} style={{ display: "flex", gap: 24, alignItems: "baseline" }}>
                 <span style={{ fontSize: 17, fontWeight: 400, color: "#111" }}>{name}</span>
-                <span style={{ fontSize: 13, color: "#bbb", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                  {role}
-                </span>
+                <span style={{ fontSize: 13, color: "#bbb", letterSpacing: "0.06em", textTransform: "uppercase" }}>{role}</span>
               </div>
             ))}
           </div>
 
-          {/* Next project */}
-          <div
-            style={{
-              marginTop: 120,
-              paddingTop: 60,
-              borderTop: "1px solid #ebebeb",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 24,
-            }}
-          >
-            <div>
-              <p style={{ ...sectionLabel, marginBottom: 8 }}>Next Project</p>
-              <a
-                href="/projects/payzeep-merchant-portal"
-                style={{
-                  fontSize: "clamp(22px, 3vw, 40px)",
-                  fontWeight: 500,
-                  color: "#111",
-                  letterSpacing: "-0.02em",
-                  textDecoration: "none",
-                }}
-              >
-                PayZeep Merchant Portal →
-              </a>
-            </div>
+          <div style={{ marginTop: 120, paddingTop: 60, borderTop: "1px solid #ebebeb" }}>
+            <p style={{ ...sectionLabel, marginBottom: 8 }}>Next Project</p>
+            <a
+              href="/projects/payzeep-merchant-portal"
+              style={{ fontSize: "clamp(22px, 3vw, 40px)", fontWeight: 500, color: "#111", letterSpacing: "-0.02em", textDecoration: "none" }}
+            >
+              PayZeep Merchant Portal →
+            </a>
           </div>
         </div>
       </section>
