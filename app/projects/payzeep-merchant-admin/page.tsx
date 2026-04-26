@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PayZeepAdminNavDemo from "@/components/PayZeepAdminNavDemo";
 
 export const metadata = {
   title: "PayZeep Merchant Admin — Femi Jimoh",
@@ -315,6 +316,21 @@ export default function MerchantAdminPage() {
             </div>
           </div>
           <Caption>Inflow and outflow. Two wallet views, one merchant.</Caption>
+        </div>
+      </section>
+
+      {/* ── NAVIGATION ARCHITECTURE ── */}
+      <section style={{ background: "#fafafa", padding: "80px 0", borderTop: "1px solid #f0f0f0" }}>
+        <div style={inner}>
+          <SectionLabel>Navigation Architecture</SectionLabel>
+          <SectionHeading>Structure as a design decision.</SectionHeading>
+          <p style={{
+            fontSize: "clamp(15px, 1.8vw, 18px)", color: "#666", fontWeight: 300,
+            lineHeight: 1.8, maxWidth: 640, marginBottom: 64,
+          }}>
+            The sidebar isn't a sitemap. It's a model of how an ops team thinks about their work — grouped by concern, not by data type. Hover each item.
+          </p>
+          <PayZeepAdminNavDemo />
         </div>
       </section>
 
