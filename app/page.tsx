@@ -152,7 +152,7 @@ const projects: Project[] = [
     description:
       "Civic safety intelligence platform for browsing verified incidents, reporting with KYC, and exploring risk patterns across Nigeria.",
     href: "/projects/safepulse",
-    links: [{ label: "Case Study →", href: "#" }],
+    links: [{ label: "Case Study →", href: "/projects/safepulse" }],
     category: "Web App",
     thumbnail: (
       <div className="w-full h-full bg-[#f4f5f7] flex items-center justify-center px-6">
