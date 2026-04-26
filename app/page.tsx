@@ -171,36 +171,16 @@ const projects: Project[] = [
     description:
       "Payment checkout widget designed around card, transfer, USSD, QR, and bank flows with equal trust and clarity.",
     href: "/projects/payzeep-checkout",
-    links: [{ label: "Case Study →", href: "#" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-checkout" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full bg-[#f5f3ef] flex items-center justify-center px-6">
-        <div className="w-full max-w-56 bg-white rounded-2xl shadow-sm p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[9px] tracking-widest uppercase text-[#111]/30">
-                PayZeep
-              </p>
-              <p className="text-xs text-[#111] mt-1">Checkout</p>
-            </div>
-            <div className="flex gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-[#2563eb]" />
-              <div className="w-2 h-2 rounded-full bg-[#111]/15" />
-            </div>
-          </div>
-          <div className="space-y-3">
-            <div className="grid grid-cols-5 gap-1">
-              <div className="h-5 rounded-full bg-[#111] opacity-90" />
-              <div className="h-5 rounded-full bg-[#111]/6" />
-              <div className="h-5 rounded-full bg-[#111]/6" />
-              <div className="h-5 rounded-full bg-[#111]/6" />
-              <div className="h-5 rounded-full bg-[#111]/6" />
-            </div>
-            <div className="h-9 rounded-xl bg-[#111]/5" />
-            <div className="h-9 rounded-xl bg-[#111]/5" />
-            <div className="h-8 rounded-full bg-[#111] opacity-90" />
-          </div>
-        </div>
+      <div className="w-full h-full overflow-hidden" style={{ background: "#1a1a3e" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/checkout/thumbnail_mockup.jpeg"
+          alt="PayZeep Checkout"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       </div>
     ),
   },
