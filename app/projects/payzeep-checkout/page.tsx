@@ -590,8 +590,8 @@ export default function PayZeepCheckoutPage() {
             <p style={{ ...caption, marginTop: 20 }}>Mobile checkout — card flow in context.</p>
           </div>
 
-          {/* Mobile card screens — 2-col grid, plain images */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
+          {/* Mobile card screens — 5-col grid so phones are phone-sized */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16, marginTop: 48 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Card1.png", label: "Card Number" },
@@ -635,8 +635,8 @@ export default function PayZeepCheckoutPage() {
             <p style={{ ...caption, marginTop: 20 }}>Mobile transfer flow — handoff moment in context.</p>
           </div>
 
-          {/* Transfer screens — 2-col grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 48 }}>
+          {/* Transfer screens — phone-sized columns */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16, marginTop: 48 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Transfer1.png", label: "Account Details" },
@@ -671,7 +671,7 @@ export default function PayZeepCheckoutPage() {
 
           {/* USSD */}
           <p style={{ ...stripLabel("USSD", 64) }}>USSD</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/USSD.png", label: "Bank Select" },
@@ -688,7 +688,7 @@ export default function PayZeepCheckoutPage() {
 
           {/* QR */}
           <p style={{ ...stripLabel("QR Code", 56) }}>QR Code</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/QR.png", label: "QR Display" },
@@ -699,7 +699,7 @@ export default function PayZeepCheckoutPage() {
 
           {/* Bank */}
           <p style={{ ...stripLabel("Bank Direct Debit", 56) }}>Bank Direct Debit</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {[
               { src: "/checkout/mobile_checkout/Checkout.png", label: "Entry" },
               { src: "/checkout/mobile_checkout/Bank.png", label: "Bank Select" },
