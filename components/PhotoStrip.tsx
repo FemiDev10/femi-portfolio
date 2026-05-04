@@ -1,46 +1,122 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
-const PHOTOS = [
-  { id: 1, label: "Studio", bg: "#f3f3f3" },
-  { id: 2, label: "Process", bg: "#efefef" },
-  { id: 3, label: "Lagos", bg: "#f7f7f7" },
-  { id: 4, label: "Detail", bg: "#f0f0f0" },
-  { id: 5, label: "Draft", bg: "#f9f9f9" },
-  { id: 6, label: "Final", bg: "#e9e9e9" },
+type PhotoItem =
+  | { kind: "flip"; front: string; back: string; alt: string }
+  | { kind: "img";  src: string; alt: string }
+  | { kind: "video"; src: string };
+
+const PHOTOS: PhotoItem[] = [
+  { kind: "flip",  front: "/myImages/me_front.JPG",  back: "/myImages/me_flip.JPG", alt: "Femi" },
+  { kind: "img",   src: "/myImages/workspace.JPG",   alt: "Workspace" },
+  { kind: "img",   src: "/myImages/Me_graudationSolopic.JPEG", alt: "Graduation" },
+  { kind: "img",   src: "/myImages/me%26friendseating.JPG",    alt: "Friends" },
+  { kind: "video", src: "/myImages/picme_padel.MP4" },
+  { kind: "img",   src: "/myImages/me%26friendmirror.JPG",     alt: "Mirror" },
 ];
+
+function FlipPhoto({ front, back, alt }: { front: string; back: string; alt: string }) {
+  const [flipped, setFlipped] = useState(false);
+  return (
+    <div
+      className="relative w-full h-full cursor-pointer"
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onTouchStart={() => setFlipped((v) => !v)}
+    >
+      <img
+        src={front}
+        alt={alt}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: flipped ? 0 : 1, transition: "opacity 0.45s ease" }}
+      />
+      <img
+        src={back}
+        alt={alt + " back"}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: flipped ? 1 : 0, transition: "opacity 0.45s ease" }}
+      />
+    </div>
+  );
+}
 
 export default function PhotoStrip() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+  const [idx, setIdx] = useState(0);
+
+  const scrollTo = (dir: "prev" | "next") => {
+    const el = containerRef.current;
+    if (!el) return;
+    const card = el.children[0] as HTMLElement;
+    const w = card?.offsetWidth + 16 ?? 300;
+    el.scrollBy({ left: dir === "next" ? w : -w, behavior: "smooth" });
+  };
+
+  const handleScroll = () => {
+    const el = containerRef.current;
+    if (!el) return;
+    const card = el.children[0] as HTMLElement;
+    const w = card?.offsetWidth + 16 ?? 300;
+    setIdx(Math.round(el.scrollLeft / w));
+  };
+
   return (
-    <div className="w-full overflow-hidden py-12 select-none">
-      <div 
+    <div className="w-full select-none">
+      {/* scroll container — bleeds to edges */}
+      <div
         ref={containerRef}
-        className="flex gap-4 overflow-x-auto no-scrollbar px-6 md:px-12 cursor-grab active:cursor-grabbing snap-x snap-mandatory"
-        style={{ WebkitOverflowScrolling: "touch" }}
+        onScroll={handleScroll}
+        className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory"
+        style={{ paddingLeft: 48, paddingRight: 48, WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"] }}
       >
-        {PHOTOS.map((photo) => (
-          <motion.div
-            key={photo.id}
-            className="flex-shrink-0 w-[75vw] md:w-[450px] aspect-[4/5] bg-[#f9f9f9] rounded-[4px] overflow-hidden relative group snap-start border border-[#f0f0f0]"
-            whileHover={{ scale: 0.995 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        {PHOTOS.map((photo, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 w-[70vw] md:w-100 aspect-[4/5] overflow-hidden snap-start bg-[#f0f0f0]"
+            style={{ borderRadius: 4 }}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#ccc] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                {photo.label}
-              </span>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </motion.div>
+            {photo.kind === "flip" && (
+              <FlipPhoto front={photo.front} back={photo.back} alt={photo.alt} />
+            )}
+            {photo.kind === "img" && (
+              <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+            )}
+            {photo.kind === "video" && (
+              <video
+                src={photo.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
         ))}
       </div>
-      <div className="max-w-[900px] mx-auto px-6 mt-6 flex justify-between items-center text-[#bbb]">
-        <span className="text-[9px] uppercase tracking-[0.1em]">Selected Moments</span>
-        <span className="text-[9px] uppercase tracking-[0.1em]">Scroll to explore —&gt;</span>
+
+      {/* counter + arrows */}
+      <div className="flex items-center justify-between mt-5" style={{ paddingLeft: 48, paddingRight: 48 }}>
+        <span className="text-[10px] text-[#bbb] tracking-[0.15em] uppercase tabular-nums">
+          {idx + 1}/{PHOTOS.length}
+        </span>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => scrollTo("prev")}
+            aria-label="Previous photo"
+            className="text-[11px] text-[#111]/35 hover:text-[#111] transition-colors"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => scrollTo("next")}
+            aria-label="Next photo"
+            className="text-[11px] text-[#111]/35 hover:text-[#111] transition-colors"
+          >
+            →
+          </button>
+        </div>
       </div>
     </div>
   );
