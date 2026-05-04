@@ -48,16 +48,16 @@ export default function PhotoStrip() {
   const scrollTo = (dir: "prev" | "next") => {
     const el = containerRef.current;
     if (!el) return;
-    const card = el.children[0] as HTMLElement;
-    const w = card?.offsetWidth + 16 ?? 300;
+    const card = el.children[0] as HTMLElement | undefined;
+    const w = (card?.offsetWidth ?? 284) + 16;
     el.scrollBy({ left: dir === "next" ? w : -w, behavior: "smooth" });
   };
 
   const handleScroll = () => {
     const el = containerRef.current;
     if (!el) return;
-    const card = el.children[0] as HTMLElement;
-    const w = card?.offsetWidth + 16 ?? 300;
+    const card = el.children[0] as HTMLElement | undefined;
+    const w = (card?.offsetWidth ?? 284) + 16;
     setIdx(Math.round(el.scrollLeft / w));
   };
 
