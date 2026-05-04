@@ -9,7 +9,6 @@ type Sticker =
 type BaseItem = {
   caption: string;
   width: number;
-  height?: number;
   objectPosition?: string;
   objectFit?: "cover" | "contain";
 };
@@ -68,8 +67,7 @@ const ITEMS: CarouselItem[] = [
     kind: "video",
     src: "/myImages/playingtennis.mp4",
     caption: "TENNIS WITH MY GUY. FORM IS STILL LOADING.",
-    width: 560,
-    height: 340,
+    width: 460,
   },
   {
     kind: "img",
@@ -104,7 +102,6 @@ const ITEMS: CarouselItem[] = [
     caption: "BEACH RANDOM. NEEDED THIS ONE.",
     width: 520,
     objectPosition: "center 55%",
-    height: 340,
   },
   {
     kind: "img",
@@ -119,7 +116,6 @@ const ITEMS: CarouselItem[] = [
     caption: "KITCHEN GANG. VERY SERIOUS MEETING.",
     width: 530,
     objectPosition: "center 48%",
-    height: 340,
   },
   {
     kind: "img",
@@ -192,10 +188,7 @@ function CarouselCard({
     >
       <div
         className="media-frame"
-        style={{
-          width: `min(${item.width}px, 82vw)`,
-          ...(item.height ? { height: item.height } : {}),
-        }}
+        style={{ width: `min(${item.width}px, 82vw)` }}
       >
         {item.kind === "img" && (
           <img
@@ -246,7 +239,7 @@ export default function MePage() {
 
     const tick = () => {
       const loopWidth = el.scrollWidth / 2;
-      el.scrollLeft += 3;
+      el.scrollLeft += 1.5;
       if (el.scrollLeft >= loopWidth) {
         el.scrollLeft -= loopWidth;
       }
@@ -513,12 +506,11 @@ export default function MePage() {
         .carousel-strip {
           display: flex;
           gap: 16px;
-          align-items: flex-start;
+          align-items: flex-end;
           overflow-x: auto;
           padding: 0 48px 18px;
           scrollbar-width: none;
           -ms-overflow-style: none;
-          scroll-snap-type: x proximity;
           -webkit-overflow-scrolling: touch;
         }
 
@@ -528,12 +520,11 @@ export default function MePage() {
 
         .carousel-card {
           flex: 0 0 auto;
-          scroll-snap-align: start;
         }
 
         .media-frame {
           position: relative;
-          height: 400px;
+          height: 370px;
           overflow: hidden;
           background: #f0f0f0;
         }
@@ -726,7 +717,7 @@ export default function MePage() {
           }
 
           .media-frame {
-            height: min(400px, 52vh);
+            height: min(370px, 50vh);
           }
 
           .closing-line {
