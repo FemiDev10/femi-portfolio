@@ -506,7 +506,7 @@ export default function MePage() {
         .carousel-strip {
           display: flex;
           gap: 16px;
-          align-items: flex-end;
+          align-items: flex-start;
           overflow-x: auto;
           padding: 0 48px 18px;
           scrollbar-width: none;
