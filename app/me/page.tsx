@@ -67,7 +67,14 @@ const ITEMS: CarouselItem[] = [
     kind: "video",
     src: "/myImages/playingtennis.mp4",
     caption: "TENNIS WITH MY GUY. FORM IS STILL LOADING.",
-    width: 460,
+    width: 300,
+  },
+  {
+    kind: "img",
+    src: "/myImages/setup_working.JPG",
+    caption: "SETUP. WHERE IT ALL HAPPENS.",
+    width: 480,
+    objectPosition: "center center",
   },
   {
     kind: "img",
@@ -75,6 +82,12 @@ const ITEMS: CarouselItem[] = [
     caption: "LAGOS BEACH. ALWAYS.",
     width: 410,
     objectPosition: "center center",
+  },
+  {
+    kind: "video",
+    src: "/myImages/night_drive.MP4",
+    caption: "NIGHT DRIVE. LAGOS NEVER SLEEPS.",
+    width: 420,
   },
   {
     kind: "video",
@@ -90,6 +103,12 @@ const ITEMS: CarouselItem[] = [
     objectPosition: "center 42%",
   },
   {
+    kind: "video",
+    src: "/myImages/eating_favfood_poundedyam.MP4",
+    caption: "POUNDED YAM. NON-NEGOTIABLE.",
+    width: 360,
+  },
+  {
     kind: "img",
     src: "/myImages/memirrorselfie.jpeg",
     caption: "MIRROR SZNN.",
@@ -98,10 +117,23 @@ const ITEMS: CarouselItem[] = [
   },
   {
     kind: "img",
+    src: "/myImages/mirrorselfie2.JPG",
+    caption: "MIRROR SZNN PT. 2.",
+    width: 360,
+    objectPosition: "center 30%",
+  },
+  {
+    kind: "img",
     src: "/myImages/beachrandompic2.jpeg",
     caption: "BEACH RANDOM. NEEDED THIS ONE.",
     width: 520,
     objectPosition: "center 55%",
+  },
+  {
+    kind: "video",
+    src: "/myImages/early_morning_jog.MP4",
+    caption: "EARLY MORNING JOG. BUILDING CHARACTER.",
+    width: 380,
   },
   {
     kind: "img",
@@ -112,10 +144,30 @@ const ITEMS: CarouselItem[] = [
   },
   {
     kind: "img",
+    src: "/myImages/drinks_macha%26latte.JPG",
+    caption: "MATCHA AND LATTE. THE RITUAL.",
+    width: 400,
+    objectPosition: "center center",
+  },
+  {
+    kind: "img",
     src: "/myImages/me%26friends_kitcheneating.jpeg",
     caption: "KITCHEN GANG. VERY SERIOUS MEETING.",
     width: 530,
     objectPosition: "center 48%",
+  },
+  {
+    kind: "video",
+    src: "/myImages/meet_ten_sis.MP4",
+    caption: "TEN SIS. GOOD PEOPLE.",
+    width: 380,
+  },
+  {
+    kind: "img",
+    src: "/myImages/offgrid_solarpanels.JPG",
+    caption: "OFF GRID. SOLAR PANELS AND ALL.",
+    width: 460,
+    objectPosition: "center center",
   },
   {
     kind: "img",
@@ -123,6 +175,12 @@ const ITEMS: CarouselItem[] = [
     caption: "BEACH RANDOM. THE FIRST TAKE.",
     width: 430,
     objectPosition: "center 50%",
+  },
+  {
+    kind: "video",
+    src: "/myImages/midnight_fifa.MP4",
+    caption: "MIDNIGHT FIFA. CLASSIC.",
+    width: 380,
   },
   {
     kind: "video",
