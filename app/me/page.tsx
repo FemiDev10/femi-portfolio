@@ -238,9 +238,44 @@ function CarouselCard({
   item: CarouselItem;
   onRef: (el: HTMLDivElement | null) => void;
 }) {
+  const cardRef  = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  // Lazy-load: only give the video a src once it's near the viewport.
+  // Prevents all 16+ video instances fetching simultaneously on mount.
+  useEffect(() => {
+    if (item.kind !== "video") return;
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 600px 0px 600px" } // preload 600px before entering view
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [item.kind]);
+
+  // Once src is set, play the video (autoPlay only fires on first render)
+  useEffect(() => {
+    if (loaded && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [loaded]);
+
+  const setRef = (el: HTMLDivElement | null) => {
+    cardRef.current = el;
+    onRef(el);
+  };
+
   return (
     <div
-      ref={onRef}
+      ref={setRef}
       className="carousel-card"
       style={{ width: `min(${item.width}px, 82vw)` }}
     >
@@ -261,7 +296,14 @@ function CarouselCard({
         )}
 
         {item.kind === "video" && (
-          <video src={item.src} autoPlay muted loop playsInline />
+          <video
+            ref={videoRef}
+            src={loaded ? item.src : undefined}
+            muted
+            loop
+            playsInline
+            preload="none"
+          />
         )}
       </div>
 
