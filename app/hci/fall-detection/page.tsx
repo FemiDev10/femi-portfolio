@@ -524,12 +524,24 @@ export default function FallDetectionPage() {
             </div>
           </div>
 
-          {/* photo placeholders */}
+          {/* construction photos */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <PhotoPlaceholder label="Breadboard prototype" />
+            <img
+              src="/myImages/Falldetection_device.jpeg"
+              alt="Fall detection wearable device"
+              style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: 4, display: "block" }}
+            />
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              <PhotoPlaceholder label="PCB layout" aspect="1/1" />
-              <PhotoPlaceholder label="Final device" aspect="1/1" />
+              <img
+                src="/myImages/circuitBoard.jpeg"
+                alt="Circuit board layout"
+                style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", borderRadius: 4, display: "block" }}
+              />
+              <img
+                src="/myImages/ciruitBoardOpened.jpeg"
+                alt="Circuit board opened"
+                style={{ width: "100%", aspectRatio: "1/1", objectFit: "cover", borderRadius: 4, display: "block" }}
+              />
             </div>
           </div>
         </div>
