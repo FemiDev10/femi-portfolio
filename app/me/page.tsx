@@ -73,8 +73,8 @@ const ITEMS: CarouselItem[] = [
     kind: "img",
     src: "/myImages/setup_working.JPG",
     caption: "SETUP. WHERE IT ALL HAPPENS.",
-    width: 480,
-    objectPosition: "center center",
+    width: 580,
+    objectPosition: "center 60%",
   },
   {
     kind: "img",
@@ -159,7 +159,7 @@ const ITEMS: CarouselItem[] = [
   {
     kind: "video",
     src: "/myImages/meet_ten_sis.MP4",
-    caption: "TEN SIS. GOOD PEOPLE.",
+    caption: "TEN. MY SIS'S DOG.",
     width: 380,
   },
   {
@@ -274,8 +274,9 @@ function CarouselCard({
 
 export default function MePage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const itemRefs     = useRef<(HTMLDivElement | null)[]>([]);
   const animationRef = useRef<number | null>(null);
+  const loopResetRef = useRef<HTMLDivElement | null>(null);
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -296,9 +297,15 @@ export default function MePage() {
     if (!el) return;
 
     const tick = () => {
-      const loopWidth = el.scrollWidth / 2;
+      // loopWidth = exact distance from item[0] to item[ITEMS.length] (second set start)
+      // using offsetLeft difference eliminates the padding-offset bug
+      const first  = itemRefs.current[0];
+      const second = loopResetRef.current;
+      const loopWidth = (first && second)
+        ? second.offsetLeft - first.offsetLeft
+        : el.scrollWidth / 2;
       el.scrollLeft += 1.5;
-      if (el.scrollLeft >= loopWidth) {
+      if (el.scrollLeft >= (first?.offsetLeft ?? 0) + loopWidth) {
         el.scrollLeft -= loopWidth;
       }
       animationRef.current = window.requestAnimationFrame(tick);
@@ -316,18 +323,14 @@ export default function MePage() {
   const handleScroll = () => {
     const el = containerRef.current;
     if (!el) return;
-    const loopWidth = el.scrollWidth / 2;
-    const scrollLeft = loopWidth > 0 ? el.scrollLeft % loopWidth : el.scrollLeft;
-
     const nearest = itemRefs.current.reduce(
       (best, item, index) => {
         if (!item) return best;
-        const distance = Math.abs(item.offsetLeft - scrollLeft);
+        const distance = Math.abs(item.offsetLeft - el.scrollLeft);
         return distance < best.distance ? { index, distance } : best;
       },
       { index: 0, distance: Number.POSITIVE_INFINITY }
     );
-
     setIdx(nearest.index);
   };
 
@@ -406,6 +409,7 @@ export default function MePage() {
               item={item}
               onRef={(el) => {
                 if (i < ITEMS.length) itemRefs.current[i] = el;
+                if (i === ITEMS.length) loopResetRef.current = el;
               }}
             />
           ))}
