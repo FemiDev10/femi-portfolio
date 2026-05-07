@@ -76,32 +76,6 @@ export default function MerchantPortalPage() {
         />
       </div>
 
-      {/* ── IMPORTANT LINKS ── */}
-      <section style={{ padding: "48px 48px 40px", borderBottom: "1px solid #f0f0f0" }}>
-        <div className="mp-inner">
-          <p style={{ fontSize: 10, color: "#bbb", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 20 }}>
-            Important Links
-          </p>
-          <a
-            href="https://merchant.payzeep.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 14,
-              background: "#f7f7f7", border: "1px solid #ebebeb",
-              borderRadius: 12, padding: "14px 20px", textDecoration: "none",
-            }}
-          >
-            <div style={{
-              width: 34, height: 34, borderRadius: 8, background: "#111",
-              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-            }}>
-              <span style={{ color: "#fff", fontSize: 13, fontWeight: 600, letterSpacing: "-0.02em" }}>P</span>
-            </div>
-            <span style={{ fontSize: 14, color: "#111", fontWeight: 400 }}>View Live Website</span>
-          </a>
-        </div>
-      </section>
 
       {/* ── FULL MOCKUP IMAGE ── */}
       <div style={{ background: "#070a18", display: "flex", justifyContent: "center", padding: "72px 48px" }}>
