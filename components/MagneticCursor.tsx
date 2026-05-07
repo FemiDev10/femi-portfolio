@@ -53,25 +53,7 @@ export default function MagneticCursor() {
     const cleanups: Array<() => void> = [];
 
     cards.forEach((card) => {
-      const imgWrap = card.querySelector<HTMLElement>("[data-card-image]");
-
-      const onCardMove = (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = e.clientX - cx;
-        const dy = e.clientY - cy;
-
-        // Card body shift
-        card.style.transform = `translate(${dx * 0.12}px, ${dy * 0.12}px)`;
-        card.style.transition = "transform 0.15s ease-out";
-
-        // Image parallax + subtle scale
-        if (imgWrap) {
-          imgWrap.style.transform = `translate(${dx * 0.08}px, ${dy * 0.08}px) scale(1.02)`;
-          imgWrap.style.transition = "transform 0.15s ease-out";
-        }
-
+      const onCardMove = () => {
         // Ring expands + darkens
         ring.style.width = "60px";
         ring.style.height = "60px";
@@ -86,16 +68,6 @@ export default function MagneticCursor() {
       };
 
       const onCardLeave = () => {
-        const ease = "0.4s cubic-bezier(0.16, 1, 0.3, 1)";
-
-        card.style.transform = "translate(0px, 0px)";
-        card.style.transition = `transform ${ease}`;
-
-        if (imgWrap) {
-          imgWrap.style.transform = "translate(0px, 0px) scale(1)";
-          imgWrap.style.transition = `transform ${ease}`;
-        }
-
         // Reset ring
         ring.style.width = "36px";
         ring.style.height = "36px";
