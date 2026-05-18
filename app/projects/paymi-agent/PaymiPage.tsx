@@ -2,11 +2,78 @@
 
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import ClosingSection from "../[slug]/ClosingSection";
 
 const p = (path: string) => `/paymi%20app/${path.replace(/ /g, "%20")}`;
 
+/* ── Lightbox ─────────────────────────────────────────────────────── */
+function Lightbox({ lb, onClose }: { lb: { src: string; alt: string } | null; onClose: () => void }) {
+  useEffect(() => {
+    if (!lb) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [lb, onClose]);
+
+  if (!lb) return null;
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, zIndex: 9999,
+      background: "rgba(0,0,0,0.92)", backdropFilter: "blur(6px)",
+      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      padding: "24px", cursor: "zoom-out",
+    }}>
+      {/* close button */}
+      <button onClick={onClose} aria-label="Close" style={{
+        position: "absolute", top: 20, right: 20,
+        width: 44, height: 44, borderRadius: "50%",
+        background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)",
+        color: "white", cursor: "pointer", fontSize: 18,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "background 0.15s",
+      }}>✕</button>
+
+      {/* image — stopPropagation so clicking image itself doesn't close */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={lb.src} alt={lb.alt} onClick={(e) => e.stopPropagation()} style={{
+        maxWidth: "92vw", maxHeight: "86vh",
+        objectFit: "contain", borderRadius: 10,
+        boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+        cursor: "default",
+      }} />
+
+      <p style={{
+        position: "absolute", bottom: 20, left: "50%", transform: "translateX(-50%)",
+        color: "rgba(255,255,255,0.35)", fontSize: 10,
+        letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap",
+      }}>
+        click outside or press esc to close
+      </p>
+    </div>
+  );
+}
+
+/* ── Expand icon (shown on hover) ────────────────────────────────── */
+function ExpandIcon() {
+  return (
+    <span className="expand-icon" aria-hidden="true" style={{
+      position: "absolute", top: 10, right: 10,
+      width: 32, height: 32, borderRadius: "50%",
+      background: "rgba(0,0,0,0.48)", backdropFilter: "blur(4px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      pointerEvents: "none",
+    }}>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M2 9.5V14H6.5M14 6.5V2H9.5M9.5 14H14V9.5M6.5 2H2V6.5"
+          stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
+
+/* ── Shared components ────────────────────────────────────────────── */
 function Fade({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
@@ -19,11 +86,17 @@ function Fade({ children, delay = 0 }: { children: React.ReactNode; delay?: numb
   );
 }
 
-function Phone({ src, label, width = 200 }: { src: string; label?: string; width?: number }) {
+function Phone({ src, label, width = 200, onOpen }: {
+  src: string; label?: string; width?: number; onOpen: (src: string, alt: string) => void;
+}) {
   return (
-    <figure style={{ margin: 0, flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-      <Image src={src} alt={label || ""} width={width * 3} height={Math.round(width * 3 * 2.17)} unoptimized
-        style={{ width, height: "auto", display: "block", borderRadius: 8 }} />
+    <figure onClick={() => onOpen(src, label || "")} className="img-click"
+      style={{ margin: 0, flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 10, position: "relative", cursor: "zoom-in" }}>
+      <div style={{ position: "relative" }}>
+        <Image src={src} alt={label || ""} width={width * 3} height={Math.round(width * 3 * 2.17)} unoptimized
+          style={{ width, height: "auto", display: "block", borderRadius: 8 }} />
+        <ExpandIcon />
+      </div>
       {label && (
         <figcaption className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center" style={{ maxWidth: width }}>
           {label}
@@ -49,17 +122,23 @@ function Divider() {
   return <div className="border-t border-[#111]/8 my-16" />;
 }
 
+/* ── Page ─────────────────────────────────────────────────────────── */
 export default function PaymiPage() {
+  const [lb, setLb] = useState<{ src: string; alt: string } | null>(null);
+  const open = useCallback((src: string, alt: string) => setLb({ src, alt }), []);
+  const close = useCallback(() => setLb(null), []);
+
   return (
     <main className="max-w-275 mx-auto px-6 pt-20 pb-32">
       <style>{`
-        .step-grid { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; }
         .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 640px) {
-          .step-grid { grid-template-columns: 1fr; }
-          .compare-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+        .img-click { cursor: zoom-in; }
+        .img-click .expand-icon { opacity: 0; transition: opacity 0.18s ease; }
+        .img-click:hover .expand-icon { opacity: 1; }
       `}</style>
+
+      <Lightbox lb={lb} onClose={close} />
 
       {/* ── HEADER ─────────────────────────────────────────────────────── */}
       <section className="max-w-[72ch]">
@@ -104,9 +183,11 @@ export default function PaymiPage() {
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
       <div className="mt-16">
         <Fade>
-          <div className="w-full bg-[#f2f2f2] rounded-2xl overflow-hidden">
+          <div className="img-click w-full bg-[#f2f2f2] rounded-2xl overflow-hidden" style={{ position: "relative" }}
+            onClick={() => open(p("Homepage.png"), "Paymi Agent home screen")}>
             <Image src={p("Homepage.png")} alt="Paymi Agent" width={1600} height={1200} priority unoptimized
               style={{ width: "100%", height: "auto", display: "block" }} />
+            <ExpandIcon />
           </div>
         </Fade>
       </div>
@@ -188,16 +269,20 @@ export default function PaymiPage() {
           <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
             <div className="compare-grid" style={{ alignItems: "end" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-                <div style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                <div className="img-click" onClick={() => open(p("old dashboard design/Component.png"), "Before — commission in hero position")}
+                  style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center", position: "relative", cursor: "zoom-in" }}>
                   <Image src={p("old dashboard design/Component.png")} alt="Original dashboard" width={375} height={1164} unoptimized
                     style={{ height: 580, width: "auto", display: "block", borderRadius: 8 }} />
+                  <ExpandIcon />
                 </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">Before — commission in hero position</p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-                <div style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                <div className="img-click" onClick={() => open(p("Dashboard Updated.png"), "After — balance first, bank info surfaced")}
+                  style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center", position: "relative", cursor: "zoom-in" }}>
                   <Image src={p("Dashboard Updated.png")} alt="Redesigned dashboard" width={1088} height={1329} unoptimized
                     style={{ height: 580, width: "auto", display: "block", borderRadius: 8 }} />
+                  <ExpandIcon />
                 </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">After — balance first, bank info surfaced</p>
               </div>
@@ -245,7 +330,7 @@ export default function PaymiPage() {
             { src: p("add money/card pin.png"), label: "04 · Enter PIN" },
             { src: p("add money/select acc type.png"), label: "05 · Account type" },
             { src: p("add money/sucess page.png"), label: "06 · Successful" },
-          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} />)}
+          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} onOpen={open} />)}
         </ScrollRow>
       </section>
 
@@ -267,7 +352,7 @@ export default function PaymiPage() {
           {[
             { src: p("add money/Add money-2.png"), label: "Entry screen" },
             { src: p("add money/transfer.png"), label: "Bank transfer details" },
-          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={240} />)}
+          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={240} onOpen={open} />)}
         </ScrollRow>
       </section>
 
@@ -300,13 +385,21 @@ export default function PaymiPage() {
           <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
             <div className="compare-grid">
               <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-                <Image src={p("bank network status/first desgin .png")} alt="First design" width={600} height={900} unoptimized
-                  style={{ width: "100%", maxWidth: 300, height: "auto", borderRadius: 8 }} />
+                <div className="img-click" onClick={() => open(p("bank network status/first desgin .png"), "First design — flat good / bad lists")}
+                  style={{ position: "relative", cursor: "zoom-in", width: "100%", maxWidth: 300 }}>
+                  <Image src={p("bank network status/first desgin .png")} alt="First design" width={600} height={900} unoptimized
+                    style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+                  <ExpandIcon />
+                </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">First design — flat good / bad lists</p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-                <Image src={p("bank network status/Check bank network - withdrawal.png")} alt="Final design" width={600} height={900} unoptimized
-                  style={{ width: "100%", maxWidth: 300, height: "auto", borderRadius: 8 }} />
+                <div className="img-click" onClick={() => open(p("bank network status/Check bank network - withdrawal.png"), "Final — tabbed by transaction type")}
+                  style={{ position: "relative", cursor: "zoom-in", width: "100%", maxWidth: 300 }}>
+                  <Image src={p("bank network status/Check bank network - withdrawal.png")} alt="Final design" width={600} height={900} unoptimized
+                    style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+                  <ExpandIcon />
+                </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">Final — tabbed by transaction type</p>
               </div>
             </div>
@@ -319,7 +412,7 @@ export default function PaymiPage() {
               { src: p("bank network status/Check bank network - withdrawal.png"), label: "Withdrawal — per bank, per card scheme" },
               { src: p("bank network status/Check bank network - transfer.png"), label: "Transfer — deposit & transfer rates" },
               { src: p("bank network status/Check bank network - bills.png"), label: "Bills — provider success rates" },
-            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={220} />)}
+            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={220} onOpen={open} />)}
           </ScrollRow>
         </div>
 
@@ -358,12 +451,12 @@ export default function PaymiPage() {
 
         <div className="space-y-4">
           {([
-            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092, hScroll: false },
-            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 02.png"), w: 3237, h: 1090, hScroll: false, src2: p("individual account/Step 02b.png"), w2: 2873, h2: 1358 },
-            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230, hScroll: false },
-            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092, hScroll: false },
-            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092, hScroll: false },
-          ] as { step: string; title: string; body: string; src: string; w: number; h: number; hScroll: boolean; src2?: string; w2?: number; h2?: number }[]).map(({ step, title, body, src, w, h, hScroll, src2, w2, h2 }) => (
+            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092, src2: null },
+            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 02.png"), w: 3237, h: 1090, src2: p("individual account/Step 02b.png"), w2: 2873, h2: 1358 },
+            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230, src2: null },
+            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092, src2: null },
+            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092, src2: null },
+          ] as { step: string; title: string; body: string; src: string; w: number; h: number; src2: string | null; w2?: number; h2?: number }[]).map(({ step, title, body, src, w, h, src2, w2, h2 }) => (
             <Fade key={step}>
               <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
                 <div style={{ marginBottom: 20 }}>
@@ -371,22 +464,22 @@ export default function PaymiPage() {
                   <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
                   <p className="text-sm text-[#111]/55 leading-relaxed max-w-[60ch]">{body}</p>
                 </div>
-                {hScroll ? (
-                  <div style={{ overflowX: "auto", overflowY: "hidden", scrollbarWidth: "thin", scrollbarColor: "rgba(17,17,17,0.15) transparent" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt={title}
-                      style={{ height: 640, width: "auto", display: "block", borderRadius: 8 }} />
-                  </div>
-                ) : (
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <div className="img-click" onClick={() => open(src, `Step ${step}: ${title}`)}
+                    style={{ position: "relative", cursor: "zoom-in" }}>
                     <Image src={src} alt={title} width={w} height={h} unoptimized
                       style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
-                    {src2 && w2 && h2 && (
+                    <ExpandIcon />
+                  </div>
+                  {src2 && w2 && h2 && (
+                    <div className="img-click" onClick={() => open(src2, `Step ${step}: ${title} continued`)}
+                      style={{ position: "relative", cursor: "zoom-in" }}>
                       <Image src={src2} alt={`${title} continued`} width={w2} height={h2} unoptimized
                         style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
-                    )}
-                  </div>
-                )}
+                      <ExpandIcon />
+                    </div>
+                  )}
+                </div>
               </div>
             </Fade>
           ))}
@@ -396,11 +489,19 @@ export default function PaymiPage() {
           <Fade>
             <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
               <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-6">KYC Completed</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <Image src={p("individual account/KYC Completed.png")} alt="KYC completed screens" width={2053} height={1092} unoptimized
-                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
-                <Image src={p("Activate Account.png")} alt="Activate account" width={1100} height={1092} unoptimized
-                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div className="img-click" onClick={() => open(p("individual account/KYC Completed.png"), "KYC completed screens")}
+                  style={{ position: "relative", cursor: "zoom-in" }}>
+                  <Image src={p("individual account/KYC Completed.png")} alt="KYC completed screens" width={2053} height={1092} unoptimized
+                    style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+                  <ExpandIcon />
+                </div>
+                <div className="img-click" onClick={() => open(p("Activate Account.png"), "Activate account")}
+                  style={{ position: "relative", cursor: "zoom-in" }}>
+                  <Image src={p("Activate Account.png")} alt="Activate account" width={1100} height={1092} unoptimized
+                    style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+                  <ExpandIcon />
+                </div>
               </div>
             </div>
           </Fade>
@@ -427,7 +528,7 @@ export default function PaymiPage() {
             { src: p("internet connection & session timeout/Component.png"), label: "Connection lost — retry visible" },
             { src: p("internet connection & session timeout/Component-1.png"), label: "Connected — recovery state" },
             { src: p("internet connection & session timeout/Component-2.png"), label: "Session expired — login prompt" },
-          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={220} />)}
+          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={220} onOpen={open} />)}
         </ScrollRow>
       </section>
 
@@ -453,17 +554,21 @@ export default function PaymiPage() {
             { src: p("transactional history/Categories filter-1.png"), label: "Filter by status" },
             { src: p("transactional history/Component-2.png"), label: "Statement timeframe" },
             { src: p("transactional history/Component-3.png"), label: "Custom date range" },
-          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} />)}
+          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} onOpen={open} />)}
         </ScrollRow>
 
         <div className="mt-4">
           <Fade>
-            <div className="w-full bg-[#f2f2f2] rounded-2xl p-6" style={{ position: "relative" }}>
+            <div className="w-full bg-[#f2f2f2] rounded-2xl p-6">
               <div style={{ height: 520, overflowY: "scroll", borderRadius: 12, scrollbarWidth: "thin", scrollbarColor: "rgba(17,17,17,0.15) transparent" }}>
-                <Image src={p("stateofacc.png")} alt="Statement of Account" width={1512} height={4012} unoptimized
-                  style={{ width: "100%", height: "auto", display: "block" }} />
+                <div className="img-click" onClick={() => open(p("stateofacc.png"), "Statement of Account")}
+                  style={{ position: "relative", cursor: "zoom-in" }}>
+                  <Image src={p("stateofacc.png")} alt="Statement of Account" width={1512} height={4012} unoptimized
+                    style={{ width: "100%", height: "auto", display: "block" }} />
+                  <ExpandIcon />
+                </div>
               </div>
-              <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mt-3 text-center">scroll to view full statement</p>
+              <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mt-3 text-center">scroll to view · click to expand full statement</p>
             </div>
             <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
               <p className="text-[9px] tracking-widest uppercase text-[#111]/30">
@@ -501,7 +606,7 @@ export default function PaymiPage() {
               { src: p("state/Success/Cable TV.png"), label: "Cable TV" },
               { src: p("state/Success/Data.png"), label: "Data" },
               { src: p("state/Success/Electricity.png"), label: "Electricity" },
-            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} />)}
+            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} onOpen={open} />)}
           </ScrollRow>
           <ScrollRow>
             {[
@@ -509,7 +614,7 @@ export default function PaymiPage() {
               { src: p("state/Success/Error receipt.png"), label: "Transfer declined" },
               { src: p("state/Success/Transfer.png"), label: "Transfer receipt" },
               { src: p("state/Success/Withdrawal.png"), label: "Withdrawal receipt" },
-            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} />)}
+            ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={185} onOpen={open} />)}
           </ScrollRow>
         </div>
       </section>
@@ -538,7 +643,7 @@ export default function PaymiPage() {
             { src: p("beneficiar transfer money/New.png"), label: "Add new" },
             { src: p("beneficiar transfer money/New-1.png"), label: "Recipient details" },
             { src: p("beneficiar transfer money/New-2.png"), label: "Added" },
-          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={170} />)}
+          ].map(({ src, label }) => <Phone key={label} src={src} label={label} width={170} onOpen={open} />)}
         </ScrollRow>
       </section>
 
@@ -566,8 +671,12 @@ export default function PaymiPage() {
             <Fade key={label}>
               <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-5">{label}</p>
-                <Image src={src} alt={label} width={w} height={h} unoptimized
-                  style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                <div className="img-click" onClick={() => open(src, label)}
+                  style={{ position: "relative", cursor: "zoom-in" }}>
+                  <Image src={src} alt={label} width={w} height={h} unoptimized
+                    style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                  <ExpandIcon />
+                </div>
               </div>
             </Fade>
           ))}
