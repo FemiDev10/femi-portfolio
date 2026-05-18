@@ -354,35 +354,21 @@ export default function PaymiPage() {
 
         <div className="space-y-4">
           {([
-            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), wide: false },
-            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 2.png"), wide: true },
-            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), wide: false },
-            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), wide: true },
-            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), wide: false },
-          ] as { step: string; title: string; body: string; src: string; wide: boolean }[]).map(({ step, title, body, src, wide }) => (
+            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092 },
+            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 2.png"), w: 6285, h: 1444 },
+            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230 },
+            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092 },
+            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092 },
+          ] as { step: string; title: string; body: string; src: string; w: number; h: number }[]).map(({ step, title, body, src, w, h }) => (
             <Fade key={step}>
               <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
-                {wide ? (
-                  <>
-                    <div style={{ marginBottom: 24 }}>
-                      <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-2">Step {step}</p>
-                      <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
-                      <p className="text-sm text-[#111]/55 leading-relaxed max-w-[56ch]">{body}</p>
-                    </div>
-                    <Image src={src} alt={title} width={1600} height={700} unoptimized
-                      style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
-                  </>
-                ) : (
-                  <div className="step-grid">
-                    <div>
-                      <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-2">Step {step}</p>
-                      <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
-                      <p className="text-sm text-[#111]/55 leading-relaxed">{body}</p>
-                    </div>
-                    <Image src={src} alt={title} width={840} height={1820} unoptimized
-                      style={{ width: 280, height: "auto", display: "block", borderRadius: 8 }} />
-                  </div>
-                )}
+                <div style={{ marginBottom: 20 }}>
+                  <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-2">Step {step}</p>
+                  <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
+                  <p className="text-sm text-[#111]/55 leading-relaxed max-w-[60ch]">{body}</p>
+                </div>
+                <Image src={src} alt={title} width={w} height={h} unoptimized
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
               </div>
             </Fade>
           ))}
@@ -391,12 +377,12 @@ export default function PaymiPage() {
         <div className="mt-4">
           <Fade>
             <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
-              <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-6 text-center">KYC Completed</p>
-              <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-                <Image src={p("individual account/KYC Completed.png")} alt="KYC completed" width={1200} height={600} unoptimized
-                  style={{ flex: "1 1 280px", minWidth: 0, maxWidth: 480, height: "auto", borderRadius: 8 }} />
-                <Image src={p("Activate Account.png")} alt="Activate account" width={1200} height={600} unoptimized
-                  style={{ flex: "1 1 280px", minWidth: 0, maxWidth: 480, height: "auto", borderRadius: 8 }} />
+              <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-6">KYC Completed</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                <Image src={p("individual account/KYC Completed.png")} alt="KYC completed screens" width={2053} height={1092} unoptimized
+                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+                <Image src={p("Activate Account.png")} alt="Activate account" width={1100} height={1092} unoptimized
+                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
               </div>
             </div>
           </Fade>
@@ -455,13 +441,20 @@ export default function PaymiPage() {
         <div className="mt-4">
           <Fade>
             <div className="w-full bg-[#f2f2f2] rounded-2xl overflow-hidden" style={{ maxHeight: 540, position: "relative" }}>
-              <Image src={p("stateofacc.png")} alt="Statement of Account" width={1600} height={3200} unoptimized
+              <Image src={p("stateofacc.png")} alt="Statement of Account" width={1512} height={4012} unoptimized
                 style={{ width: "100%", height: "auto", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 100, background: "linear-gradient(transparent, #f2f2f2)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 120, background: "linear-gradient(transparent, #f2f2f2)", pointerEvents: "none" }} />
             </div>
-            <p className="mt-3 text-[9px] tracking-widest uppercase text-[#111]/30">
-              Statement of account — date range · category filter · balance per transaction
-            </p>
+            <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
+              <p className="text-[9px] tracking-widest uppercase text-[#111]/30">
+                Statement of account — date range · category filter · balance per transaction
+              </p>
+              <a href={p("stateofacc.png")} download="paymi-statement-of-account.png"
+                className="inline-flex items-center gap-2 text-xs font-medium text-[#111]/55 border border-[#111]/15 rounded-full px-4 py-2 hover:border-[#111]/35 hover:text-[#111]/75 transition-colors"
+                style={{ textDecoration: "none" }}>
+                Download full statement ↓
+              </a>
+            </div>
           </Fade>
         </div>
       </section>
