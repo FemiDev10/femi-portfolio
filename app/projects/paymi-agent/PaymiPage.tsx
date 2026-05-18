@@ -372,9 +372,10 @@ export default function PaymiPage() {
                   <p className="text-sm text-[#111]/55 leading-relaxed max-w-[60ch]">{body}</p>
                 </div>
                 {hScroll ? (
-                  <div style={{ overflowX: "scroll", scrollbarWidth: "none" }}>
+                  <div style={{ overflowX: "auto", overflowY: "hidden", scrollbarWidth: "thin", scrollbarColor: "rgba(17,17,17,0.15) transparent" }}>
+                    {/* natural display height keeps phones readable; width scrolls */}
                     <Image src={src} alt={title} width={w} height={h} unoptimized
-                      style={{ height: 380, width: "auto", display: "block", borderRadius: 8 }} />
+                      style={{ height: 640, width: "auto", display: "block", borderRadius: 8 }} />
                   </div>
                 ) : (
                   <Image src={src} alt={title} width={w} height={h} unoptimized
