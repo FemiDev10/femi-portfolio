@@ -373,8 +373,8 @@ export default function PaymiPage() {
                 </div>
                 {hScroll ? (
                   <div style={{ overflowX: "auto", overflowY: "hidden", scrollbarWidth: "thin", scrollbarColor: "rgba(17,17,17,0.15) transparent" }}>
-                    {/* natural display height keeps phones readable; width scrolls */}
-                    <Image src={src} alt={title} width={w} height={h} unoptimized
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt={title}
                       style={{ height: 640, width: "auto", display: "block", borderRadius: 8 }} />
                   </div>
                 ) : (
