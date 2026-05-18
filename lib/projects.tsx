@@ -233,46 +233,13 @@ export const projects: Project[] = [
     links: [{ label: "Case Study →", href: "/projects/paymi-agent" }],
     category: "Mobile Apps",
     thumbnail: (
-      <div className="w-full h-full bg-[#0b1120] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-          backgroundSize: "18px 18px",
-        }} />
-        <div style={{ width: 72, height: 130, background: "#131c30", borderRadius: 16, border: "1.5px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 16px 40px rgba(0,0,0,0.6)", position: "relative" }}>
-          <div style={{ height: 10, background: "#0f172a", display: "flex", alignItems: "center", paddingLeft: 8, gap: 3 }}>
-            <div style={{ width: 14, height: 3, borderRadius: 2, background: "rgba(255,255,255,0.1)" }} />
-          </div>
-          <div style={{ padding: "6px 8px 4px" }}>
-            <div style={{ fontSize: 5.5, color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 2 }}>Balance</div>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "#fff", letterSpacing: "-0.02em" }}>₦128,400</div>
-          </div>
-          <div style={{ margin: "2px 6px", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: 5, padding: "4px 5px" }}>
-            <div style={{ fontSize: 4.5, color: "rgba(74,222,128,0.8)", letterSpacing: "0.08em", marginBottom: 3 }}>NETWORK MONITOR</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {[["GTBank", "97%"], ["First Bank", "61%"], ["OPay", "22%"]].map(([bank, pct]) => (
-                <div key={bank} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div style={{ fontSize: 5, color: "rgba(255,255,255,0.4)" }}>{bank}</div>
-                  <div style={{ fontSize: 5, fontWeight: 600, color: Number(pct) > 80 ? "#4ade80" : Number(pct) > 50 ? "#fbbf24" : "#f87171" }}>{pct}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 3, padding: "4px 6px" }}>
-            {["Airtime", "Transfer", "Bills"].map(label => (
-              <div key={label} style={{ flex: 1, background: "rgba(255,255,255,0.06)", borderRadius: 4, padding: "3px 0", textAlign: "center", fontSize: 4.5, color: "rgba(255,255,255,0.4)" }}>{label}</div>
-            ))}
-          </div>
-          <div style={{ margin: "2px 6px 0", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 4, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ fontSize: 5, color: "rgba(255,255,255,0.3)" }}>Commission</div>
-            <div style={{ fontSize: 5.5, fontWeight: 600, color: "#a78bfa" }}>₦3,200</div>
-          </div>
-        </div>
-        <div style={{ position: "absolute", bottom: 14, left: 14 }}>
-          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>AGENCY BANKING · iOS & Android</span>
-        </div>
-        <div style={{ position: "absolute", top: 14, right: 14 }}>
-          <span style={{ fontSize: 8, fontWeight: 500, color: "#a78bfa", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)", padding: "2px 7px", borderRadius: 20, letterSpacing: "0.02em" }}>CBN-licensed</span>
-        </div>
+      <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/paymi%20app/mainHome.jpeg"
+          alt="Paymi Agent mobile app"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+        />
       </div>
     ),
   },
