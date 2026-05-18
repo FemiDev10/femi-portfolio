@@ -60,14 +60,15 @@ function ExpandIcon() {
   return (
     <span className="expand-icon" aria-hidden="true" style={{
       position: "absolute", top: 10, right: 10,
-      width: 32, height: 32, borderRadius: "50%",
-      background: "rgba(0,0,0,0.48)", backdropFilter: "blur(4px)",
+      width: 36, height: 36, borderRadius: "50%",
+      background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
+      border: "1px solid rgba(255,255,255,0.18)",
       display: "flex", alignItems: "center", justifyContent: "center",
       pointerEvents: "none",
     }}>
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
         <path d="M2 9.5V14H6.5M14 6.5V2H9.5M9.5 14H14V9.5M6.5 2H2V6.5"
-          stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </span>
   );
@@ -133,9 +134,20 @@ export default function PaymiPage() {
       <style>{`
         .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+
         .img-click { cursor: zoom-in; }
-        .img-click .expand-icon { opacity: 0; transition: opacity 0.18s ease; }
-        .img-click:hover .expand-icon { opacity: 1; }
+        .img-click img { transition: transform 0.22s ease; }
+        .img-click:hover img { transform: scale(1.018); }
+
+        .img-click .expand-icon {
+          opacity: 1;
+          transform: scale(1);
+          transition: transform 0.18s ease, background 0.18s ease;
+        }
+        .img-click:hover .expand-icon {
+          transform: scale(1.12);
+          background: rgba(0,0,0,0.68) !important;
+        }
       `}</style>
 
       <Lightbox lb={lb} onClose={close} />
