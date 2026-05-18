@@ -359,11 +359,11 @@ export default function PaymiPage() {
         <div className="space-y-4">
           {([
             { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092, hScroll: false },
-            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 02.png"), w: 3421, h: 2418, hScroll: false },
+            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 02.png"), w: 3237, h: 1090, hScroll: false, src2: p("individual account/Step 02b.png"), w2: 2873, h2: 1358 },
             { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230, hScroll: false },
             { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092, hScroll: false },
             { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092, hScroll: false },
-          ] as { step: string; title: string; body: string; src: string; w: number; h: number; hScroll: boolean }[]).map(({ step, title, body, src, w, h, hScroll }) => (
+          ] as { step: string; title: string; body: string; src: string; w: number; h: number; hScroll: boolean; src2?: string; w2?: number; h2?: number }[]).map(({ step, title, body, src, w, h, hScroll, src2, w2, h2 }) => (
             <Fade key={step}>
               <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
                 <div style={{ marginBottom: 20 }}>
@@ -378,8 +378,14 @@ export default function PaymiPage() {
                       style={{ height: 640, width: "auto", display: "block", borderRadius: 8 }} />
                   </div>
                 ) : (
-                  <Image src={src} alt={title} width={w} height={h} unoptimized
-                    style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                    <Image src={src} alt={title} width={w} height={h} unoptimized
+                      style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                    {src2 && w2 && h2 && (
+                      <Image src={src2} alt={`${title} continued`} width={w2} height={h2} unoptimized
+                        style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                    )}
+                  </div>
                 )}
               </div>
             </Fade>
