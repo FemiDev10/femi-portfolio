@@ -236,7 +236,7 @@ export const projects: Project[] = [
       <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/paymi%20app/mainHome.jpeg"
+          src="/paymi%20app/mainHome.png"
           alt="Paymi Agent mobile app"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
         />
