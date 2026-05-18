@@ -186,15 +186,19 @@ export default function PaymiPage() {
 
         <Fade>
           <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
-            <div className="compare-grid">
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <Image src={p("old dashboard design/Component.png")} alt="Original dashboard" width={600} height={900} unoptimized
-                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+            <div className="compare-grid" style={{ alignItems: "end" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+                <div style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                  <Image src={p("old dashboard design/Component.png")} alt="Original dashboard" width={375} height={1164} unoptimized
+                    style={{ height: 580, width: "auto", display: "block", borderRadius: 8 }} />
+                </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">Before — commission in hero position</p>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <Image src={p("Dashboard Updated.png")} alt="Redesigned dashboard" width={900} height={900} unoptimized
-                  style={{ width: "100%", height: "auto", borderRadius: 8 }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+                <div style={{ height: 580, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                  <Image src={p("Dashboard Updated.png")} alt="Redesigned dashboard" width={1088} height={1329} unoptimized
+                    style={{ height: 580, width: "auto", display: "block", borderRadius: 8 }} />
+                </div>
                 <p className="text-[9px] tracking-widest uppercase text-[#111]/30 text-center">After — balance first, bank info surfaced</p>
               </div>
             </div>
@@ -354,12 +358,12 @@ export default function PaymiPage() {
 
         <div className="space-y-4">
           {([
-            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092 },
-            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 2.png"), w: 6285, h: 1444 },
-            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230 },
-            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092 },
-            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092 },
-          ] as { step: string; title: string; body: string; src: string; w: number; h: number }[]).map(({ step, title, body, src, w, h }) => (
+            { step: "01", title: "Account Type Selection", body: "Individual or Business. Sets the entire downstream KYC path — business accounts route through SCUML. Individual agents never see it.", src: p("individual account/Step 1.png"), w: 1529, h: 1092, hScroll: false },
+            { step: "02", title: "Personal Details", body: "Full name, date of birth, BVN. Inline validation per field — errors surface in real time, not on submit. No filling three fields and getting one confusing error message.", src: p("individual account/Step 2.png"), w: 6285, h: 1444, hScroll: true },
+            { step: "03", title: "Address Details", body: "Residential address, state, LGA, social handles. Social fields were deliberate — agents are often small business owners with a public presence that helps verify identity.", src: p("individual account/Step 3.png"), w: 1529, h: 1230, hScroll: false },
+            { step: "04", title: "Selfie / Face Match", body: "Live selfie with face detection. States: empty → positioning → captured → Match >90% (pass) → <90% (retry). Designed to feel encouraging. Humans blink. The UI should understand that.", src: p("individual account/Step 4.png"), w: 2930, h: 1092, hScroll: false },
+            { step: "05", title: "KYC Documents", body: "BVN verification, National ID, Proof of Address. Submit only activates when complete. 'Skip for later' was deliberate — see the dashboard first, complete KYC second.", src: p("individual account/Step 5.png"), w: 2401, h: 1092, hScroll: false },
+          ] as { step: string; title: string; body: string; src: string; w: number; h: number; hScroll: boolean }[]).map(({ step, title, body, src, w, h, hScroll }) => (
             <Fade key={step}>
               <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
                 <div style={{ marginBottom: 20 }}>
@@ -367,8 +371,15 @@ export default function PaymiPage() {
                   <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
                   <p className="text-sm text-[#111]/55 leading-relaxed max-w-[60ch]">{body}</p>
                 </div>
-                <Image src={src} alt={title} width={w} height={h} unoptimized
-                  style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                {hScroll ? (
+                  <div style={{ overflowX: "scroll", scrollbarWidth: "none" }}>
+                    <Image src={src} alt={title} width={w} height={h} unoptimized
+                      style={{ height: 380, width: "auto", display: "block", borderRadius: 8 }} />
+                  </div>
+                ) : (
+                  <Image src={src} alt={title} width={w} height={h} unoptimized
+                    style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                )}
               </div>
             </Fade>
           ))}
@@ -440,10 +451,12 @@ export default function PaymiPage() {
 
         <div className="mt-4">
           <Fade>
-            <div className="w-full bg-[#f2f2f2] rounded-2xl overflow-hidden" style={{ maxHeight: 540, position: "relative" }}>
-              <Image src={p("stateofacc.png")} alt="Statement of Account" width={1512} height={4012} unoptimized
-                style={{ width: "100%", height: "auto", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 120, background: "linear-gradient(transparent, #f2f2f2)", pointerEvents: "none" }} />
+            <div className="w-full bg-[#f2f2f2] rounded-2xl p-6" style={{ position: "relative" }}>
+              <div style={{ height: 520, overflowY: "scroll", borderRadius: 12, scrollbarWidth: "thin", scrollbarColor: "rgba(17,17,17,0.15) transparent" }}>
+                <Image src={p("stateofacc.png")} alt="Statement of Account" width={1512} height={4012} unoptimized
+                  style={{ width: "100%", height: "auto", display: "block" }} />
+              </div>
+              <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mt-3 text-center">scroll to view full statement</p>
             </div>
             <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
               <p className="text-[9px] tracking-widest uppercase text-[#111]/30">
@@ -536,24 +549,22 @@ export default function PaymiPage() {
             </p>
           </Fade>
         </div>
-        <Fade>
-          <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
-              {[
-                { src: p("Login User.png"), label: "Login" },
-                { src: p("Phone Verification.png"), label: "Phone verification" },
-                { src: p("Create Password.png"), label: "Create password" },
-                { src: p("Device Reg..png"), label: "Device registration" },
-              ].map(({ src, label }) => (
-                <div key={label} style={{ flex: "1 1 180px", minWidth: 0, maxWidth: 280 }}>
-                  <Image src={src} alt={label} width={1400} height={800} unoptimized
-                    style={{ width: "100%", height: "auto", borderRadius: 8 }} />
-                  <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mt-3 text-center">{label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Fade>
+        <div className="space-y-4">
+          {[
+            { src: p("Login User.png"), label: "Login", w: 1138, h: 1219 },
+            { src: p("Phone Verification.png"), label: "Phone verification", w: 1100, h: 1092 },
+            { src: p("Create Password.png"), label: "Create password", w: 1095, h: 1092 },
+            { src: p("Device Reg..png"), label: "Device registration", w: 1569, h: 1092 },
+          ].map(({ src, label, w, h }) => (
+            <Fade key={label}>
+              <div className="w-full bg-[#f2f2f2] rounded-2xl p-8">
+                <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-5">{label}</p>
+                <Image src={src} alt={label} width={w} height={h} unoptimized
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+              </div>
+            </Fade>
+          ))}
+        </div>
       </section>
 
       <Divider />
