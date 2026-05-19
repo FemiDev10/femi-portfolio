@@ -43,33 +43,21 @@ export const projects: Project[] = [
     ),
   },
   {
-    title: "Chainrails",
-    year: 2025,
+    title: "Payzeep Mobile App (Android & iOS)",
+    year: 2024,
     description:
-      "SDK payment interface — pay from any chain, any token. No checking or swapping.",
-    links: [
-      { label: "Case Study →", href: "#" },
-      { label: "Live ↗", href: "#" },
-    ],
-    category: "Web App",
+      "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",
+    href: "/projects/paymi-agent",
+    links: [{ label: "Case Study →", href: "/projects/paymi-agent" }],
+    category: "Mobile Apps",
     thumbnail: (
-      <div className="w-full h-full bg-[#f0ede6] flex items-center justify-center">
-        <div className="bg-white rounded-2xl shadow-sm px-6 py-5 w-52 flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-[#e8e4dc]" />
-            <div>
-              <p className="text-[10px] text-[#111]/60 leading-none">Oritrus</p>
-              <p className="text-[9px] text-[#111]/30">oxefar5</p>
-            </div>
-          </div>
-          <div>
-            <p className="text-[9px] text-[#111]/40 mb-0.5">Amount</p>
-            <p className="text-xl font-medium text-[#111]">$100.00</p>
-          </div>
-          <button className="w-full bg-[#111] text-white text-[10px] rounded-full py-2">
-            Pay with Crypto
-          </button>
-        </div>
+      <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/paymi%20app/mainHome.png"
+          alt="Paymi Agent mobile app"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+        />
       </div>
     ),
   },
@@ -225,21 +213,33 @@ export const projects: Project[] = [
     ),
   },
   {
-    title: "Payzeep Mobile App (Android & iOS)",
-    year: 2024,
+    title: "Chainrails",
+    year: 2025,
     description:
-      "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",
-    href: "/projects/paymi-agent",
-    links: [{ label: "Case Study →", href: "/projects/paymi-agent" }],
-    category: "Mobile Apps",
+      "SDK payment interface — pay from any chain, any token. No checking or swapping.",
+    links: [
+      { label: "Case Study →", href: "#" },
+      { label: "Live ↗", href: "#" },
+    ],
+    category: "Web App",
     thumbnail: (
-      <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/paymi%20app/mainHome.png"
-          alt="Paymi Agent mobile app"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-        />
+      <div className="w-full h-full bg-[#f0ede6] flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-sm px-6 py-5 w-52 flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-[#e8e4dc]" />
+            <div>
+              <p className="text-[10px] text-[#111]/60 leading-none">Oritrus</p>
+              <p className="text-[9px] text-[#111]/30">oxefar5</p>
+            </div>
+          </div>
+          <div>
+            <p className="text-[9px] text-[#111]/40 mb-0.5">Amount</p>
+            <p className="text-xl font-medium text-[#111]">$100.00</p>
+          </div>
+          <button className="w-full bg-[#111] text-white text-[10px] rounded-full py-2">
+            Pay with Crypto
+          </button>
+        </div>
       </div>
     ),
   },
