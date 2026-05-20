@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PayZeepAdminNavDemo from "@/components/PayZeepAdminNavDemo";
+import PasswordGate from "@/components/PasswordGate";
 
 export const metadata = {
   title: "PayZeep Merchant Admin — Femi Jimoh",
@@ -93,6 +94,7 @@ const SEC = "100px 0";
 
 export default function MerchantAdminPage() {
   return (
+    <PasswordGate id="payzeep-merchant-admin">
     <main style={{ background: "#fff", color: "#111" }}>
 
       {/* ── HERO ── */}
@@ -580,5 +582,6 @@ export default function MerchantAdminPage() {
         }
       `}</style>
     </main>
+    </PasswordGate>
   );
 }

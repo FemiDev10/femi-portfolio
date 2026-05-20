@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PasswordGate from "@/components/PasswordGate";
 
 export const metadata: Metadata = {
   title: "PayZeep Checkout — Femi Jimoh",
@@ -118,6 +119,7 @@ const stripLabel = (text: string, mt = 64): React.CSSProperties => ({
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function PayZeepCheckoutPage() {
   return (
+    <PasswordGate id="payzeep-checkout">
     <main style={{ fontFamily: "inherit", background: "#fff" }}>
 
       {/* ── HERO IMAGE ── */}
@@ -816,5 +818,6 @@ export default function PayZeepCheckoutPage() {
       </section>
 
     </main>
+    </PasswordGate>
   );
 }

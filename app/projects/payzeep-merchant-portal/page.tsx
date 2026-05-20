@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BrowserMockup from "@/components/BrowserMockup";
+import PasswordGate from "@/components/PasswordGate";
 import ScreenCarousel from "@/components/ScreenCarousel";
 import PayZeepNavDemo from "@/components/PayZeepNavDemo";
 import type { ReactNode, CSSProperties } from "react";
@@ -38,6 +39,7 @@ const ONBOARDING_SCREENS = [
 
 export default function MerchantPortalPage() {
   return (
+    <PasswordGate id="payzeep-merchant-portal">
     <main style={{ background: "#fff", color: "#111" }}>
 
       {/* ── HERO TEXT ── */}
@@ -454,5 +456,6 @@ export default function MerchantPortalPage() {
         }
       `}</style>
     </main>
+    </PasswordGate>
   );
 }

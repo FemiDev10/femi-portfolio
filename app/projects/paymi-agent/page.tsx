@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PaymiPage from "./PaymiPage";
+import PasswordGate from "@/components/PasswordGate";
 
 export const metadata: Metadata = {
   title: "Paymi Agent — Femi Jimoh",
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <PaymiPage />;
+  return (
+    <PasswordGate id="paymi-agent">
+      <PaymiPage />
+    </PasswordGate>
+  );
 }
