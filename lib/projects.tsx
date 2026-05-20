@@ -339,7 +339,7 @@ export const projects: Project[] = [
     ),
   },
   {
-    title: "Accountability Dashboard",
+    title: "AI-Powered Accountability Dashboard",
     year: 2026,
     description:
       "I fed 12 days of WhatsApp messages into Claude, GPT-4o, and Gemini. What came out was a live behavioural analytics system for 12 members.",

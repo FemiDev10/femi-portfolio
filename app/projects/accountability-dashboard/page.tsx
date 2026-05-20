@@ -86,15 +86,14 @@ export default function AccountabilityDashboardPage() {
         </Fade>
       </section>
 
-      {/* ── COVER IMAGE ────────────────────────────────────────────────── */}
+      {/* ── COVER VIDEO ────────────────────────────────────────────────── */}
       <div style={{ background: "#0a0a0a", padding: "0 48px 64px" }}>
         <Fade>
           <div style={{ borderRadius: 12, overflow: "hidden" }}>
-            <Image
-              src="/accountability/Screenshot.png"
-              alt="Accountability Dashboard — live product screenshot"
-              width={2464} height={1550} priority unoptimized
-              style={{ width: "100%", height: "auto", display: "block" }}
+            <video
+              src="/accountability/accountability.mp4"
+              autoPlay muted loop playsInline
+              style={{ width: "100%", height: "auto", display: "block", maxHeight: "80vh", objectFit: "cover" }}
             />
           </div>
         </Fade>
@@ -252,13 +251,17 @@ export default function AccountabilityDashboardPage() {
         </Fade>
       </section>
 
-      {/* ── VIDEO ──────────────────────────────────────────────────────── */}
+      {/* ── PRODUCT SCREENSHOT ─────────────────────────────────────────── */}
       <section className="ac-section-pad" style={{ background: "#0a0a0a", padding: "64px 48px" }}>
         <Fade>
-          <p style={{ fontSize: 11, color: "#444", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 24 }}>Dashboard walkthrough</p>
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "#111" }}>
-            <video src="/accountability/accountability.mp4" controls playsInline
-              style={{ width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain" }} />
+          <p style={{ fontSize: 11, color: "#444", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 24 }}>Live dashboard</p>
+          <div style={{ borderRadius: 12, overflow: "hidden" }}>
+            <Image
+              src="/accountability/Screenshot.png"
+              alt="Accountability Dashboard — live product screenshot"
+              width={2464} height={1550} unoptimized
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
           </div>
         </Fade>
       </section>
