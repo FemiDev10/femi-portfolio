@@ -2,6 +2,31 @@
 
 import CheckoutThumbnailAnim from "@/components/CheckoutThumbnailAnim";
 
+function LockBadge({ light = false }: { light?: boolean }) {
+  return (
+    <div style={{
+      position: "absolute", top: 10, left: 10,
+      display: "inline-flex", alignItems: "center", gap: 5,
+      background: light ? "rgba(255,255,255,0.88)" : "rgba(17,17,17,0.72)",
+      backdropFilter: "blur(8px)",
+      border: light ? "1px solid rgba(17,17,17,0.1)" : "1px solid rgba(255,255,255,0.14)",
+      borderRadius: 20, padding: "4px 10px 4px 7px",
+      pointerEvents: "none",
+    }}>
+      <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+        <rect x="2" y="5.5" width="8" height="5.5" rx="1.5"
+          stroke={light ? "rgba(17,17,17,0.7)" : "rgba(255,255,255,0.8)"} strokeWidth="1.3"/>
+        <path d="M4 5.5V3.5a2 2 0 0 1 4 0V5.5"
+          stroke={light ? "rgba(17,17,17,0.7)" : "rgba(255,255,255,0.8)"} strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+      <span style={{
+        fontSize: 9, letterSpacing: "0.07em", fontWeight: 600,
+        color: light ? "rgba(17,17,17,0.65)" : "rgba(255,255,255,0.8)",
+      }}>PROTECTED</span>
+    </div>
+  );
+}
+
 export type Project = {
   title: string;
   year: number;
@@ -48,16 +73,19 @@ export const projects: Project[] = [
     description:
       "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",
     href: "/projects/paymi-agent",
-    links: [{ label: "Case Study →", href: "/projects/paymi-agent" }],
+    links: [{ label: "🔒 Case Study →", href: "/projects/paymi-agent" }],
     category: "Mobile Apps",
     thumbnail: (
-      <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/paymi%20app/mainHome.png"
-          alt="Paymi Agent mobile app"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-        />
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <div className="w-full h-full relative overflow-hidden bg-[#0b1120]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/paymi%20app/mainHome.png"
+            alt="Paymi Agent mobile app"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+          />
+        </div>
+        <LockBadge />
       </div>
     ),
   },
@@ -67,16 +95,19 @@ export const projects: Project[] = [
     description:
       "Merchant-facing payments dashboard focused on onboarding clarity, transaction trust, and discoverable payment tools.",
     href: "/projects/payzeep-merchant-portal",
-    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-portal" }],
+    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-merchant-portal" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full overflow-hidden" style={{ background: "#eeeaff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/merchantPortal/dashboard/merchant%20portal-mockup.png"
-          alt="PayZeep Merchant Portal"
-          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-        />
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <div className="w-full h-full overflow-hidden" style={{ background: "#eeeaff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/merchantPortal/dashboard/merchant%20portal-mockup.png"
+            alt="PayZeep Merchant Portal"
+            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+          />
+        </div>
+        <LockBadge light />
       </div>
     ),
   },
@@ -86,16 +117,19 @@ export const projects: Project[] = [
     description:
       "Internal operations platform for merchant compliance, approvals, permissions, and terminal management.",
     href: "/projects/payzeep-merchant-admin",
-    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-admin" }],
+    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-merchant-admin" }],
     category: "Web App",
     thumbnail: (
-      <div className="w-full h-full overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/merchantAdmin/merchantAdmin_HomeMockup.jpeg"
-          alt="PayZeep Merchant Admin"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <div className="w-full h-full overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/merchantAdmin/merchantAdmin_HomeMockup.jpeg"
+            alt="PayZeep Merchant Admin"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
+        <LockBadge />
       </div>
     ),
   },
@@ -124,9 +158,14 @@ export const projects: Project[] = [
     description:
       "Payment checkout widget designed around card, transfer, USSD, QR, and bank flows with equal trust and clarity.",
     href: "/projects/payzeep-checkout",
-    links: [{ label: "Case Study →", href: "/projects/payzeep-checkout" }],
+    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-checkout" }],
     category: "Web App",
-    thumbnail: <CheckoutThumbnailAnim />,
+    thumbnail: (
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <CheckoutThumbnailAnim />
+        <LockBadge />
+      </div>
+    ),
   },
   {
     title: "PayZeep API Docs",
