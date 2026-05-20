@@ -13,10 +13,10 @@ export type Project = {
 };
 
 export const filters = [
-  { label: "All",         count: 19 },
+  { label: "All",         count: 20 },
   { label: "Mobile Apps", count: 6  },
   { label: "Web App",     count: 6  },
-  { label: "Lab",         count: 4  },
+  { label: "Lab",         count: 5  },
   { label: "HCI",         count: 3  },
 ];
 
@@ -334,6 +334,47 @@ export const projects: Project[] = [
         </div>
         <div style={{ position: "absolute", top: 14, right: 14 }}>
           <span style={{ fontSize: 8, fontWeight: 600, color: "#3b82f6", background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)", padding: "2px 7px", borderRadius: 20 }}>Lagos-first</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Accountability Dashboard",
+    year: 2026,
+    description:
+      "I fed 12 days of WhatsApp messages into Claude, GPT-4o, and Gemini. What came out was a live behavioural analytics system for 12 members.",
+    href: "/projects/accountability-dashboard",
+    links: [{ label: "Case Study →", href: "/projects/accountability-dashboard" }],
+    category: "Lab",
+    thumbnail: (
+      <div className="w-full h-full bg-[#0a0a0a] flex flex-col items-start justify-end px-5 py-5 relative overflow-hidden">
+        {/* dot grid — 3 rows × 12 dots */}
+        <div style={{ position: "absolute", top: 20, left: 20, right: 20, display: "flex", flexDirection: "column", gap: 8 }}>
+          {[
+            [1,0,1,1,0,1,1,1,0,1,0,1],
+            [1,1,0,1,1,0,1,0,1,1,1,0],
+            [0,1,1,1,0,1,1,0,1,1,0,1],
+          ].map((row, ri) => (
+            <div key={ri} style={{ display: "flex", gap: 5 }}>
+              {row.map((active, ci) => (
+                <div key={ci} style={{
+                  width: 9, height: 9, borderRadius: "50%", flexShrink: 0,
+                  background: active ? "#7ab87a" : "rgba(255,255,255,0.08)",
+                  boxShadow: active ? "0 0 6px rgba(122,184,122,0.35)" : "none",
+                }} />
+              ))}
+            </div>
+          ))}
+        </div>
+        {/* bottom badge */}
+        <div style={{ position: "absolute", bottom: 18, left: 20 }}>
+          <span style={{ fontFamily: "monospace", fontSize: 11, fontWeight: 700, color: "#7ab87a", letterSpacing: "-0.01em" }}>
+            +14% week on week
+          </span>
+        </div>
+        {/* top-right label */}
+        <div style={{ position: "absolute", top: 14, right: 14 }}>
+          <span style={{ fontSize: 8, fontWeight: 600, color: "#7ab87a", background: "rgba(122,184,122,0.1)", border: "1px solid rgba(122,184,122,0.2)", padding: "2px 7px", borderRadius: 20, letterSpacing: "0.04em" }}>AI · Lab</span>
         </div>
       </div>
     ),
