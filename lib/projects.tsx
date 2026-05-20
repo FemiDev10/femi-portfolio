@@ -13,11 +13,11 @@ export type Project = {
 };
 
 export const filters = [
-  { label: "All",          count: 19 },
-  { label: "Mobile Apps",  count: 7  },
-  { label: "Web App",      count: 6  },
-  { label: "Experimental", count: 4  },
-  { label: "HCI",          count: 3  },
+  { label: "All",         count: 19 },
+  { label: "Mobile Apps", count: 6  },
+  { label: "Web App",     count: 6  },
+  { label: "Lab",         count: 4  },
+  { label: "HCI",         count: 3  },
 ];
 
 export const projects: Project[] = [
@@ -28,7 +28,7 @@ export const projects: Project[] = [
       "Flutter app where your bank accounts race like F1 cars. Finance as pit stops, lap times, positions.",
     href: "/projects/f1-money-race",
     links: [{ label: "Case Study →", href: "/projects/f1-money-race" }],
-    category: "Mobile Apps",
+    category: "Lab",
     thumbnail: (
       <div className="w-full h-full overflow-hidden">
         <video
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     description:
       "New look for Peer's Virtual Cards — vibrant, built around how users actually spend.",
     links: [{ label: "🔒 Read Case Study", href: "#" }],
-    category: "Mobile Apps",
+    category: "Lab",
     thumbnail: (
       <div className="w-full h-full bg-[#edf0f4] flex items-center justify-end pr-8">
         <div className="bg-white rounded-xl shadow-sm px-4 py-3 w-36">
@@ -200,7 +200,7 @@ export const projects: Project[] = [
     description:
       "Savings product redesign through spatial metaphors and micro-progress.",
     links: [{ label: "Case Study →", href: "#" }],
-    category: "Mobile Apps",
+    category: "Lab",
     thumbnail: (
       <div className="w-full h-full bg-[#0d0d0d] flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 rounded-full border border-white/5" style={{ margin: "24px" }} />
@@ -221,7 +221,7 @@ export const projects: Project[] = [
       { label: "Case Study →", href: "#" },
       { label: "Live ↗", href: "#" },
     ],
-    category: "Web App",
+    category: "Lab",
     thumbnail: (
       <div className="w-full h-full bg-[#f0ede6] flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-sm px-6 py-5 w-52 flex flex-col gap-3">

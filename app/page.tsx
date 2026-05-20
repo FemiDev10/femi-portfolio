@@ -4,7 +4,6 @@
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import ScrambleSection from "@/components/ScrambleSection";
-import FragmentsSection from "@/components/FragmentsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import ScrollFingerprint from "@/components/ScrollFingerprint";
@@ -247,8 +246,6 @@ export default function Home() {
       {/* ── Scramble / Quote section ── */}
       <ScrambleSection />
 
-      {/* ── Fragments section ── */}
-      <FragmentsSection />
 
       {/* ── Testimonials section ── */}
       <TestimonialsSection />
