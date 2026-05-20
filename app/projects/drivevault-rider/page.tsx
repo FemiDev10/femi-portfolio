@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -26,11 +25,11 @@ export default function DriveVaultRiderPage() {
 
       {/* ── HEADER ─────────────────────────────────────────────────────── */}
       <section className="max-w-[72ch]">
-        <div className="flex items-center gap-3 mb-5">
+        <div className="flex items-center gap-3 mb-5 flex-wrap">
           <p className="text-[9px] tracking-widest uppercase text-[#111]/30">Case Study</p>
-          <span className="text-[9px] tracking-widest uppercase text-[#111]/30">·</span>
-          <span className="inline-flex items-center gap-1.5 text-[9px] tracking-widest uppercase bg-[#111]/5 text-[#111]/40 rounded-full px-3 py-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+          <span className="text-[9px] text-[#111]/30">·</span>
+          <span className="inline-flex items-center gap-2 text-[9px] tracking-widest uppercase bg-amber-50 text-amber-600 border border-amber-200 rounded-full px-3 py-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block animate-pulse" />
             Work in Progress
           </span>
         </div>
@@ -43,7 +42,7 @@ export default function DriveVaultRiderPage() {
         <p className="mt-8 text-base text-[#111]/55 leading-relaxed max-w-[58ch]">
           A ride-hailing experience that treats riders as participants, not passengers. DriveVault
           gives riders price transparency, a live negotiation mode, and the ability to book rides
-          for someone else — all without burying the safety tools three screens deep.
+          for someone else — safety tools first, not buried three screens deep.
         </p>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,14 +60,14 @@ export default function DriveVaultRiderPage() {
         </div>
       </section>
 
-      {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
+      {/* ── HERO PLACEHOLDER IMAGE ──────────────────────────────────────── */}
       <div className="mt-16">
         <Fade>
           <div className="w-full bg-[#f5f4f0] rounded-2xl overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/drivevault_rider/Homepage_mockup"
-              alt="DriveVault Rider — homepage concept"
+              src="/Drivevault_rider/Homepage_mockup"
+              alt="DriveVault Rider — design in progress"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
@@ -77,7 +76,7 @@ export default function DriveVaultRiderPage() {
 
       <Divider />
 
-      {/* ── THE PLATFORM ────────────────────────────────────────────────── */}
+      {/* ── PLATFORM OVERVIEW ───────────────────────────────────────────── */}
       <section className="max-w-[72ch] py-4">
         <Fade>
           <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-6">The Platform</p>
@@ -87,73 +86,72 @@ export default function DriveVaultRiderPage() {
             can toggle between instant booking and negotiation mode at any time.
           </p>
           <p className="text-base text-[#111]/55 leading-relaxed">
-            As Head of Product, I own the full product surface across both apps simultaneously —
-            which means every decision on the rider side has to be designed with its driver-side
-            counterpart in mind. Pricing, matching, and negotiation are two-sided by definition.
+            As Head of Product, I own the full product surface across both apps simultaneously.
+            Every decision on the rider side has a driver-side counterpart — pricing, matching, and
+            negotiation are two-sided by definition.
           </p>
         </Fade>
       </section>
 
       <Divider />
 
-      {/* ── RIDER SPECIFIC ─────────────────────────────────────────────── */}
-      <section className="max-w-[72ch] py-4">
-        <Fade>
-          <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-6">The Rider App</p>
-        </Fade>
-        <div className="space-y-8">
-          {[
-            {
-              n: "1.",
-              title: "Negotiation Mode — 3-round pricing dialogue",
-              body: "Riders can propose a fare below the suggested rate. The driver counter-offers. Three rounds, then it closes — accepted, declined, or expired. Riders who negotiate get a deal they chose. Riders who don't want the friction tap instant booking instead.",
-            },
-            {
-              n: "2.",
-              title: "Price transparency before you book",
-              body: "Upfront fare breakdown: base rate, distance, time estimate, surge factor if active. No mystery charges. No 'the price changed.' The rider commits to a number they saw before tapping confirm.",
-            },
-            {
-              n: "3.",
-              title: "Ride for Someone",
-              body: "Book a trip for another person — family, staff, a client. The rider pays, the passenger gets a live tracking link and the driver's details. Designed for Lagos office managers booking cars for field staff, parents sending kids home safely.",
-            },
-            {
-              n: "4.",
-              title: "Scheduled rides and safety tools upfront",
-              body: "Schedule a ride up to 7 days out. Safety features — share trip, emergency contact, driver verification — are accessible from the home screen, not buried in a settings menu. If something goes wrong, one tap is enough.",
-            },
-          ].map(({ n, title, body }) => (
-            <Fade key={n}>
-              <div style={{ display: "grid", gridTemplateColumns: "2ch 1fr", gap: 16 }}>
-                <p className="text-[9px] tracking-widest uppercase text-[#111]/30" style={{ paddingTop: 2 }}>{n}</p>
-                <div>
-                  <p className="text-sm font-medium text-[#111]/80 mb-2 leading-snug">{title}</p>
-                  <p className="text-sm text-[#111]/55 leading-relaxed">{body}</p>
-                </div>
-              </div>
-            </Fade>
-          ))}
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── COMING SOON ────────────────────────────────────────────────── */}
-      <section className="max-w-[72ch] py-4">
-        <Fade>
-          <div className="bg-[#f2f2f2] rounded-2xl px-10 py-12 text-center">
-            <span className="inline-flex items-center gap-2 text-[9px] tracking-widest uppercase text-[#111]/40 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
-              Case study in progress
+      {/* ── COMING SOON LOCKED SECTION ─────────────────────────────────── */}
+      <Fade>
+        <div className="w-full rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(17,17,17,0.08)" }}>
+          {/* locked header */}
+          <div className="bg-[#f9f9f9] border-b border-[#111]/8 px-8 py-5 flex items-center justify-between">
+            <span className="text-[9px] tracking-widest uppercase text-[#111]/40">Full Case Study</span>
+            <span className="inline-flex items-center gap-2 text-[9px] tracking-widest uppercase text-amber-600 bg-amber-50 border border-amber-200 rounded-full px-3 py-1">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
+                <path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              Coming Soon
             </span>
-            <p className="text-base text-[#111]/55 leading-relaxed max-w-[48ch] mx-auto">
-              Full design documentation — user research, negotiation UX, booking flows,
-              Ride for Someone design decisions, and outcome data — is being written up now.
-            </p>
           </div>
-        </Fade>
-      </section>
+
+          {/* blurred content preview */}
+          <div className="relative">
+            <div className="px-8 py-10 space-y-10" style={{ filter: "blur(4px)", userSelect: "none", pointerEvents: "none", opacity: 0.4 }}>
+              {[
+                { n: "01", title: "Negotiation Mode — 3-round pricing dialogue", body: "Riders can propose a fare below the suggested rate. The driver counter-offers. Three rounds, then it closes — accepted, declined, or expired. Riders who negotiate get a deal they chose." },
+                { n: "02", title: "Price transparency before you book", body: "Upfront fare breakdown: base rate, distance, time estimate, surge factor if active. No mystery charges. The rider commits to a number they saw before tapping confirm." },
+                { n: "03", title: "Ride for Someone", body: "Book a trip for another person — family, staff, a client. The rider pays, the passenger gets a live tracking link and the driver's details." },
+                { n: "04", title: "Scheduled rides and safety tools upfront", body: "Schedule a ride up to 7 days out. Safety features are accessible from the home screen — one tap, not buried in settings." },
+              ].map(({ n, title, body }) => (
+                <div key={n} style={{ display: "grid", gridTemplateColumns: "2ch 1fr", gap: 16 }}>
+                  <p className="text-[9px] tracking-widest uppercase text-[#111]/30">{n}</p>
+                  <div>
+                    <p className="text-sm font-medium text-[#111]/80 mb-2">{title}</p>
+                    <p className="text-sm text-[#111]/55 leading-relaxed">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* overlay */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.96) 60%)",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end",
+              paddingBottom: 40,
+            }}>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#111]/5 mb-4">
+                  <svg width="18" height="18" viewBox="0 0 12 12" fill="none">
+                    <rect x="2" y="5" width="8" height="6" rx="1.5" stroke="rgba(17,17,17,0.4)" strokeWidth="1.2"/>
+                    <path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="rgba(17,17,17,0.4)" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <p className="text-sm font-medium text-[#111]/60 mb-1">Case study in progress</p>
+                <p className="text-xs text-[#111]/35 max-w-[36ch]">
+                  Full documentation — user research, negotiation UX, booking flows, and outcomes — coming soon.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Fade>
 
     </main>
   );
