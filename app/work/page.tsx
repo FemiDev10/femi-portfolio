@@ -76,8 +76,14 @@ export default function WorkPage() {
                     {project.links.map((link) => (
                       <span
                         key={link.label}
-                        className="text-[11px] text-[#111] underline underline-offset-4 decoration-[#111]/20 hover:decoration-[#111] transition-all"
+                        className="text-[11px] text-[#111] underline underline-offset-4 decoration-[#111]/20 hover:decoration-[#111] transition-all inline-flex items-center gap-1"
                       >
+                        {link.locked && (
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, opacity: 0.45 }}>
+                            <rect x="2" y="5.5" width="8" height="5.5" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+                            <path d="M4 5.5V3.5a2 2 0 0 1 4 0V5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                          </svg>
+                        )}
                         {link.label}
                       </span>
                     ))}
@@ -104,8 +110,14 @@ export default function WorkPage() {
                       <a
                         key={link.label}
                         href={link.href}
-                        className="text-[11px] text-[#111] underline underline-offset-4 decoration-[#111]/20 hover:decoration-[#111] transition-all"
+                        className="text-[11px] text-[#111] underline underline-offset-4 decoration-[#111]/20 hover:decoration-[#111] transition-all inline-flex items-center gap-1"
                       >
+                        {link.locked && (
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, opacity: 0.45 }}>
+                            <rect x="2" y="5.5" width="8" height="5.5" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+                            <path d="M4 5.5V3.5a2 2 0 0 1 4 0V5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                          </svg>
+                        )}
                         {link.label}
                       </a>
                     ))}

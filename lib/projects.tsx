@@ -31,7 +31,7 @@ export type Project = {
   title: string;
   year: number;
   description: string;
-  links: { label: string; href: string }[];
+  links: { label: string; href: string; locked?: boolean }[];
   href?: string;
   thumbnail: React.ReactNode;
   category: string;
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     description:
       "Mobile command centre for Nigeria's 1.5M+ agency banking agents. Real-time network intelligence, progressive KYC, and commission management.",
     href: "/projects/paymi-agent",
-    links: [{ label: "🔒 Case Study →", href: "/projects/paymi-agent" }],
+    links: [{ label: "Case Study →", href: "/projects/paymi-agent", locked: true }],
     category: "Mobile Apps",
     thumbnail: (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -95,7 +95,7 @@ export const projects: Project[] = [
     description:
       "Merchant-facing payments dashboard focused on onboarding clarity, transaction trust, and discoverable payment tools.",
     href: "/projects/payzeep-merchant-portal",
-    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-merchant-portal" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-portal", locked: true }],
     category: "Web App",
     thumbnail: (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     description:
       "Internal operations platform for merchant compliance, approvals, permissions, and terminal management.",
     href: "/projects/payzeep-merchant-admin",
-    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-merchant-admin" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-merchant-admin", locked: true }],
     category: "Web App",
     thumbnail: (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     description:
       "Payment checkout widget designed around card, transfer, USSD, QR, and bank flows with equal trust and clarity.",
     href: "/projects/payzeep-checkout",
-    links: [{ label: "🔒 Case Study →", href: "/projects/payzeep-checkout" }],
+    links: [{ label: "Case Study →", href: "/projects/payzeep-checkout", locked: true }],
     category: "Web App",
     thumbnail: (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
