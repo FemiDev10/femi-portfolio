@@ -255,6 +255,22 @@ export default function Home() {
 
       </main>
 
+      {/* ── FlowDesk showcase ── */}
+      <section className="max-w-275 mx-auto px-6 pb-20 md:pb-32">
+        <div className="mb-5">
+          <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-1">Product + Design</p>
+          <h2 className="text-sm font-medium text-[#111]">FlowDesk</h2>
+          <p className="text-xs text-[#111]/50 leading-relaxed mt-1">AI agent orchestration dashboard — a full prototype built in Next.js.</p>
+        </div>
+        <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid rgba(17,17,17,0.08)" }}>
+          <iframe
+            src="/work/flowdesk"
+            style={{ width: "100%", height: 700, border: "none", display: "block" }}
+            title="FlowDesk — AI Agent Dashboard"
+          />
+        </div>
+      </section>
+
       {/* ── Scramble / Quote section ── */}
       <ScrambleSection />
 

@@ -21,6 +21,7 @@ const socialLinks = [
 export default function Nav() {
   const pathname  = usePathname();
   const [open, setOpen] = useState(false);
+  if (pathname.startsWith("/work/flowdesk")) return null;
 
   // lock body scroll when overlay is open
   useEffect(() => {

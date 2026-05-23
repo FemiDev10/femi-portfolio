@@ -22,6 +22,7 @@ const SOCIALS = [
 
 export default function Footer() {
   const pathname = usePathname();
+  if (pathname.startsWith("/work/flowdesk")) return null;
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
