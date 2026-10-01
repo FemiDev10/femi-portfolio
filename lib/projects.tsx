@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import CheckoutThumbnailAnim from "@/components/CheckoutThumbnailAnim";
 
 function LockBadge({ light = false }: { light?: boolean }) {
@@ -38,10 +39,10 @@ export type Project = {
 };
 
 export const filters = [
-  { label: "All",         count: 20 },
+  { label: "All",         count: 21 },
   { label: "Mobile Apps", count: 6  },
   { label: "Web App",     count: 6  },
-  { label: "Lab",         count: 5  },
+  { label: "Lab",         count: 6  },
   { label: "HCI",         count: 3  },
 ];
 
@@ -391,6 +392,26 @@ export const projects: Project[] = [
           src="/accountability/accountability.mp4"
           autoPlay muted loop playsInline
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Flux",
+    year: 2025,
+    description:
+      "AI agent orchestration dashboard — design and frontend engineering. Built in Next.js.",
+    href: "/projects/flux",
+    links: [{ label: "View Project →", href: "/projects/flux" }],
+    category: "Lab",
+    thumbnail: (
+      <div style={{ width: "100%", aspectRatio: "4 / 3.2", borderRadius: 10, overflow: "hidden", position: "relative" }}>
+        <Image
+          src="/flux/flux-preview.png"
+          alt="Flux — AI agent orchestration dashboard"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          style={{ objectFit: "cover", objectPosition: "top" }}
         />
       </div>
     ),

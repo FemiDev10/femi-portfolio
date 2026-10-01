@@ -3,58 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft, Share2, Lock, MoreHorizontal, Mic,
+  ArrowLeft, Lock, MoreHorizontal, Mic,
   Plus, BookOpen, Lightbulb, Wrench, ChevronDown,
   CheckCircle2, XCircle, RotateCcw, X, Settings2,
 } from "lucide-react";
-
-// ── Shared primitives (same as page.tsx) ──────────────────────
-
-function AgentIcon({ id, size = 40 }: { id: number; size?: number }) {
-  const configs = [
-    { bg: "#1A1207", fg: "#F59E0B", p: [1,1,1,0,0,1,1,0,1,0,0,1,1,1,1,0] },
-    { bg: "#0A1628", fg: "#60A5FA", p: [0,1,1,0,1,0,0,1,1,1,1,0,0,1,0,1] },
-    { bg: "#1C1407", fg: "#FCD34D", p: [1,0,0,1,0,1,1,0,0,1,1,0,1,0,0,1] },
-    { bg: "#1A0707", fg: "#F87171", p: [0,1,1,0,1,1,0,1,0,1,0,0,1,1,0,1] },
-    { bg: "#12072A", fg: "#A78BFA", p: [1,1,1,1,1,0,0,1,0,0,0,1,1,0,1,0] },
-    { bg: "#071A10", fg: "#34D399", p: [0,1,0,1,1,0,1,1,0,1,0,1,1,0,1,0] },
-  ];
-  const c = configs[(id - 1) % configs.length];
-  const cell = size / 4;
-  return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: "block", flexShrink: 0, borderRadius: 10 }}>
-      <rect width={size} height={size} fill={c.bg} rx="10" />
-      {c.p.map((px, i) => px ? (
-        <rect key={i} x={(i % 4) * cell} y={Math.floor(i / 4) * cell} width={cell} height={cell} fill={c.fg} />
-      ) : null)}
-    </svg>
-  );
-}
-
-function Avatar({ name, size = 20, color = "#8B5CF6" }: { name: string; size?: number; color?: string }) {
-  return (
-    <div style={{ width: size, height: size, borderRadius: "50%", background: color, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-      <span style={{ fontSize: size * 0.38, color: "#fff", fontWeight: 700, lineHeight: 1 }}>{name[0]}</span>
-    </div>
-  );
-}
-
-function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button onClick={onToggle} style={{
-      width: 36, height: 20, borderRadius: 10, border: "none", cursor: "pointer",
-      background: on ? "#E8502A" : "#D1D5DB", position: "relative", flexShrink: 0,
-      transition: "background 0.2s",
-    }}>
-      <div style={{
-        position: "absolute", top: 2, left: on ? 18 : 2, width: 16, height: 16,
-        borderRadius: "50%", background: "#fff",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
-        transition: "left 0.2s",
-      }} />
-    </button>
-  );
-}
+import { AgentIcon, Avatar, Toggle, iconBtnSm, outlineBtn, globalFdStyle } from "../_shared";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -251,15 +204,13 @@ export default function AgentDetailPage() {
   return (
     <>
       <style>{`
-        * { box-sizing: border-box; }
-        body { margin: 0; }
-        .fd-input::placeholder { color: #9CA3AF; }
+        ${globalFdStyle}
         .fd-rp-section { border-top: 1px solid #F3F4F6; padding-top: 16px; margin-top: 16px; }
       `}</style>
 
       {/* Top nav bar */}
       <div style={{ height: 48, borderBottom: "1px solid #E5E7EB", background: "#fff", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", flexShrink: 0 }}>
-        <Link href="/work/flowdesk" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", color: "#111827", fontSize: 13, fontWeight: 600 }}>
+        <Link href="/work/flux" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", color: "#111827", fontSize: 13, fontWeight: 600 }}>
           <ArrowLeft size={15} color="#6B7280" />
           <AgentIcon id={6} size={22} />
           Resume Review
@@ -489,17 +440,6 @@ function ToolRow({ icon, label, toggled, onToggle }: { icon: string; label: stri
 }
 
 // ── Style tokens ──────────────────────────────────────────────
-
-const iconBtnSm: React.CSSProperties = {
-  background: "none", border: "none", cursor: "pointer", padding: 2,
-  display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 4,
-};
-
-const outlineBtn: React.CSSProperties = {
-  display: "flex", alignItems: "center", gap: 5, padding: "5px 12px",
-  background: "#fff", border: "1px solid #E5E7EB", borderRadius: 7,
-  fontSize: 12, color: "#374151", cursor: "pointer", fontWeight: 500,
-};
 
 const toolBtn: React.CSSProperties = {
   display: "flex", alignItems: "center", gap: 5, padding: "4px 10px",
