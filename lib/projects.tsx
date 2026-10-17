@@ -62,63 +62,6 @@ export const projects: Project[] = [
     ),
   },
   {
-    title: "Bunmi & Divine",
-    year: 2026,
-    description:
-      "My sister's wedding: public site, private invitations, a no-code admin and a gate check-in app. 396 guests, 9 guest lists, 29 tables.",
-    href: "/projects/bunmi-and-divine",
-    links: [{ label: "Case Study →", href: "/projects/bunmi-and-divine" }],
-    category: "Web App",
-    thumbnail: (
-      <div className="w-full h-full overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/wedding/01-home-desktop.webp"
-          alt="Bunmi & Divine wedding website"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
-        />
-      </div>
-    ),
-  },
-  {
-    title: "Trust Me",
-    year: 2026,
-    description:
-      "A 3D social-deduction game about AI misalignment. Four helpful robots, one secretly cheating. Built for Mangrove's AI safety game hackathon.",
-    href: "/projects/trust-me",
-    links: [{ label: "Case Study →", href: "/projects/trust-me" }],
-    category: "Lab",
-    thumbnail: (
-      <div className="w-full h-full overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/trust-me/01-title.webp"
-          alt="Trust Me game title screen"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
-        />
-      </div>
-    ),
-  },
-  {
-    title: "Family Wallet",
-    year: 2026,
-    description:
-      "One wallet, many AI helpers. A parent dashboard and teen app, synced live, for controlling AI agents that spend money. ProductTank Build-a-thon.",
-    href: "/projects/family-wallet",
-    links: [{ label: "Case Study →", href: "/projects/family-wallet" }],
-    category: "Lab",
-    thumbnail: (
-      <div className="w-full h-full overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/family-wallet/01-overview.webp"
-          alt="Family Wallet dashboard and phone app"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "left top", display: "block" }}
-        />
-      </div>
-    ),
-  },
-  {
     title: "Payzeep Mobile App (Android & iOS)",
     year: 2024,
     description:
@@ -544,9 +487,66 @@ export const projects: Project[] = [
       </div>
     ),
   },
+  {
+    title: "Bunmi & Divine",
+    year: 2026,
+    description:
+      "My sister's wedding: public site, private invitations, a no-code admin and a gate check-in app. 396 guests, 9 guest lists, 29 tables.",
+    href: "/projects/bunmi-and-divine",
+    links: [{ label: "Case Study →", href: "/projects/bunmi-and-divine" }],
+    category: "Side Projects",
+    thumbnail: (
+      <div className="w-full h-full overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/wedding/01-home-desktop.webp"
+          alt="Bunmi & Divine wedding website"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Trust Me",
+    year: 2026,
+    description:
+      "A 3D social-deduction game about AI misalignment. Four helpful robots, one secretly cheating. Built for Mangrove's AI safety game hackathon.",
+    href: "/projects/trust-me",
+    links: [{ label: "Case Study →", href: "/projects/trust-me" }],
+    category: "Side Projects",
+    thumbnail: (
+      <div className="w-full h-full overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/trust-me/01-title.webp"
+          alt="Trust Me game title screen"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Family Wallet",
+    year: 2026,
+    description:
+      "One wallet, many AI helpers. A parent dashboard and teen app, synced live, for controlling AI agents that spend money. ProductTank Build-a-thon.",
+    href: "/projects/family-wallet",
+    links: [{ label: "Case Study →", href: "/projects/family-wallet" }],
+    category: "Side Projects",
+    thumbnail: (
+      <div className="w-full h-full overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/family-wallet/01-overview.webp"
+          alt="Family Wallet dashboard and phone app"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "left top", display: "block" }}
+        />
+      </div>
+    ),
+  },
 ];
 
-const FILTER_ORDER = ["Mobile Apps", "Web App", "Lab", "HCI"];
+const FILTER_ORDER = ["Mobile Apps", "Web App", "Lab", "HCI", "Side Projects"];
 
 export const filters = [
   { label: "All", count: projects.length },

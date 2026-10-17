@@ -2,9 +2,9 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link";
-import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
 import ScrambleSection from "@/components/ScrambleSection";
+import PlayCards from "@/components/PlayCards";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import ScrollFingerprint from "@/components/ScrollFingerprint";
@@ -256,78 +256,8 @@ export default function Home() {
 
       </main>
 
-      {/* ── Flux case study preview ── */}
-      <section className="max-w-275 mx-auto px-6 pb-20 md:pb-32">
-        <Link
-          href="/projects/flux"
-          className="group grid md:grid-cols-[0.72fr_1.28fr] gap-10 md:gap-16 items-center"
-        >
-          {/* left — plain text, no box */}
-          <div>
-            <p className="text-[9px] tracking-widest uppercase text-[#111]/30 mb-3">Product + Design</p>
-            <h2 className="text-2xl md:text-3xl font-medium text-[#111] tracking-tight mb-4">Flux</h2>
-            <p className="text-sm text-[#111]/55 leading-relaxed mb-3 max-w-[38ch]">
-              An AI agent orchestration dashboard — a full working prototype built in Next.js, not a static mockup.
-            </p>
-            <p className="text-sm text-[#111]/55 leading-relaxed mb-8 max-w-[38ch]">
-              Every card, filter, and panel is real frontend code — designed and engineered end to end.
-            </p>
-
-            <div className="flex flex-col gap-1.5 mb-8">
-              {[
-                ["Role", "Design Engineering"],
-                ["Platform", "Web App · Next.js"],
-                ["Year", "2025"],
-              ].map(([l, v]) => (
-                <div key={l} className="flex gap-3 text-xs">
-                  <span className="text-[#111]/30 w-16 shrink-0">{l}</span>
-                  <span className="text-[#111]/60">{v}</span>
-                </div>
-              ))}
-            </div>
-
-            <span className="inline-flex items-center gap-1.5 text-xs text-[#111] underline underline-offset-4 decoration-[#111]/30 group-hover:decoration-[#111] transition-colors">
-              View Case Study →
-            </span>
-          </div>
-
-          {/* right — flat HD screenshot floating on a dark backdrop */}
-          <div
-            className="relative overflow-hidden rounded-2xl"
-            style={{ background: "#0a0a0c" }}
-          >
-            {/* diagonal grid across the whole panel, only feathering right at the edges */}
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(45deg, rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, transparent 1px, transparent 30px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, transparent 1px, transparent 30px)",
-                maskImage: "radial-gradient(ellipse 100% 100% at 50% 50%, black 55%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(ellipse 100% 100% at 50% 50%, black 55%, transparent 100%)",
-              }}
-            />
-
-            <div className="relative flex items-center justify-center p-8 md:p-14">
-              <div
-                className="w-full transition-transform duration-500 ease-out group-hover:scale-[1.015]"
-                style={{
-                  maxWidth: 460, borderRadius: 10, overflow: "hidden", position: "relative", aspectRatio: "16 / 10",
-                  border: "1px solid rgba(255,255,255,0.14)",
-                  boxShadow: "0 30px 70px rgba(0,0,0,0.6)",
-                }}
-              >
-                <Image
-                  src="/flux/flux-preview-zoom.png"
-                  alt="Flux — AI agent orchestration dashboard"
-                  fill
-                  sizes="(max-width: 768px) 70vw, 460px"
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                />
-              </div>
-            </div>
-          </div>
-        </Link>
-      </section>
+      {/* ── Playground cards ── */}
+      <PlayCards />
 
       {/* ── Scramble / Quote section ── */}
       <ScrambleSection />
