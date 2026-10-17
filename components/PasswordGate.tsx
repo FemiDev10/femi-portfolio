@@ -43,7 +43,7 @@ export default function PasswordGate({
 
   const attempt = () => {
     if (!value) return;
-    if (value === "1997") {
+    if (value === "2000") {
       setChecking(true);
       setWrongMsg("");
       setTimeout(() => {
