@@ -163,7 +163,7 @@ function Canvas() {
 }
 
 const CARDS: Card[] = [
-  { headline: "Sami: visa and money tracking for students.", tag: "Concept website", bg: "#f3f3f1", ink: "#000000", art: <SamiRings /> },
+  { headline: "Sami: visa and money tracking for students.", tag: "Concept website", href: "https://sami-kohl.vercel.app", bg: "#f3f3f1", ink: "#000000", art: <SamiRings /> },
   { headline: "Apps you can scroll all day.", tag: "Coming soon", bg: "#f7d046", ink: "#17142e", art: <PhoneFeed /> },
   { headline: "Apps and prototypes, built to be played with.", tag: "Coming soon", bg: "#1d1c22", ink: "#fff", art: <Orbit /> },
   { headline: "Dashboards that actually move.", tag: "Coming soon", bg: "#29b6f6", ink: "#08243a", art: <Bars /> },
@@ -207,6 +207,9 @@ export default function PlayCards() {
                 <div className="pc-art">{c.art}</div>
               </>
             );
+            if (c.href?.startsWith("http")) {
+              return <a key={i} href={c.href} target="_blank" rel="noreferrer" className="pc-card" style={{ background: c.bg }} aria-label={`${c.headline} Opens in a new tab`}>{body}</a>;
+            }
             return c.href ? (
               <Link key={i} href={c.href} className="pc-card" style={{ background: c.bg }}>{body}</Link>
             ) : (
