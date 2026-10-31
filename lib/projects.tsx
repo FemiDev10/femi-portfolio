@@ -488,6 +488,25 @@ export const projects: Project[] = [
     ),
   },
   {
+    title: "Bop",
+    year: 2026,
+    description:
+      "Tap phones to send a UK bank transfer, no sort codes. Designed the app and brand, built it in Expo, and made it playable on its own website.",
+    href: "/projects/bop",
+    links: [{ label: "Case Study →", href: "/projects/bop" }],
+    category: "Side Projects",
+    thumbnail: (
+      <div className="w-full h-full overflow-hidden" style={{ background: "#b0a3ff" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/bop-app/web-hero.png"
+          alt="Bop website hero with three phones"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", display: "block" }}
+        />
+      </div>
+    ),
+  },
+  {
     title: "Bunmi & Divine",
     year: 2026,
     description:

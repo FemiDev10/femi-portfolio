@@ -6,67 +6,43 @@ import { useRef, type ReactNode } from "react";
 type Card = {
   headline: string;
   tag: string;
+  site?: boolean;
   href?: string;
   bg: string;
   ink: string;
   art: ReactNode;
 };
 
-function SamiRings() {
-  const rings = [
-    { r: 62, p: 0.7, c: "#000", d: "0s" },
-    { r: 46, p: 1, c: "#0e9f6e", d: ".15s" },
-    { r: 30, p: 0.66, c: "#6e6e6e", d: ".3s" },
-  ];
+const SAMI_VIEWS = ["1-hero", "2-work", "3-proof", "4-fees", "5-privacy"];
+
+/* Sami: the real site, full bleed, moving through its sections. */
+function SamiSite() {
   return (
-    <div className="pc-sami">
-      <div className="pc-sami-phone">
-        <p className="pc-sami-k">Visa health</p>
-        <p className="pc-sami-h">All good this week</p>
-        <svg viewBox="0 0 140 140" className="pc-sami-rings" aria-hidden="true">
-          {rings.map((g) => {
-            const len = 2 * Math.PI * g.r;
-            return (
-              <g key={g.r} transform="rotate(-90 70 70)">
-                <circle cx="70" cy="70" r={g.r} fill="none" stroke="#ececea" strokeWidth="11" />
-                <circle cx="70" cy="70" r={g.r} fill="none" stroke={g.c} strokeWidth="11" strokeLinecap="round"
-                  className="pc-sami-arc"
-                  style={{ strokeDasharray: len, ["--len" as string]: `${len}`, ["--to" as string]: `${len * (1 - g.p)}`, animationDelay: g.d }} />
-              </g>
-            );
-          })}
-        </svg>
-      </div>
-      <div className="pc-sami-note">
-        <span className="pc-sami-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M4 11a8 8 0 0 1 16 0z" fill="#fff" /><path d="M2 13h16a8 8 0 0 1-16 0z" fill="#fff" /></svg>
-        </span>
-        <span><b>Payslip read</b><i>14 of 20 hours this week</i></span>
-      </div>
+    <div className="pc-site">
+      {SAMI_VIEWS.map((v, i) => (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img key={v} src={`/playground/sami/${v}.webp`} alt="" loading="lazy" className="pc-site-shot" style={{ animationDelay: `${i * 1.4}s` }} />
+      ))}
     </div>
   );
 }
 
-function Orbit() {
-  const pills = ["Apps", "Motion", "Prototypes"];
+const BOP_VIEWS = ["1-hero", "2-everyday", "3-namecheck", "4-how", "5-faq"];
+
+function BopSite() {
   return (
-    <div className="pc-orbit">
-      <span className="pc-blob pc-blob-a" />
-      <span className="pc-blob pc-blob-b" />
-      <span className="pc-blob pc-blob-c" />
-      <span className="pc-star pc-star-a">✦</span>
-      <span className="pc-star pc-star-b">✦</span>
-      <div className="pc-orbit-ring">
-        {pills.map((p, i) => (
-          <span key={p} className="pc-orbit-arm" style={{ transform: `rotate(${i * 120}deg)` }}>
-            <span className="pc-pill" style={{ transform: `rotate(${-i * 120}deg)` }}>
-              <span className="pc-pill-counter">{p}</span>
-            </span>
-          </span>
-        ))}
-      </div>
-      <div className="pc-app-icon">
-        <span /><span />
+    <div className="pc-bop">
+      <div className="pc-bop-win">
+        <div className="pc-bop-bar">
+          <span className="pc-bop-dots"><i /><i /><i /></span>
+          <span className="pc-bop-url">bop concept</span>
+        </div>
+        <div className="pc-bop-view">
+          {BOP_VIEWS.map((v, i) => (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img key={v} src={`/playground/bop/${v}.webp`} alt="" loading="lazy" className="pc-bop-shot" style={{ animationDelay: `${i * 2.6 + 1.3}s` }} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -163,9 +139,9 @@ function Canvas() {
 }
 
 const CARDS: Card[] = [
-  { headline: "Sami: visa and money tracking for students.", tag: "Concept website", href: "https://sami-kohl.vercel.app", bg: "#f3f3f1", ink: "#000000", art: <SamiRings /> },
+  { headline: "Sami: visa and money tracking for students.", tag: "Concept website", href: "https://sami-kohl.vercel.app", bg: "#f3f3f1", ink: "#000000", art: <SamiSite />, site: true },
   { headline: "Apps you can scroll all day.", tag: "Coming soon", bg: "#f7d046", ink: "#17142e", art: <PhoneFeed /> },
-  { headline: "Apps and prototypes, built to be played with.", tag: "Coming soon", bg: "#1d1c22", ink: "#fff", art: <Orbit /> },
+  { headline: "Bop: tap phones to send money.", tag: "Concept website", bg: "#b0a3ff", ink: "#2c2552", art: <BopSite /> },
   { headline: "Dashboards that actually move.", tag: "Coming soon", bg: "#29b6f6", ink: "#08243a", art: <Bars /> },
   { headline: "Experiments that made it all the way to live.", tag: "Coming soon", bg: "#ecebe7", ink: "#17142e", art: <Stickers /> },
   { headline: "From design straight to code.", tag: "Coming soon", bg: "#ff6b4a", ink: "#2a0d05", art: <Typing /> },
@@ -202,9 +178,21 @@ export default function PlayCards() {
           {CARDS.map((c, i) => {
             const body = (
               <>
-                <p className="pc-headline" style={{ color: c.ink }}>{c.headline}</p>
-                <span className="pc-tag" style={{ color: c.ink }}>{c.tag}</span>
-                <div className="pc-art">{c.art}</div>
+                {c.site ? (
+                  <>
+                    <div className="pc-art pc-art--full">{c.art}</div>
+                    <div className="pc-reveal">
+                      <p className="pc-headline">{c.headline}</p>
+                      <span className="pc-tag">{c.tag}</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="pc-headline" style={{ color: c.ink }}>{c.headline}</p>
+                    <span className="pc-tag" style={{ color: c.ink }}>{c.tag}</span>
+                    <div className="pc-art">{c.art}</div>
+                  </>
+                )}
               </>
             );
             if (c.href?.startsWith("http")) {
@@ -235,49 +223,36 @@ export default function PlayCards() {
         .pc-tag { position: relative; z-index: 2; display: block; padding: 10px 26px 0; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.45; }
         .pc-art { position: absolute; inset: 32% 0 0 0; }
 
-        /* card: Sami, visa health rings filling on a loop */
-        .pc-sami { position: absolute; inset: 0; }
-        .pc-sami-phone { position: absolute; left: 50%; top: 18%; width: 54%; height: 130%; margin-left: -27%; background: #fff; border-radius: 26px; box-shadow: 0 0 0 6px #000, 0 24px 50px -24px rgba(0,0,0,.45); padding: 14px 12px 0; text-align: center; }
-        .pc-sami-k { margin: 0; font-size: 9px; color: #6e6e6e; }
-        .pc-sami-h { margin: 2px 0 0; font-size: 13px; font-weight: 500; letter-spacing: -0.02em; color: #000; }
-        .pc-sami-rings { width: 74%; margin: 10px auto 0; display: block; }
-        .pc-sami-arc { stroke-dashoffset: var(--len); animation: pc-sami-fill 5s cubic-bezier(.22,1,.36,1) infinite; }
-        @keyframes pc-sami-fill {
-          0% { stroke-dashoffset: var(--len); }
-          30%, 82% { stroke-dashoffset: var(--to); }
-          100% { stroke-dashoffset: var(--len); }
+        /* Sami card: real screenshots, full bleed, a new section every 1.4s; the write-up shows on hover */
+        .pc-art--full { inset: 0; }
+        .pc-site { position: absolute; inset: 0; }
+        .pc-site-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; animation: pc-site 7s cubic-bezier(.22,1,.36,1) infinite; }
+        @keyframes pc-site {
+          0% { opacity: 0; transform: translateY(18px) scale(1.03); }
+          5% { opacity: 1; transform: translateY(0) scale(1); }
+          18% { opacity: 1; transform: translateY(-8px) scale(1); }
+          22%, 100% { opacity: 0; transform: translateY(-18px) scale(1); }
         }
-        .pc-sami-note { position: absolute; left: 6%; bottom: 9%; display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.96); border-radius: 12px; padding: 8px 12px 8px 8px; box-shadow: 0 1px 0 #e7e7e5, 0 14px 30px -18px rgba(0,0,0,.4); animation: pc-sami-note 5s cubic-bezier(.22,1,.36,1) infinite; }
-        .pc-sami-note b { display: block; font-size: 11px; font-weight: 600; color: #000; }
-        .pc-sami-note i { display: block; font-style: normal; font-size: 10px; color: #6e6e6e; }
-        .pc-sami-mark { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 7px; background: #000; }
-        @keyframes pc-sami-note {
-          0%, 30% { opacity: 0; transform: translateY(12px) scale(.96); }
-          40%, 82% { opacity: 1; transform: translateY(0) scale(1); }
-          95%, 100% { opacity: 0; transform: translateY(-6px) scale(.98); }
-        }
+        .pc-reveal { position: absolute; inset: auto 0 0 0; z-index: 3; padding: 80px 0 22px; color: #fff; background: linear-gradient(to top, rgba(10,10,14,.92) 30%, rgba(10,10,14,0)); opacity: 0; transform: translateY(10px); transition: opacity .3s ease, transform .3s ease; }
+        .pc-reveal .pc-headline { padding-top: 0; }
+        .pc-card:hover .pc-reveal, .pc-card:focus-visible .pc-reveal { opacity: 1; transform: none; }
+        @media (hover: none) { .pc-reveal { opacity: 1; transform: none; } }
 
-        /* card 2: pills orbiting an app icon, shapes bobbing */
-        .pc-orbit { position: absolute; inset: 0; }
-        .pc-app-icon { position: absolute; left: 50%; top: 46%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 20px; background: #a99cf3; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 12px 30px rgba(0,0,0,.4); z-index: 1; animation: pc-bob 3.2s ease-in-out infinite; }
-        .pc-app-icon span { width: 10px; height: 14px; border-radius: 9px; background: #1d1c22; animation: pc-blink 4s infinite; }
-        .pc-orbit-ring { position: absolute; z-index: 2; left: 50%; top: 46%; width: 0; height: 0; animation: pc-spin 14s linear infinite; }
-        .pc-orbit-arm { position: absolute; left: 0; top: 0; width: 0; height: 0; }
-        .pc-pill { position: absolute; left: 0; top: -70px; }
-        .pc-pill-counter { display: inline-block; transform: translate(-50%, -50%); background: #fff; color: #1d1c22; border-radius: 999px; padding: 6px 12px; font-size: 12px; white-space: nowrap; animation: pc-counter 14s linear infinite; }
-        .pc-blob { position: absolute; border-radius: 50%; animation: pc-float 5s ease-in-out infinite; }
-        .pc-blob-a { width: 54px; height: 90px; left: 54%; top: 52%; background: #4f7cf0; animation-duration: 6s; }
-        .pc-blob-b { width: 36px; height: 36px; left: 26%; top: 24%; background: #f7d046; animation-delay: -2s; }
-        .pc-blob-c { width: 28px; height: 44px; left: 66%; top: 18%; background: #f6c7d2; animation-delay: -1s; }
-        .pc-star { position: absolute; color: #a99cf3; font-size: 22px; animation: pc-twinkle 2.4s ease-in-out infinite; }
-        .pc-star-a { left: 22%; top: 64%; }
-        .pc-star-b { left: 72%; top: 70%; animation-delay: -1.2s; font-size: 16px; }
-        @keyframes pc-spin { to { transform: rotate(360deg); } }
-        @keyframes pc-counter { to { transform: translate(-50%, -50%) rotate(-360deg); } }
-        @keyframes pc-bob { 50% { transform: translateY(-8px) rotate(-4deg); } }
-        @keyframes pc-float { 50% { transform: translate(6px, -12px) rotate(8deg); } }
-        @keyframes pc-twinkle { 50% { transform: scale(.6) rotate(45deg); opacity: .5; } }
-        @keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.15); } }
+        /* card: Bop, its site in a browser window cycling through five sections (13s loop) */
+        .pc-bop { position: absolute; inset: 0; }
+        .pc-bop-win { position: absolute; left: 8%; right: -18%; top: 6%; bottom: -12%; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 24px 44px -20px rgba(0,0,0,.35); }
+        .pc-bop-bar { height: 26px; display: flex; align-items: center; gap: 10px; padding: 0 10px; background: #f3f3f1; border-bottom: 1px solid #e7e7e5; }
+        .pc-bop-dots { display: flex; gap: 4px; }
+        .pc-bop-dots i { width: 7px; height: 7px; border-radius: 9px; background: #d4d4d0; }
+        .pc-bop-url { font-size: 9.5px; color: #6e6e6e; background: #fff; border-radius: 6px; padding: 2px 10px; }
+        .pc-bop-view { position: absolute; inset: 26px 0 0 0; }
+        .pc-bop-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left top; opacity: 0; animation: pc-bop 13s cubic-bezier(.22,1,.36,1) infinite; }
+        @keyframes pc-bop {
+          0% { opacity: 0; transform: translateY(14px) scale(1.02); }
+          4% { opacity: 1; transform: translateY(0) scale(1); }
+          19% { opacity: 1; transform: translateY(-6px) scale(1); }
+          23%, 100% { opacity: 0; transform: translateY(-14px) scale(1); }
+        }
 
         /* card 3: stickers stamping in around a check */
         .pc-stickers { position: absolute; inset: 0; }
@@ -346,8 +321,8 @@ export default function PlayCards() {
         @media (prefers-reduced-motion: reduce) {
           .pc-card *, .pc-card *::before { animation: none !important; }
           .pc-sticker { transform: rotate(var(--r)) scale(1); }
-          .pc-sami-arc { stroke-dashoffset: var(--to); }
-          .pc-sami-note { opacity: 1; }
+          .pc-site-shot:first-child, .pc-bop-shot:first-child { opacity: 1; }
+
         }
       `}</style>
     </section>
